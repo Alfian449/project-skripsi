@@ -42,12 +42,16 @@ Route::middleware('auth')->group(function () {
 
 
 
-// Routing sidebar
+// Routing halaman admin
 Route::resource('/admin', AdminController::class);
 Route::resource('/guru', GuruController::class);
 Route::resource('/siswa', SiswaController::class);
 Route::resource('/instansi', InstansiController::class);
+
+// Routing halaman siswa
 Route::resource('/logbook', LogbookController::class);
+
+// Routing untuk dashboard
 Route::resource('/dasadmin', DasadminController::class);
 Route::resource('/dassiswa', DassiswaController::class);
 
