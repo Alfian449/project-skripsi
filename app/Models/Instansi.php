@@ -16,5 +16,11 @@ class Instansi extends Model
         'alamat',
         'phone',
         'email',
+        'guru_id'
     ];
+
+    public function guru()
+    {
+        return $this->belongsTo(User::class, 'guru_id');
+    }
 }

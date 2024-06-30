@@ -14,7 +14,8 @@
         $no = 1;
     @endphp
 
-    <h3 class="ml-3">Data Logbook Kegiatan</h3>
+    <h3 class="ml-3">Data Logbook Kegiatan ( {{ $training->instansi->name }} )</h3>
+    <span class="ml-3">Penanggung Jawab : <b>{{ $training->instansi->guru->name }}</b></span>
     <br>
     <div class="d-flex justify-content-between align-items-center mb-3">
         <a class="btn btn-primary ml-3" href="{{ route('logbook.createFormLogbook', $training->id) }}">Tambah</a>

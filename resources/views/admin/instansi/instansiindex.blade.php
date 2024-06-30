@@ -10,7 +10,7 @@
     </nav>
 
     @php
-        $ar_instansi = ['No', 'Nama', 'Alamat', 'Phone', 'Email', 'Action'];
+        $ar_instansi = ['No', 'Nama', 'Penanggung Jawab', 'Email', 'Action'];
         $no = 1;
     @endphp
 
@@ -50,8 +50,7 @@
                 <tr>
                     <td>{{ $no++ }}</td>
                     <td>{{ $row->name }}</td>
-                    <td>{{ $row->alamat }}</td>
-                    <td>{{ $row->phone }}</td>
+                    <td>{{ $row->guru->name }}</td>
                     <td>{{ $row->email }}</td>
                     <td>
                         <form method="POST" action="{{ route('instansi.destroy', $row->id) }}">
