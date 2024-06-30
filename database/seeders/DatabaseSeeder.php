@@ -33,5 +33,9 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('siswa'),
             'kelas' => 'XI RPL 2'
         ]);
+
+        $this->call([
+            InstansiSeeder::class,
+        ]);
     }
 }
