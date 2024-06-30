@@ -63,9 +63,6 @@
     </head>
 
     <body>
-        @foreach ($errors->all() as $item)
-            {{ $item }}
-        @endforeach
         <div class="login-container">
             <img src="{{ asset('loginimg/logo smk.png') }}" alt="Welcome Image" class="login-image">
             <div class="login-form">

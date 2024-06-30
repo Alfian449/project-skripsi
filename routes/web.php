@@ -50,9 +50,11 @@ Route::resource('/guru', GuruController::class);
 Route::resource('/siswa', SiswaController::class);
 Route::resource('/instansi', InstansiController::class);
 
+
 // Routing halaman siswa
 Route::resource('/logbook', LogbookController::class);
 Route::resource('/pilihinstansi', PilihinstansiController::class);
+
 
 // Routing halaman guru
 Route::resource('/monitoring', MonitoringController::class);
@@ -79,13 +81,13 @@ Route::post('/instansi-import', [InstansiController::class, 'import'])->name('in
 Route::get('/instansi-export', [InstansiController::class, 'export'])->name('instansi.export');
 
 
-
 // Routing login
 Route::group(['middleware' => ['guest']], function() {
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login'])->name('login.submit');;
 Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
+
 
 // logout
 Route::post('/logout', function() {

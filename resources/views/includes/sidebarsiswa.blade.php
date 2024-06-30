@@ -22,7 +22,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ url('/pilihinstansi') }}">
             <i class="fa fa-pen"></i>
-            <span>Instansi</span></a>
+            <span>Magang</span></a>
     </li>
 
     <li class="nav-item">

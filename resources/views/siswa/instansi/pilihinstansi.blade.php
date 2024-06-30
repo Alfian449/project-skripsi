@@ -9,7 +9,7 @@
         </form>
     </nav>
 
-    <h3 class="ml-3">Pilih Instansi</h3>
+    <h3 class="ml-3">Magang</h3>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -23,15 +23,12 @@
     <form method="POST" action="{{ route('logbook.store') }}">
         @csrf
         <div class="form-group ml-3">
-            <label for="jurusan">Jurursan</label>
-            <select class="form-control" name="jurusan">
-                <option value="">Pilih Jurusan</option>
-                <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-                <option value="Multimedia">Multimedia</option>
-                <option value="Akuntansi">Akuntansi</option>
-                <option value="Pemasaran">Pemasaran</option>
-                <option value="Teknik Komputer Jaringan">Teknik Komputer Jaringan</option>
-                <option value="Perkantoran">Perkantoran</option>
+            <label for="instansi">Pilih Instansi</label>
+            <select class="form-control" name="instansi">
+                <option value="">Pilih Instansi</option>
+                <option value="Kecamatan Pakuniran">Kecamatan Pakuniran</option>
+                <option value="Kecamatan Kraksaan">Kecamatan Kraksaan</option>
+                <option value="Dinas Pendidikan">Dinas Pendidikan</option>
             </select>
         </div>
 
