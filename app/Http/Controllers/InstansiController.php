@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Instansi;
+use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 
 class InstansiController extends Controller
@@ -39,8 +40,9 @@ class InstansiController extends Controller
      */
     public function create()
     {
+        $pilihpenanggungjawab = User::where('role', 'guru')->get();
         // Menampilkan tampilan untuk membuat data pengguna baru.
-        return view('admin.instansi.instansiform');
+        return view('admin.instansi.instansiform', compact('pilihpenanggungjawab'));
     }
 
     /**
@@ -55,6 +57,7 @@ class InstansiController extends Controller
                 'alamat' => 'required|max:45',
                 'phone' => 'required|max:45',
                 'email' => 'required|email|max:45',
+                'guru_id' => 'exists:users,id'
             ],
 
             [
@@ -66,6 +69,8 @@ class InstansiController extends Controller
             ],
         );
         // Membuat pengguna baru dan menyimpannya di database.
+        $validasi['guru_id'] = $request->guru_id;
+        // dd($validasi);
         Instansi::create($validasi);
 
         return redirect('/instansi');

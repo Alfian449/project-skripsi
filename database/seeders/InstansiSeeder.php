@@ -17,19 +17,22 @@ class InstansiSeeder extends Seeder
                 'name' => 'Kecamatan Kraksaan',
                 'alamat' => 'Jl. Raya Patokan',
                 'phone' => '022-1234567',
-                'email' => 'kecamatankraksaan@gmail.com'
+                'email' => 'kecamatankraksaan@gmail.com',
+                'guru_id' => 1
             ],
             [
                 'name' => 'Dinas Pendidikan Kraksaan',
                 'alamat' => 'Jl. Raya Kraksaan',
                 'phone' => '022-1234567',
-                'email' => 'dispendik@gmail.com'
+                'email' => 'dispendik@gmail.com',
+                'guru_id' => 2
             ],
             [
                 'name' => 'Pemda Kab. Probolinggo',
                 'alamat' => 'Jl. Raya Ciputat',
                 'phone' => '022-1234567',
-                'email' => 'pemdakabprobolinggo@gmail.com'
+                'email' => 'pemdakabprobolinggo@gmail.com',
+                'guru_id' => 3
             ]
         ];
 
