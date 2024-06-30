@@ -36,9 +36,9 @@
             @forelse ($logbook as $row)
                 <tr>
                     <td>{{ $no++ }}</td>
-                    <td>{{ $row->nama_kegiatan }}</td>
+                    <td>{{ $row->training->instansi->name }}</td>
                     <td>{{ $row->keterangan }}</td>
-                    <td>{{ $row->tanggal }}</td>
+                    <td>{{ $row->created_at->format('d F Y') }}</td>
                     <td>
                         <form method="POST" action="{{ route('logbook.destroy', $row->id) }}">
                             @csrf

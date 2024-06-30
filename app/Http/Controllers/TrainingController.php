@@ -52,7 +52,7 @@ class TrainingController extends Controller
      */
     public function show(Training $training)
     {
-        $logbook = Logbook::where('training_id', $training->id)->get();
+        $logbook = Logbook::with(['training', 'training.instansi'])->where('training_id', $training->id)->get();
         // return $logbook;
         return view('siswa.logbook.logbookindex', compact(['logbook', 'training']));
     }
