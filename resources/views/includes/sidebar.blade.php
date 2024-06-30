@@ -42,6 +42,12 @@
             <span>Data Instansi</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/list-training') }}">
+            <i class="fa fa-building"></i>
+            <span>List Siswa</span></a>
+    </li>
+
     <form method="POST" action="/logout">
         @csrf
     <li class="nav-item">

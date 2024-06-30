@@ -20,15 +20,15 @@
         <div>
             <div class="d-flex">
                 <a class="btn btn-primary ml-3" href="{{ route('instansi.create') }}">Tambah</a>
-                <a class="btn btn-success ml-3" href="{{ route('instansi.export') }}">Export to Excel</a>
+                {{-- <a class="btn btn-success ml-3" href="{{ route('instansi.export') }}">Export to Excel</a> --}}
             </div>
-            <div class="mt-2 ml-3">
+            {{-- <div class="mt-2 ml-3">
                 <form action="{{ route('instansi.import') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="file" name="file" accept=".xls,.xlsx" class="form-control mb-2">
                     <button type="submit" class="btn btn-primary">Import Excel</button>
                 </form>
-            </div>
+            </div> --}}
         </div>
 
         <form action="{{ route('searchinstansi') }}" method="GET" class="form-inline">

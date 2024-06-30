@@ -1,0 +1,18 @@
+
+@extends('layout.halsiswa')
+@section('content')
+
+<div class="row">
+    @foreach ($history as $his )
+<div class="card">
+    <div class="card-body">
+      <h5 class="card-title">{{ $his->instansi->name }}</h5>
+      <div class="card-text">{{ $his->instansi->email }} | {{ $his->instansi->phone }}</div>
+      <div class="card-text">{{ $his->instansi->alamat }}</div>
+
+    </div>
+  </div>
+
+@endforeach
+</div>
+@endsection

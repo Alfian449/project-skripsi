@@ -14,23 +14,23 @@ class InstansiSeeder extends Seeder
     {
         $instansi = [
             [
-                'name' => 'PT. Maju Mundur',
-                'alamat' => 'Jl. Raya Cipadung No. 1',
+                'name' => 'Kecamatan Kraksaan',
+                'alamat' => 'Jl. Raya Patokan',
                 'phone' => '022-1234567',
-                'email' => 'example@gmail.com'
+                'email' => 'kecamatankraksaan@gmail.com'
             ],
             [
-                'name' => 'PT. Pilih Pilih',
-                'alamat' => 'Jl. Raya Cipadung No. 1',
+                'name' => 'Dinas Pendidikan Kraksaan',
+                'alamat' => 'Jl. Raya Kraksaan',
                 'phone' => '022-1234567',
-                'email' => 'example@gmail.com'
+                'email' => 'dispendik@gmail.com'
             ],
             [
-                'name' => 'PT. Akhir Awal',
-                'alamat' => 'Jl. Raya Cipadung No. 1',
+                'name' => 'Pemda Kab. Probolinggo',
+                'alamat' => 'Jl. Raya Ciputat',
                 'phone' => '022-1234567',
-                'email' => 'example@gmail.com'
-            ],
+                'email' => 'pemdakabprobolinggo@gmail.com'
+            ]
         ];
 
         foreach ($instansi as $i) {

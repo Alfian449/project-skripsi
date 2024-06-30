@@ -20,7 +20,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('logbook.store') }}">
+    <form method="POST" action="{{ route('trainings.store') }}">
         @csrf
         <div class="form-group ml-3">
             <label for="instansi">Pilih Instansi</label>
@@ -33,8 +33,9 @@
         </div>
 
         <div class="form-group ml-3">
+            <input type="hidden" name="user_id" value="{{ auth()->id() }}">
             <label>Nama Siswa</label>
-            <input type="text" name="name" value="" class="form-control">
+            <input type="text" name="name" value="{{ auth()->user()->name }}" class="form-control">
         </div>
 
         <div class="form-group ml-3">

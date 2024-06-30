@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Logbook extends Model
+class Training extends Model
 {
     use HasFactory;
 
@@ -16,8 +16,8 @@ class Logbook extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function training()
+    public function instansi()
     {
-        return $this->belongsTo(Training::class);
+        return $this->belongsTo(Instansi::class);
     }
 }

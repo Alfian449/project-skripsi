@@ -26,24 +26,17 @@ class GuruController extends Controller
         return view('admin.guru.guruindex', compact('guru'));
     }
 
-    public function indexi()
-    {
-        $gur = Guru::get();
+    // public function export()
+    // {
+    //     return Excel::download(new GuruExport, 'dataguru.xlsx');
+    // }
 
-        return view('admin.guru.gurus', compact('gur'));
-    }
+    // public function import()
+    // {
+    //     Excel::import(new GuruImport,request()->file('file'));
 
-    public function export()
-    {
-        return Excel::download(new GuruExport, 'dataguru.xlsx');
-    }
-
-    public function import()
-    {
-        Excel::import(new GuruImport,request()->file('file'));
-
-        return back();
-    }
+    //     return back();
+    // }
 
     /**
      * Show the form for creating a new resource.

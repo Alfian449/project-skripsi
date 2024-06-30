@@ -31,6 +31,12 @@
             <span>LogBook Kegiatan</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/history') }}">
+            <i class="fa fa-book-open"></i>
+            <span>History</span></a>
+    </li>
+
     <form method="POST" action="/logout">
         @csrf
     <li class="nav-item">

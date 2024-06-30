@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdmintrainingController;
 use App\Http\Controllers\DasadminController;
 use App\Http\Controllers\GuruController;
 use App\Http\Controllers\InstansiController;
@@ -12,9 +13,11 @@ use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DassiswaController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\PilihinstansiController;
 use App\Http\Controllers\SearchlogbookController;
+use App\Http\Controllers\TrainingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,15 +52,19 @@ Route::resource('/admin', AdminController::class);
 Route::resource('/guru', GuruController::class);
 Route::resource('/siswa', SiswaController::class);
 Route::resource('/instansi', InstansiController::class);
+Route::resource('/list-training', AdmintrainingController::class);
 
 
 // Routing halaman siswa
 Route::resource('/logbook', LogbookController::class);
+Route::resource('/trainings', TrainingController::class);
 Route::resource('/pilihinstansi', PilihinstansiController::class);
+Route::resource('/history', HistoryController::class);
+
 
 
 // Routing halaman guru
-Route::resource('/monitoring', MonitoringController::class);
+
 
 
 // Routing untuk dashboard
