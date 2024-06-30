@@ -24,11 +24,11 @@
         @csrf
         <div class="form-group ml-3">
             <label for="instansi">Pilih Instansi</label>
-            <select class="form-control" name="instansi">
-                <option value="">Pilih Instansi</option>
-                <option value="Kecamatan Pakuniran">Kecamatan Pakuniran</option>
-                <option value="Kecamatan Kraksaan">Kecamatan Kraksaan</option>
-                <option value="Dinas Pendidikan">Dinas Pendidikan</option>
+            <select class="form-control" name="instansi_id">
+                <option value="" selected>Pilih Instansi</option>
+                @foreach ($pilihinstansi as $item)
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                @endforeach
             </select>
         </div>
 

@@ -19,6 +19,18 @@ class InstansiSeeder extends Seeder
                 'phone' => '022-1234567',
                 'email' => 'example@gmail.com'
             ],
+            [
+                'name' => 'PT. Pilih Pilih',
+                'alamat' => 'Jl. Raya Cipadung No. 1',
+                'phone' => '022-1234567',
+                'email' => 'example@gmail.com'
+            ],
+            [
+                'name' => 'PT. Akhir Awal',
+                'alamat' => 'Jl. Raya Cipadung No. 1',
+                'phone' => '022-1234567',
+                'email' => 'example@gmail.com'
+            ],
         ];
 
         foreach ($instansi as $i) {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Instansi;
 use App\Models\Pilihinstansi;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class PilihinstansiController extends Controller
     public function index()
     {
         // Mengambil semua data pengguna dari database dan menampilkannya di tampilan.
-        $pilihinstansi = Pilihinstansi::all();
+        $pilihinstansi = Instansi::all();
         return view('siswa.instansi.pilihinstansi', compact('pilihinstansi'));
     }
 
