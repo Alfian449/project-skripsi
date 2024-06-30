@@ -12,6 +12,8 @@ use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DassiswaController;
+use App\Http\Controllers\MonitoringController;
+use App\Http\Controllers\PilihinstansiController;
 use App\Http\Controllers\SearchlogbookController;
 
 /*
@@ -50,6 +52,11 @@ Route::resource('/instansi', InstansiController::class);
 
 // Routing halaman siswa
 Route::resource('/logbook', LogbookController::class);
+Route::resource('/pilihinstansi', PilihinstansiController::class);
+
+// Routing halaman guru
+Route::resource('/monitoring', MonitoringController::class);
+
 
 // Routing untuk dashboard
 Route::resource('/dasadmin', DasadminController::class);

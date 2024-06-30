@@ -22,13 +22,6 @@ class InstansiController extends Controller
         return view('admin.instansi.instansiindex', compact('instansis'));
     }
 
-    public function indexi()
-    {
-        $instansi = Instansi::get();
-
-        return view('admin.instansi.instansis', compact('instansi'));
-    }
-
     public function export()
     {
         return Excel::download(new InstansiExport, 'datainstansi.xlsx');

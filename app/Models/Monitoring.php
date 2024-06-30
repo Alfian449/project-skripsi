@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Logbook extends Model
+class Monitoring extends Model
 {
     use HasFactory;
 
@@ -15,5 +15,4 @@ class Logbook extends Model
         'keterangan',
         'tanggal',
     ];
-
 }

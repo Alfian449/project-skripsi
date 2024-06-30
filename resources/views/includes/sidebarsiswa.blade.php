@@ -20,7 +20,7 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('/siswas') }}">
+        <a class="nav-link" href="{{ url('/pilihinstansi') }}">
             <i class="fa fa-pen"></i>
             <span>Instansi</span></a>
     </li>

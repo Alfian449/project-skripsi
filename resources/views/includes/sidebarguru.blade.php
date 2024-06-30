@@ -19,9 +19,9 @@
     </div>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('') }}">
+        <a class="nav-link" href="{{ url('/monitoring') }}">
             <i class="fa fa-pen"></i>
-            <span>Cek Kegiatan</span></a>
+            <span>Monitoring</span></a>
     </li>
 
     <li class="nav-item">
