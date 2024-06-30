@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logbook;
 use App\Models\Training;
 use Illuminate\Http\Request;
 
@@ -51,7 +52,9 @@ class TrainingController extends Controller
      */
     public function show(Training $training)
     {
-        //
+        $logbook = Logbook::where('training_id', $training->id)->get();
+        // return $logbook;
+        return view('siswa.logbook.logbookindex', compact(['logbook', 'training']));
     }
 
     /**

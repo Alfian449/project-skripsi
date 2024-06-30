@@ -57,9 +57,10 @@ Route::resource('/list-training', AdmintrainingController::class);
 
 // Routing halaman siswa
 Route::resource('/logbook', LogbookController::class);
-Route::resource('/trainings', TrainingController::class);
 Route::resource('/pilihinstansi', PilihinstansiController::class);
 Route::resource('/history', HistoryController::class);
+Route::resource('/trainings', TrainingController::class);
+Route::get('/logbook/{training}/create', [LogbookController::class, 'createFormLogbook'])->name('logbook.createFormLogbook');
 
 
 

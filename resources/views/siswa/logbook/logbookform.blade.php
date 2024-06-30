@@ -19,24 +19,14 @@
             </ul>
         </div>
     @endif
-    
+
     <form method="POST" action="{{ route('logbook.store') }}">
+        <input type="hidden" name="training_id" value="{{ $training->id }}">
         @csrf
         <div class="form-group ml-3">
-            <label>Nama Kegiatan</label>
-            <input type="text" name="nama_kegiatan" value="" class="form-control">
-        </div>
-
-        <div class="form-group ml-3">
             <label>Keterangan</label>
-            <input type="text" name="keterangan" value="" class="form-control">
+            <textarea name="keterangan" class="form-control" placeholder="apa kegiatanmu hari ini"></textarea>
         </div>
-
-        <div class="form-group ml-3">
-            <label>tanggal</label>
-            <input type="date" name="tanggal" value="" class="form-control">
-        </div>
-
         <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
         <a class="btn btn-warning" href="{{ route('logbook.index') }}">Batal</a>
     </form>

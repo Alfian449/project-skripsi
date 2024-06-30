@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Training;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -14,8 +15,8 @@ class LogbookController extends Controller
      */
     public function index()
     {
-        $logbook = Logbook::all();
-        return view('siswa.logbook.logbookindex', compact('logbook'));
+
+        // return view('siswa.logbook.logbookindex', compact('logbook'));
     }
 
     /**
@@ -23,33 +24,26 @@ class LogbookController extends Controller
      */
     public function create()
     {
-        return view('siswa.logbook.logbookform');
+        // return view('siswa.logbook.logbookform');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Training $training)
     {
         $validasi = $request->validate(
             [
-                'nama_kegiatan' => 'required|unique:logbooks|',
-                'keterangan' => 'required|',
-                'tanggal' => 'required|date',
-            ],
-
-            [
-                'nama_kegiatan.required' => 'Nama wajib diisi',
-                'nama_kegiatan.unique' => 'Nama tidak boleh sama',
-                'keterangan.required' => 'Keterangan wajib diisi',
-                'tanggal.required' => ' Tanggal Wajib diisi.',
-                'tanggal.date' => 'Tanggal harus berupa tanggal yang valid.',
+                'user_id' => 'exists:users,id',
+                'training_id' => 'exists:trainings,id',
+                'keterangan' => 'required',
             ],
         );
         // Membuat pengguna baru dan menyimpannya di database.
+        $validasi['user_id'] = auth()->id();
         Logbook::create($validasi);
 
-        return redirect('/logbook');
+        return redirect()->route('history.index');
     }
 
     /**
@@ -96,5 +90,11 @@ class LogbookController extends Controller
         DB::table('logbooks')->where('id', $id)->delete();
 
         return redirect('/logbook');
+    }
+
+    public function createFormLogbook(Training $training)
+    {
+    // return $training->load('instansi');
+        return view('siswa.logbook.logbookform', compact('training'));
     }
 }

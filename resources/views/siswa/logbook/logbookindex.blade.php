@@ -17,7 +17,7 @@
     <h3 class="ml-3">Data Logbook Kegiatan</h3>
     <br>
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <a class="btn btn-primary ml-3" href="{{ route('logbook.create') }}">Tambah</a>
+        <a class="btn btn-primary ml-3" href="{{ route('logbook.createFormLogbook', $training->id) }}">Tambah</a>
         <form action="{{ route('searchlogbook') }}" method="GET" class="form-inline">
             <input class="form-control mr-2" type="text" name="query" placeholder="Search for a name">
             <button class="btn btn-success" type="submit">Search</button>
@@ -33,7 +33,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($logbook as $row)
+            @forelse ($logbook as $row)
                 <tr>
                     <td>{{ $no++ }}</td>
                     <td>{{ $row->nama_kegiatan }}</td>
@@ -50,7 +50,11 @@
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <div class="alert alert-danger">
+                    Data Logbook Kegiatan Belum Tersedia
+                </div>
+            @endforelse
         </tbody>
     </table>
 @endsection
