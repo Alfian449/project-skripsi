@@ -10,7 +10,7 @@
     </nav>
 
     @php
-        $ar_logbook = ['No', 'Nama Kegiatan', 'Keterangan', 'Tanggal', 'Action'];
+        $ar_logbook = ['No', 'Nama Instansi', 'Keterangan', 'Tanggal', 'Action'];
         $no = 1;
     @endphp
 
@@ -18,10 +18,10 @@
     <br>
     <div class="d-flex justify-content-between align-items-center mb-3">
         <a class="btn btn-primary ml-3" href="{{ route('logbook.createFormLogbook', $training->id) }}">Tambah</a>
-        <form action="{{ route('searchlogbook') }}" method="GET" class="form-inline">
+        {{-- <form action="{{ route('searchlogbook') }}" method="GET" class="form-inline">
             <input class="form-control mr-2" type="text" name="query" placeholder="Search for a name">
             <button class="btn btn-success" type="submit">Search</button>
-        </form>
+        </form> --}}
     </div>
 
     <table class="table table-striped mt-3 ml-3">
@@ -43,8 +43,8 @@
                         <form method="POST" action="{{ route('logbook.destroy', $row->id) }}">
                             @csrf
                             @method('delete')
-                            <a class="btn btn-success" href="{{ route('logbook.edit', $row->id) }}">Edit</a>
-                            <a class="btn btn-info" href="{{ route('logbook.show', $row->id) }}">Detail</a>
+                            {{-- <a class="btn btn-success" href="{{ route('logbook.edit', $row->id) }}">Edit</a>
+                            <a class="btn btn-info" href="{{ route('logbook.show', $row->id) }}">Detail</a> --}}
                             <button class="btn btn-danger"
                                 onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
                         </form>
