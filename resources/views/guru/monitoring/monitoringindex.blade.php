@@ -10,7 +10,7 @@
     </nav>
 
     @php
-        $ar_monitoring = ['No', 'Nama Siswa', 'Keterangan'];
+        $ar_monitoring = ['No', 'Instansi', 'Nama Siswa', 'Tanggal', 'Keterangan'];
         $no = 1;
     @endphp
 
@@ -49,8 +49,10 @@
             @foreach ($monitoring as $row)
                 <tr>
                     <td>{{ $no++ }}</td>
+                    <td>{{ $row->training->instansi->name }}</td>
                     <td>{{ $row->user->name }}</td>
-                    <td>{{ $row->logbook->keterangan }}</td>
+                    <td>{{ $row->created_at->format('d/m/Y') }}</td>
+                    <td>{{ $row->keterangan }}</td>
                     {{-- <td>
                         <form method="POST" action="{{ route('instansi.destroy', $row->id) }}">
                             @csrf
