@@ -25,7 +25,7 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="{{ url('/') }}">
+        <a class="nav-link" href="{{ url('/rekapnilai') }}">
             <i class="fa fa-book-open"></i>
             <span>Rekap Nilai</span></a>
     </li>

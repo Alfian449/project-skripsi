@@ -16,6 +16,7 @@ use App\Http\Controllers\DassiswaController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\PilihinstansiController;
+use App\Http\Controllers\RekapnilaiController;
 use App\Http\Controllers\SearchlogbookController;
 use App\Http\Controllers\TrainingController;
 
@@ -66,6 +67,7 @@ Route::get('/logbook/{training}/create', [LogbookController::class, 'createFormL
 
 // Routing halaman guru
 Route::resource('/monitoring', MonitoringController::class);
+Route::resource('/rekapnilai', RekapnilaiController::class);
 
 
 // Routing untuk dashboard

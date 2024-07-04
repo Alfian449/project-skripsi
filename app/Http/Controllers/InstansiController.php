@@ -23,18 +23,6 @@ class InstansiController extends Controller
         return view('admin.instansi.instansiindex', compact('instansis'));
     }
 
-    public function export()
-    {
-        return Excel::download(new InstansiExport, 'datainstansi.xlsx');
-    }
-
-    public function import()
-    {
-        Excel::import(new InstansiImport,request()->file('file'));
-
-        return back();
-    }
-
     /**
      * Show the form for creating a new resource.
      */
