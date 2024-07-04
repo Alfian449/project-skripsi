@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('monitorings', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_kegiatan');
-            $table->string('keterangan');
-            $table->date('tanggal');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('logbook_id')->constrained();
             $table->timestamps();
         });
     }

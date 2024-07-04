@@ -9,22 +9,22 @@
         </form>
     </nav>
 
-    @foreach ($guru as $rs)
+    @foreach ($guru as $guru)
         <div class="card ml-3" style="width: 18rem;">
-            @if (!empty($rs->foto) && file_exists(public_path('images/guru/' . $rs->foto)))
-                <img src="{{ asset('images/guru/' . $rs->foto) }}" alt="{{ $rs->name }}" width="90"
+            @if (!empty($guru->foto) && file_exists(public_path('images/guru/' . $guru->foto)))
+                <img src="{{ asset('images/guru/' . $guru->foto) }}" alt="{{ $guru->name }}" width="90"
                     class="card-img-top">
             @else
-                <img src="{{ asset('images/nophoto.png') }}" alt="{{ $rs->name }}" width="90" class="card-img-top">
+                <img src="{{ asset('images/nophoto.png') }}" alt="{{ $guru->name }}" width="90" class="card-img-top">
             @endif
             <div class="card-body">
                 <p class="card-text">
-                    Username : {{ $rs->username }}<br>
-                    Nama : {{ $rs->name }}<br>
-                    Password : {{ $rs->password }}<br>
-                    Jenis Kelamin : {{ $rs->jenis_kelamin }}<br>
-                    Phone : {{ $rs->phone }}<br>
-                    Alamat : {{ $rs->alamat }}<br>
+                    Username : {{ $guru->username }}<br>
+                    Nama : {{ $guru->name }}<br>
+                    Password : {{ $guru->password }}<br>
+                    Jenis Kelamin : {{ $guru->jenis_kelamin }}<br>
+                    Phone : {{ $guru->phone }}<br>
+                    Alamat : {{ $guru->alamat }}<br>
                 </p>
                 <a class="btn btn-success" href="{{ route('guru.index') }}">Kembali</a>
             </div>

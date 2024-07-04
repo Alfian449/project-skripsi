@@ -125,31 +125,45 @@ class GuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-         // proses upload foto
-         if(!empty($request->foto)){
-            $request->validate([
-                'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
-            ]);
-            $fileName = $request->nama.'.'.$request->foto->extension();
-            $request->foto->move(public_path('images/guru'), $fileName);
-        }else{
-            $fileName = '';
+       // Temukan objek Guru dengan ID yang diberikan atau gagal jika tidak ditemukan
+    $guru = User::findOrFail($id);
+
+    // Debugging: Cek tipe data dari $guru
+    // dd($guru); // Uncomment untuk debugging
+
+    // Validasi request
+    $request->validate([
+        'name' => 'required',
+        'jenis_kelamin' => 'required',
+        'phone' => 'required',
+        'alamat' => 'required',
+        'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+    // Jika ada file foto yang diupload
+    if ($request->hasFile('foto')) {
+        // Hapus foto lama jika ada
+        if ($guru->foto && file_exists(public_path('images/guru'.$guru->foto))) {
+            unlink(public_path('images/guru'.$guru->foto));
         }
 
-        // update data guru
-        DB::table('users')->where('id', $id)->update(
-            [
-                'name'=>$request->name,
-                'jenis_kelamin'=>$request->jenis_kelamin,
-                'phone'=>$request->phone,
-                'alamat'=>$request->alamat,
-                'foto'=>$fileName,
-            ]
-        );
+        // Simpan foto baru
+        $file = $request->file('foto');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $file->move(public_path('images/guru'), $filename);
 
-        return redirect('/guru'.'/'.$id);
+        // Update path foto di database
+        $guru->foto = $filename;
+    }
 
+    // Update data guru
+    $guru->name = $request->name;
+    $guru->jenis_kelamin = $request->jenis_kelamin;
+    $guru->phone = $request->phone;
+    $guru->alamat = $request->alamat;
+    $guru->save();
 
+    return redirect('guru'.'/'.$id);
     }
 
     /**

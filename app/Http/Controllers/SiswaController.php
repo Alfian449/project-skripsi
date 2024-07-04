@@ -25,24 +25,17 @@ class SiswaController extends Controller
         return view('admin.siswa.siswaindex', compact('siswa'));
     }
 
-    public function indexi()
-    {
-        $sis = Siswa::get();
+    // public function export()
+    // {
+    //     return Excel::download(new SiswaExport, 'datasiswa.xlsx');
+    // }
 
-        return view('admin.siswa.siswas', compact('sis'));
-    }
+    // public function import()
+    // {
+    //     Excel::import(new SiswaImport,request()->file('file'));
 
-    public function export()
-    {
-        return Excel::download(new SiswaExport, 'datasiswa.xlsx');
-    }
-
-    public function import()
-    {
-        Excel::import(new SiswaImport,request()->file('file'));
-
-        return back();
-    }
+    //     return back();
+    // }
 
     /**
      * Show the form for creating a new resource.

@@ -65,7 +65,7 @@ Route::get('/logbook/{training}/create', [LogbookController::class, 'createFormL
 
 
 // Routing halaman guru
-
+Route::resource('/monitoring', MonitoringController::class);
 
 
 // Routing untuk dashboard

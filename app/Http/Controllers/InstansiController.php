@@ -93,9 +93,8 @@ class InstansiController extends Controller
     public function edit(string $id)
     {
         // Menampilkan data pengguna berdasarkan ID untuk diedit.
-        $instansi = DB::table('instansis')
-                ->where('id', $id)->get();
-        return view('admin.instansi.instansiedit', compact('instansi'));
+        $pilihpenanggungjawab = Instansi::where('id', $id)->get();
+        return view('admin.instansi.instansiedit', compact('pilihpenanggungjawab'));
     }
 
     /**

@@ -13,6 +13,6 @@ class MonitoringController extends Controller
     {
         // Mengambil semua data pengguna dari database dan menampilkannya di tampilan.
         $monitoring = Monitoring::all();
-        return view('siswa.monitoring.monitoringindex', compact('monitoring'));
+        return view('guru.monitoring.monitoringindex', compact('monitoring'));
     }
 }

@@ -10,28 +10,28 @@
     </nav>
 
     <h3 class="ml-3">Update Guru</h3>
-    @foreach ($guru as $rs)
-        <form method="POST" action="{{ route('guru.update', $rs->id) }}" enctype="multipart/form-data">
+    @foreach ($guru as $guru)
+        <form method="POST" action="{{ route('guru.update', $guru->id) }}" enctype="multipart/form-data">
             @csrf
             @method('put')
             <div class="form-group ml-3">
                 <label>Username</label>
-                <input type="text" name="username" value="{{ $rs->username }}" class="form-control">
+                <input type="text" name="username" value="{{ $guru->username }}" class="form-control">
             </div>
 
             <div class="form-group ml-3">
                 <label>Nama</label>
-                <input type="text" name="name" value="{{ $rs->name }}" class="form-control">
+                <input type="text" name="name" value="{{ $guru->name }}" class="form-control">
             </div>
 
             <div class="form-group ml-3">
                 <label>Password</label>
-                <input type="text" name="password" value="{{ $rs->password }}" class="form-control">
+                <input type="text" name="password" value="{{ $guru->password }}" class="form-control">
             </div>
 
             <div class="form-group ml-3">
                 <label for="jenis_kelamin">Jenis Kelamin</label>
-                <select class="form-control" name="jenis_kelamin" value="{{ $rs->jenis_kelamin }}">
+                <select class="form-control" name="jenis_kelamin" value="{{ $guru->jenis_kelamin }}">
                     <option value="">Pilih Jenis Kelamin</option>
                     <option value="Laki-laki">Laki-laki</option>
                     <option value="Perempuan">Perempuan</option>
@@ -40,17 +40,20 @@
 
             <div class="form-group ml-3">
                 <label>phone</label>
-                <input type="text" name="phone" value="{{ $rs->phone }}" class="form-control">
+                <input type="text" name="phone" value="{{ $guru->phone }}" class="form-control">
             </div>
 
             <div class="form-group ml-3">
                 <label>Alamat</label>
-                <input type="text" name="alamat" value="{{ $rs->alamat }}" class="form-control">
+                <input type="text" name="alamat" value="{{ $guru->alamat }}" class="form-control">
             </div>
 
             <div class="form-group ml-3">
-                <label>Foto</label>
-                <input type="file" name="foto" value="{{ $rs->foto }}" class="form-control">
+                <label for="foto">Foto</label>
+                <input type="file" name="foto" value="{{ $guru->foto }}" class="form-control">
+                @if ($guru->foto)
+                    <img src="{{ asset('images/guru' . $guru->foto) }}" alt="{{ $guru->name }}" width="100">
+                @endif
             </div>
 
             <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>

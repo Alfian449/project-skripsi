@@ -9,10 +9,15 @@ class Monitoring extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
 
-    protected $fillable = [
-        'nama_kegiatan',
-        'keterangan',
-        'tanggal',
-    ];
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function logbook()
+    {
+        return $this->belongsTo(Logbook::class);
+    }
 }
