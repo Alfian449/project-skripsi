@@ -5,11 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\Guru;
-use Maatwebsite\Excel\Facades\Excel;
-use Barryvdh\DomPDF\Facade\PDF;
-use App\Exports\GuruExport;
-use App\Imports\GuruImport;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -25,18 +20,6 @@ class GuruController extends Controller
         // dd($guru);
         return view('admin.guru.guruindex', compact('guru'));
     }
-
-    // public function export()
-    // {
-    //     return Excel::download(new GuruExport, 'dataguru.xlsx');
-    // }
-
-    // public function import()
-    // {
-    //     Excel::import(new GuruImport,request()->file('file'));
-
-    //     return back();
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -125,45 +108,30 @@ class GuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-       // Temukan objek Guru dengan ID yang diberikan atau gagal jika tidak ditemukan
-    $guru = User::findOrFail($id);
-
-    // Debugging: Cek tipe data dari $guru
-    // dd($guru); // Uncomment untuk debugging
-
-    // Validasi request
-    $request->validate([
-        'name' => 'required',
-        'jenis_kelamin' => 'required',
-        'phone' => 'required',
-        'alamat' => 'required',
-        'foto' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    ]);
-
-    // Jika ada file foto yang diupload
-    if ($request->hasFile('foto')) {
-        // Hapus foto lama jika ada
-        if ($guru->foto && file_exists(public_path('images/guru'.$guru->foto))) {
-            unlink(public_path('images/guru'.$guru->foto));
+        if(!empty($request->foto)){
+            $request->validate([
+                'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
+            ]);
+            $fileName = $request->nama.'.'.$request->foto->extension();
+            $request->foto->move(public_path('images/guru'), $fileName);
+        }else{
+            $fileName = '';
         }
 
-        // Simpan foto baru
-        $file = $request->file('foto');
-        $filename = time() . '_' . $file->getClientOriginalName();
-        $file->move(public_path('images/guru'), $filename);
+        // Update data siswa
+        DB::table('users')->where('id', $id)->update(
+            [
+                'username'=>$request->username,
+                'name'=>$request->name,
+                'password'=>$request->password,
+                'jenis_kelamin'=>$request->jenis_kelamin,
+                'phone'=>$request->phone,
+                'alamat'=>$request->alamat,
+                'foto'=>$fileName,
+            ]
+        );
 
-        // Update path foto di database
-        $guru->foto = $filename;
-    }
-
-    // Update data guru
-    $guru->name = $request->name;
-    $guru->jenis_kelamin = $request->jenis_kelamin;
-    $guru->phone = $request->phone;
-    $guru->alamat = $request->alamat;
-    $guru->save();
-
-    return redirect('guru'.'/'.$id);
+        return redirect('guru'.'/'.$id);
     }
 
     /**

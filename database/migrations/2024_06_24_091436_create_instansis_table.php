@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('instansis', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('guru_id')->constrained('users');
+            $table->foreignId('guru_id')->constrained('users')->onDelete('cascade');
             $table->string('name');
             $table->string('alamat');
             $table->string('phone');

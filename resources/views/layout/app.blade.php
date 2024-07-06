@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>pkl</title>
+    <title>Sistem Informasi Prakerin SMK Negeri 1 Kraksaan</title>
 
     {{-- <!-- Custom fonts for this template--> --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">

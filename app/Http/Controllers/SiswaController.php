@@ -2,16 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\SiswaExport;
-use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
-use App\Models\Siswa;
 use App\Models\User;
-use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\Hash;
-use Maatwebsite\Excel\Facades\Excel;
 
 class SiswaController extends Controller
 {
@@ -24,18 +19,6 @@ class SiswaController extends Controller
         $siswa = User::whereRole('siswa')->get();
         return view('admin.siswa.siswaindex', compact('siswa'));
     }
-
-    // public function export()
-    // {
-    //     return Excel::download(new SiswaExport, 'datasiswa.xlsx');
-    // }
-
-    // public function import()
-    // {
-    //     Excel::import(new SiswaImport,request()->file('file'));
-
-    //     return back();
-    // }
 
     /**
      * Show the form for creating a new resource.
@@ -171,10 +154,10 @@ class SiswaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $siswa)
     {
         // Menghapus data siswa berdasarkan ID.
-        DB::table('users')->where('id', $id)->delete();
+        $siswa->delete();
 
          return redirect('/siswa');
     }
