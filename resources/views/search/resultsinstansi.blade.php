@@ -50,6 +50,7 @@
             <table class="table table-striped mt-3 ml-3">
                 <thead>
                     <tr>
+                        <th scope="col">No</th>
                         <th>Nama</th>
                         <th>Alamat</th>
                         <th>Phone</th>
@@ -60,16 +61,17 @@
                 <tbody>
                     @foreach ($resultsinstansi as $result)
                         <tr>
-                            <td>{{ $result->nama }}</td>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $result->name }}</td>
                             <td>{{ $result->alamat }}</td>
                             <td>{{ $result->phone }}</td>
                             <td>{{ $result->email }}</td>
                             <td>
-                                <form method="POST" action="{{ route('instansi.destroy', $result->id_instansi) }}">
+                                <form method="POST" action="{{ route('instansi.destroy', $result->id) }}">
                                     @csrf
                                     @method('delete')
                                     <a class="btn btn-success action-btn"
-                                        href="{{ route('instansi.edit', $result->id_instansi) }}">Edit</a>
+                                        href="{{ route('instansi.edit', $result->id) }}">Edit</a>
                                     <button class="btn btn-danger action-btn"
                                         onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
                                 </form>

@@ -16,26 +16,7 @@
 
     <h3 class="ml-3">Data List Training</h3>
     <br>
-    <div class="d-flex justify-content-between align-items-start mb-3">
-        <div>
-            <div class="d-flex">
-                {{-- <a class="btn btn-primary ml-3" href="{{ route('instansi.create') }}">Tambah</a> --}}
-                {{-- <a class="btn btn-success ml-3" href="{{ route('instansi.export') }}">Export to Excel</a> --}}
-            </div>
-            {{-- <div class="mt-2 ml-3">
-                <form action="{{ route('instansi.import') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <input type="file" name="file" accept=".xls,.xlsx" class="form-control mb-2">
-                    <button type="submit" class="btn btn-primary">Import Excel</button>
-                </form>
-            </div> --}}
-        </div>
 
-        <form action="{{ route('searchinstansi') }}" method="GET" class="form-inline">
-            <input class="form-control mr-2" type="text" name="query" placeholder="Search for a name">
-            <button class="btn btn-success" type="submit">Search</button>
-        </form>
-    </div>
 
     <table class="table table-striped mt-3 ml-3">
         <thead>
@@ -53,16 +34,6 @@
                     <td>{{ $row->instansi->name }}</td>
                     <td>{{ $row->jurusan }}</td>
                     <td>{{ $row->status }}</td>
-                    {{-- <td>
-                        <form method="POST" action="{{ route('instansi.destroy', $row->id) }}">
-                            @csrf
-                            @method('delete')
-                            <a class="btn btn-success" href="{{ route('instansi.edit', $row->id) }}">Edit</a>
-                            <a class="btn btn-info" href="{{ route('instansi.show', $row->id) }}">Detail</a>
-                            <button class="btn btn-danger"
-                                onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
-                        </form>
-                    </td> --}}
                 </tr>
             @endforeach
         </tbody>

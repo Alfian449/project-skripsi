@@ -16,7 +16,7 @@ class LogbookController extends Controller
     public function index()
     {
 
-        // return view('siswa.logbook.logbookindex', compact('logbook'));
+        // 
     }
 
     /**
@@ -24,7 +24,7 @@ class LogbookController extends Controller
      */
     public function create()
     {
-        // return view('siswa.logbook.logbookform');
+        //
     }
 
     /**
@@ -85,11 +85,11 @@ class LogbookController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Logbook $logbook)
     {
-        DB::table('logbooks')->where('id', $id)->delete();
+        $logbook->delete();
 
-        return redirect('/logbook');
+        return redirect('/history');
     }
 
     public function createFormLogbook(Training $training)

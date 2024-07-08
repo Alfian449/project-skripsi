@@ -92,8 +92,6 @@ class SiswaController extends Controller
         return redirect('/siswa');
     }
 
-
-
     /**
      * Display the specified resource.
      */

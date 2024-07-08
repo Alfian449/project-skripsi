@@ -17,24 +17,12 @@
     <h3 class="ml-3">Data Rekap Nilai</h3>
     <br>
     <div class="d-flex justify-content-between align-items-start mb-3">
-        <div>
             <div class="d-flex">
                 <a class="btn btn-primary ml-3" href="{{ route('rekapnilai.create') }}">Tambah</a>
-                {{-- <a class="btn btn-success ml-3" href="{{ route('siswasi.export') }}">Export to Excel</a> --}}
+                <a class="btn btn-info ml-3" href="{{ url('pdf') }}">Export To PDF</a>
             </div>
-            {{-- <div class="mt-2 ml-3">
-                <form action="{{ route('siswasi.import') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <input type="file" name="file" accept=".xls,.xlsx" class="form-control mb-2">
-                    <button type="submit" class="btn btn-primary">Import Excel</button>
-                </form>
-            </div> --}}
-        </div>
-        <form action="{{ route('searchsiswa') }}" method="GET" class="form-inline">
-            <input class="form-control mr-2" type="text" name="query" placeholder="Search for a name">
-            <button class="btn btn-success" type="submit">Search</button>
-        </form>
     </div>
+
 
     <table class="table table-striped mt-3 ml-3">
         <thead>
@@ -60,7 +48,6 @@
                         <form method="POST" action="{{ route('rekapnilai.destroy', $row->id) }}">
                             @csrf
                             @method('delete')
-                            <a class="btn btn-success" href="{{ route('rekapnilai.edit', $row->id) }}">Edit</a>
                             <button class="btn btn-danger"
                                 onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
                         </form>

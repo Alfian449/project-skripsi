@@ -1,6 +1,6 @@
 @extends('layout.halsiswa')
 @section('content')
-    <div class="row">
+    <div class="row ml-3 mt-3">
         @foreach ($history as $his)
             <div class="card">
                 <div class="card-body">

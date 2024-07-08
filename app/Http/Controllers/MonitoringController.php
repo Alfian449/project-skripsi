@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Instansi;
 use App\Models\Logbook;
-use App\Models\Monitoring;
-use App\Models\User;
-use Illuminate\Http\Request;
 
 class MonitoringController extends Controller
 {

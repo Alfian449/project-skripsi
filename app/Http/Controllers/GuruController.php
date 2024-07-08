@@ -137,10 +137,10 @@ class GuruController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $guru)
     {
-        // Hapus data guru berdasarkan ID yang diberikan.
-        DB::table('users')->where('id', $id)->delete();
+        // Menghapus data siswa berdasarkan ID.
+        $guru->delete();
 
          return redirect('/guru');
     }

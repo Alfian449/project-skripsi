@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rekapnilai;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -99,5 +100,18 @@ class RekapnilaiController extends Controller
         DB::table('rekaps')->where('id', $id)->delete();
 
          return redirect('/rekapnilai');
+    }
+
+    public function generatePDF()
+    {
+        $rekapnilai = Rekapnilai::get();
+        $data = [
+            'title' => 'Rekap Nilai Siswa',
+            'date' => date('m/d/Y'),
+            'rekapnilai' => $rekapnilai
+        ];
+
+        $pdf = FacadePdf::loadView('guru.rekapnilai.myPDF', $data);
+        return $pdf->download('Data Rekap Nilai.pdf');
     }
 }

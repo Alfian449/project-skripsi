@@ -2,14 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\InstansiExport;
-use App\Imports\InstansiImport;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Instansi;
 use App\Models\User;
-use Maatwebsite\Excel\Facades\Excel;
 
 class InstansiController extends Controller
 {
@@ -29,7 +26,6 @@ class InstansiController extends Controller
     public function create()
     {
         $pilihpenanggungjawab = User::where('role', 'guru')->get();
-        // Menampilkan tampilan untuk membuat data pengguna baru.
         return view('admin.instansi.instansiform', compact('pilihpenanggungjawab'));
     }
 
@@ -69,10 +65,7 @@ class InstansiController extends Controller
      */
     public function show(string $id)
     {
-        // Menampilkan data pengguna berdasarkan ID.
-        $instansi = DB::table('instansis')
-                ->where('id', '=', $id)->get();
-        return view('admin.instansi.instansishow', compact('instansi'));
+        // 
     }
 
     /**

@@ -83,7 +83,7 @@
                                     @method('delete')
                                     <a class="btn btn-success action-btn"
                                         href="{{ route('siswa.edit', $result->id) }}">Edit</a>
-                                    <button class="btn btn-danger action-btn"
+                                    <button class="btn btn-danger action-btn mt-2"
                                         onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
                                 </form>
                             </td>

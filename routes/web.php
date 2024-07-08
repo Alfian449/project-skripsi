@@ -17,7 +17,6 @@ use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\PilihinstansiController;
 use App\Http\Controllers\RekapnilaiController;
-use App\Http\Controllers\SearchlogbookController;
 use App\Http\Controllers\TrainingController;
 
 /*
@@ -79,7 +78,6 @@ Route::resource('/dassiswa', DassiswaController::class);
 Route::get('/searchsiswa', [SearchsiswaController::class, 'searchsiswa'])->name('searchsiswa');
 Route::get('/searchguru', [SearchguruController::class, 'searchguru'])->name('searchguru');
 Route::get('/searchinstansi', [SearchinstansiController::class, 'searchinstansi'])->name('searchinstansi');
-Route::get('/searchlogbook', [SearchlogbookController::class, 'searchlogbook'])->name('searchlogbook');
 
 
 // Routing export-import excel
@@ -105,3 +103,7 @@ Route::post('/logout', function() {
     session()->flush();
     return redirect()->route('login')->with('success', 'Logout success');
 })->middleware('auth')->name('logout');
+
+
+// Routing export PDF Rekap Nilai
+Route::get('pdf', [RekapnilaiController::class, 'generatePDF']);

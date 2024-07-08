@@ -20,15 +20,7 @@
         <div>
             <div class="d-flex">
                 <a class="btn btn-primary ml-3" href="{{ route('guru.create') }}">Tambah</a>
-                {{-- <a class="btn btn-success ml-3" href="{{ route('gurus.export') }}">Export to Excel</a> --}}
             </div>
-            {{-- <div class="mt-2 ml-3">
-                <form action="{{ route('gurus.import') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <input type="file" name="file" accept=".xls,.xlsx" class="form-control mb-2">
-                    <button type="submit" class="btn btn-primary">Import Excel</button>
-                </form>
-            </div> --}}
         </div>
         <form action="{{ route('searchguru') }}" method="GET" class="form-inline">
             <input class="form-control mr-2" type="text" name="query" placeholder="Search for a name">
