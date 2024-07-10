@@ -23,7 +23,7 @@
         @csrf
         <div class="form-group ml-3">
             <label>Nama</label>
-            <input type="text" name="name" value="" class="form-control">
+            <input type="text" name="name" value="" class="form-control" >
         </div>
 
         <div class="form-group ml-3">

@@ -23,27 +23,27 @@
         @csrf
         <div class="form-group ml-3">
             <label>NIS</label>
-            <input type="text" name="nis" value="" class="form-control">
+            <input type="text" name="nis" value="" class="form-control" placeholder="Masukkan NIS SIswa">
         </div>
 
         <div class="form-group ml-3">
             <label>Username</label>
-            <input type="text" name="username" value="" class="form-control">
+            <input type="text" name="username" value="" class="form-control" placeholder="Masukkan Username SIswa">
         </div>
 
         <div class="form-group ml-3">
             <label>Nama</label>
-            <input type="text" name="name" value="" class="form-control">
+            <input type="text" name="name" value="" class="form-control" placeholder="Masukkan Nama SIswa">
         </div>
 
         <div class="form-group ml-3">
             <label>Password</label>
-            <input type="password" name="password" value="" class="form-control">
+            <input type="password" name="password" value="" class="form-control"placeholder="Masukkan Password SIswa">
         </div>
 
         <div class="form-group ml-3">
             <label>Kelas</label>
-            <input type="text" name="kelas" value="" class="form-control">
+            <input type="text" name="kelas" value="" class="form-control" placeholder="Masukkan Kelas SIswa">
         </div>
 
         <div class="form-group ml-3">
@@ -57,12 +57,12 @@
 
         <div class="form-group ml-3">
             <label>phone</label>
-            <input type="text" name="phone" value="" class="form-control">
+            <input type="text" name="phone" value="" class="form-control" placeholder="Masukkan No HP SIswa">
         </div>
 
         <div class="form-group ml-3">
             <label>Alamat</label>
-            <input type="text" name="alamat" value="" class="form-control">
+            <input type="text" name="alamat" value="" class="form-control" placeholder="Masukkan Alamat SIswa">
         </div>
 
         <div class="form-group ml-3">

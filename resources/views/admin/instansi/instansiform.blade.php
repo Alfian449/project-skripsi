@@ -23,22 +23,22 @@
         @csrf
         <div class="form-group ml-3">
             <label>Nama</label>
-            <input type="text" name="name" value="" class="form-control">
+            <input type="text" name="name" value="" class="form-control" placeholder="Masukkan Nama Instansi">
         </div>
 
         <div class="form-group ml-3">
             <label>Alamat</label>
-            <input type="text" name="alamat" value="" class="form-control">
+            <input type="text" name="alamat" value="" class="form-control" placeholder="Masukkan Alamat Instansi">
         </div>
 
         <div class="form-group ml-3">
             <label>Phone</label>
-            <input type="text" name="phone" value="" class="form-control">
+            <input type="text" name="phone" value="" class="form-control" placeholder="Masukkan No HP Instansi">
         </div>
 
         <div class="form-group ml-3">
             <label>Email</label>
-            <input type="text" name="email" value="" class="form-control">
+            <input type="text" name="email" value="" class="form-control" placeholder="Masukkan Email Instansi">
         </div>
 
         <div class="form-group ml-3">
