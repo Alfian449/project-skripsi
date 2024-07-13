@@ -45,8 +45,8 @@
                     <td>{{ $row->phone }}</td>
                     <td>{{ $row->alamat }}</td>
                     <td>
-                        @if (!empty($row->foto) && file_exists(public_path('images/guru/' . $row->foto)))
-                            <img src="{{ asset('images/guru/' . $row->foto) }}" alt="{{ $row->name }}" width="90">
+                        @if (!empty($row->foto) && file_exists(public_path('images/' . $row->foto)))
+                            <img src="{{ asset('images/' . $row->foto) }}" alt="{{ $row->name }}" width="90">
                         @else
                             <img src="{{ asset('images/nophoto.png') }}" alt="{{ $row->name }}" width="90">
                         @endif

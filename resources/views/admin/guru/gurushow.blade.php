@@ -11,8 +11,8 @@
 
     @foreach ($guru as $guru)
         <div class="card ml-3" style="width: 18rem;">
-            @if (!empty($guru->foto) && file_exists(public_path('images/guru/' . $guru->foto)))
-                <img src="{{ asset('images/guru/' . $guru->foto) }}" alt="{{ $guru->name }}" width="90"
+            @if (!empty($guru->foto) && file_exists(public_path('images/' . $guru->foto)))
+                <img src="{{ asset('images/' . $guru->foto) }}" alt="{{ $guru->name }}" width="90"
                     class="card-img-top">
             @else
                 <img src="{{ asset('images/nophoto.png') }}" alt="{{ $guru->name }}" width="90" class="card-img-top">

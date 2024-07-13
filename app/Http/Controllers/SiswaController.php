@@ -47,29 +47,6 @@ class SiswaController extends Controller
                 'alamat' => 'required|max:100',
                 'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
             ],
-
-            [
-                'nis.required' => 'NIS Wajib diisi',
-                'nis.unique' => 'NIS tidak boleh sama',
-                'nis.max' => 'NIS tidak boleh lebih dari 10 digit',
-                'username.required' => 'Username Wajib diisi',
-                'username.unique' => 'Username tidak boleh sama',
-                'username.max' => 'Username tidak boleh lebih dari 20 huruf',
-                'name.required' => 'Nama wajib diisi',
-                'name.unique' => 'Nama tidak boleh sama',
-                'name.max' => 'Nama tidak boleh lebih dari 45 huruf',
-                'password.required' => 'Password Wajib diisi',
-                'password.min' => 'Password minimal 8 karakter',
-                'kelas.required' => 'Kelas wajib diisi',
-                'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
-                'jenis_kelamin.in' => 'Jenis kelamin harus L (Laki-laki) atau P (Perempuan).',
-                'phone.required' => 'Nomor HP wajib diisi.',
-                'phone.min' => 'Nomor HP minimal 12 angka.',
-                'alamat.required' => 'Alamat wajib diisi.',
-                'alamat.max' => 'Alamat tidak boleh lebih dari 100 karakter.',
-                'foto.image' => 'File gambar harus jpg,jpeg,png',
-                'foto.max' => 'Ukuran file gambar maksimal 2048',
-            ],
         );
 
         // Proses upload foto
@@ -119,7 +96,6 @@ class SiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // dd($request->all());
         // proses upload foto
         if(!empty($request->foto)){
             $request->validate([

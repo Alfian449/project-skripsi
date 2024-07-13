@@ -17,7 +17,6 @@ class GuruController extends Controller
     {
         // Mengambil semua data pengguna dari database dan menampilkannya di tampilan.
         $guru = User::whereRole('guru')->get();
-        // dd($guru);
         return view('admin.guru.guruindex', compact('guru'));
     }
 
@@ -46,32 +45,19 @@ class GuruController extends Controller
                 'alamat' => 'required|string|max:100',
                 'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
             ],
-
-            [
-                'name.required' => 'Nama wajib diisi',
-                'name.unique' => 'Nama tidak boleh sama',
-                'jenis_kelamin.required' => 'Jenis kelamin wajib diisi.',
-                'jenis_kelamin.in' => 'Jenis kelamin harus L (Laki-laki) atau P (Perempuan).',
-                'phone.required' => 'Nomor HP wajib diisi.',
-                'phone.numeric' => 'Nomor HP harus berupa angka.',
-                'alamat.required' => 'Alamat wajib diisi.',
-                'alamat.string' => 'Alamat harus berupa teks.',
-                'alamat.max' => 'Alamat tidak boleh lebih dari 100 karakter.',
-                'foto.image' => 'File gambar harus jpg,jpeg,png',
-                'foto.max' => 'Ukuran file gambar maksimal 2048',
-            ],
         );
 
-        // proses upload foto
+        // Proses upload foto
         if(!empty($request->foto)){
             $request->validate([
                 'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
             ]);
-            $fileName = $request->nama.'.'.$request->foto->extension();
-            $request->foto->move(public_path('images/guru'), $fileName);
+            $fileName = $request->name.'.'.$request->foto->extension();
+            $request->foto->move(public_path('images'), $fileName);
         }else{
             $fileName = '';
         }
+        
         $validasi['password'] = Hash::make('password');
         $validasi['role'] = 'guru';
         $validasi['foto'] = $fileName;
@@ -113,7 +99,7 @@ class GuruController extends Controller
                 'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
             ]);
             $fileName = $request->nama.'.'.$request->foto->extension();
-            $request->foto->move(public_path('images/guru'), $fileName);
+            $request->foto->move(public_path('images'), $fileName);
         }else{
             $fileName = '';
         }
