@@ -34,39 +34,34 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        // Proses validsi data
-        $validasi = $request->validate(
-            [
-                'nis' => 'required|unique:users|max:10',
-                'username' => 'required|unique:users|max:20',
-                'name' => 'required|unique:users|max:45',
-                'password' => 'required|min:8',
-                'kelas' => 'required',
-                'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
-                'phone' => 'required|min:12',
-                'alamat' => 'required|max:100',
-                'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
-            ],
-        );
+         // Proses validasi data
+    $validasi = $request->validate([
+        'nis' => 'required|unique:users|max:10',
+        'username' => 'required|unique:users|max:45',
+        'name' => 'required|unique:users|max:45',
+        'password' => 'required',
+        'kelas' => 'required',
+        'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+        'phone' => 'required|numeric',
+        'alamat' => 'required|string|max:100',
+        'foto' => 'image|mimes:jpg,jpeg,png|max:2048|nullable', // Menambahkan nullable untuk membolehkan kosong
+    ]);
 
-        // Proses upload foto
-        if(!empty($request->foto)){
-            $request->validate([
-                'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
-            ]);
-            $fileName = $request->name.'.'.$request->foto->extension();
-            $request->foto->move(public_path('images'), $fileName);
-        }else{
-            $fileName = '';
-        }
-
-        $validasi['password'] = Hash::make('password');
-        $validasi['role'] = 'siswa';
+    // Proses upload foto
+    if (!empty($request->foto)) {
+        $fileName = $request->name . '.' . $request->foto->extension();
+        $request->foto->move(public_path('images'), $fileName);
         $validasi['foto'] = $fileName;
+    } else {
+        $validasi['foto'] = null; // Menetapkan nilai null jika tidak ada foto yang diunggah
+    }
 
-        User::create($validasi);
+    $validasi['password'] = Hash::make($request->password); // Hash password yang diinputkan
+    $validasi['role'] = 'siswa';
 
-        return redirect('/siswa');
+    User::create($validasi);
+
+    return redirect('/siswa');
     }
 
     /**
@@ -85,10 +80,12 @@ class SiswaController extends Controller
      */
     public function edit(string $id)
     {
-        // Menampilkan form edit data pengguna berdasarkan ID.
-        $siswa = DB::table('users')
-                ->where('id', $id)->get();
-        return view('admin.siswa.siswaedit', compact('siswa'));
+        // Menampilkan form edit pengguna berdasarkan ID yang diberikan.
+    $siswa = DB::table('users')->where('id', $id)->first();
+    if (!$siswa) {
+        return redirect('siswa')->withErrors(['Data siswa tidak ditemukan']);
+    }
+    return view('admin.siswa.siswaedit', compact('siswa'));
     }
 
     /**
@@ -96,33 +93,42 @@ class SiswaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // proses upload foto
-        if(!empty($request->foto)){
-            $request->validate([
-                'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
-            ]);
-            $fileName = $request->nama.'.'.$request->foto->extension();
-            $request->foto->move(public_path('images'), $fileName);
-        }else{
-            $fileName = '';
-        }
+        // Validasi input lain
+    $request->validate([
+        'nis' => 'required',
+        'username' => 'required',
+        'name' => 'required',
+        'password' => 'required',
+        'kelas' => 'required',
+        'jenis_kelamin' => 'required',
+        'phone' => 'required',
+        'alamat' => 'required',
+    ]);
 
-        // Update data siswa
-        DB::table('users')->where('id', $id)->update(
-            [
-                'nis'=>$request->nis,
-                'username'=>$request->username,
-                'name'=>$request->name,
-                'password'=>$request->password,
-                'kelas'=>$request->kelas,
-                'jenis_kelamin'=>$request->jenis_kelamin,
-                'phone'=>$request->phone,
-                'alamat'=>$request->alamat,
-                'foto'=>$fileName,
-            ]
-        );
+    $data = [
+        'nis' => $request->nis,
+        'username' => $request->username,
+        'name' => $request->name,
+        'password' => $request->password, // Pertimbangkan untuk mengenkripsi password
+        'kelas' => $request->kelas,
+        'jenis_kelamin' => $request->jenis_kelamin,
+        'phone' => $request->phone,
+        'alamat' => $request->alamat,
+    ];
 
-        return redirect('siswa'.'/'.$id);
+    if(!empty($request->foto)){
+        $request->validate([
+            'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+        $fileName = $request->name . '.' . $request->foto->extension();
+        $request->foto->move(public_path('images'), $fileName);
+        $data['foto'] = $fileName;
+    }
+
+    // Update data guru
+    DB::table('users')->where('id', $id)->update($data);
+
+    return redirect('siswa' . '/' . $id);
     }
 
     /**

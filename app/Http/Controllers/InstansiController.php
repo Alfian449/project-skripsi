@@ -65,7 +65,9 @@ class InstansiController extends Controller
      */
     public function show(string $id)
     {
-        // 
+        $instansi = DB::table('instansis')
+                ->where('id', '=', $id)->get();
+        return view('admin.instansi.instansishow', compact('instansi'));
     }
 
     /**
@@ -73,9 +75,9 @@ class InstansiController extends Controller
      */
     public function edit(string $id)
     {
-        // Menampilkan data pengguna berdasarkan ID untuk diedit.
-        $pilihpenanggungjawab = Instansi::where('id', $id)->get();
-        return view('admin.instansi.instansiedit', compact('pilihpenanggungjawab'));
+        $instansi = DB::table('instansis')
+                ->where('id', $id)->get();
+        return view('admin.instansi.instansiedit', compact('instansi'));
     }
 
     /**
@@ -93,7 +95,7 @@ class InstansiController extends Controller
             ]
         );
 
-        return redirect('/instansi'.'/'.$id);
+        return redirect('instansi'.'/'.$id);
     }
 
     /**

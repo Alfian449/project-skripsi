@@ -10,54 +10,49 @@
     </nav>
 
     <h3 class="ml-3">Update Guru</h3>
-    @foreach ($guru as $guru)
-        <form method="POST" action="{{ route('guru.update', $guru->id) }}" enctype="multipart/form-data">
-            @csrf
-            @method('put')
-            <div class="form-group ml-3">
-                <label>Username</label>
-                <input type="text" name="username" value="{{ $guru->username }}" class="form-control">
-            </div>
+    <form method="POST" action="{{ route('guru.update', $guru->id) }}" enctype="multipart/form-data">
+        @csrf
+        @method('put')
+        <div class="form-group ml-3">
+            <label>Username</label>
+            <input type="text" name="username" value="{{ $guru->username }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Nama</label>
-                <input type="text" name="name" value="{{ $guru->name }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Nama</label>
+            <input type="text" name="name" value="{{ $guru->name }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Password</label>
-                <input type="text" name="password" value="{{ $guru->password }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Password</label>
+            <input type="text" name="password" value="{{ $guru->password }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label for="jenis_kelamin">Jenis Kelamin</label>
-                <select class="form-control" name="jenis_kelamin" value="{{ $guru->jenis_kelamin }}">
-                    <option value="">Pilih Jenis Kelamin</option>
-                    <option value="Laki-laki">Laki-laki</option>
-                    <option value="Perempuan">Perempuan</option>
-                </select>
-            </div>
+        <div class="form-group ml-3">
+            <label for="jenis_kelamin">Jenis Kelamin</label>
+            <select class="form-control" name="jenis_kelamin">
+                <option value="">Pilih Jenis Kelamin</option>
+                <option value="Laki-laki" {{ $guru->jenis_kelamin == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
+                <option value="Perempuan" {{ $guru->jenis_kelamin == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
+            </select>
+        </div>
 
-            <div class="form-group ml-3">
-                <label>phone</label>
-                <input type="text" name="phone" value="{{ $guru->phone }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Phone</label>
+            <input type="text" name="phone" value="{{ $guru->phone }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Alamat</label>
-                <input type="text" name="alamat" value="{{ $guru->alamat }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Alamat</label>
+            <input type="text" name="alamat" value="{{ $guru->alamat }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label for="foto">Foto</label>
-                <input type="file" name="foto" value="{{ $guru->foto }}" class="form-control">
-                @if ($guru->foto)
-                    <img src="{{ asset('images/guru' . $guru->foto) }}" alt="{{ $guru->name }}" width="100">
-                @endif
-            </div>
+        <div class="form-group ml-3">
+            <label>Foto</label>
+            <input type="file" name="foto" class="form-control">
+        </div>
 
-            <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
-            <a class="btn btn-success" href="{{ route('guru.index') }}">Batal</a>
-        </form>
-    @endforeach
+        <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
+        <a class="btn btn-success" href="{{ route('guru.index') }}">Batal</a>
+    </form>
 @endsection

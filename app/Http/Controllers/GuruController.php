@@ -34,37 +34,32 @@ class GuruController extends Controller
      */
     public function store(Request $request)
     {
-        // proses validasi data
-        $validasi = $request->validate(
-            [
-                'username' => 'required|unique:users|max:45',
-                'name' => 'required|unique:users|max:45',
-                'password' => 'required',
-                'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
-                'phone' => 'required|numeric|',
-                'alamat' => 'required|string|max:100',
-                'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
-            ],
-        );
+        // Proses validasi data
+    $validasi = $request->validate([
+        'username' => 'required|unique:users|max:45',
+        'name' => 'required|unique:users|max:45',
+        'password' => 'required',
+        'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
+        'phone' => 'required|numeric',
+        'alamat' => 'required|string|max:100',
+        'foto' => 'image|mimes:jpg,jpeg,png|max:2048|nullable', // Menambahkan nullable untuk membolehkan kosong
+    ]);
 
-        // Proses upload foto
-        if(!empty($request->foto)){
-            $request->validate([
-                'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
-            ]);
-            $fileName = $request->name.'.'.$request->foto->extension();
-            $request->foto->move(public_path('images'), $fileName);
-        }else{
-            $fileName = '';
-        }
-        
-        $validasi['password'] = Hash::make('password');
-        $validasi['role'] = 'guru';
+    // Proses upload foto
+    if (!empty($request->foto)) {
+        $fileName = $request->name . '.' . $request->foto->extension();
+        $request->foto->move(public_path('images'), $fileName);
         $validasi['foto'] = $fileName;
+    } else {
+        $validasi['foto'] = null; // Menetapkan nilai null jika tidak ada foto yang diunggah
+    }
 
-        User::create($validasi);
+    $validasi['password'] = Hash::make($request->password); // Hash password yang diinputkan
+    $validasi['role'] = 'guru';
 
-        return redirect('/guru');
+    User::create($validasi);
+
+    return redirect('/guru');
     }
 
     /**
@@ -84,9 +79,11 @@ class GuruController extends Controller
     public function edit(string $id)
     {
         // Menampilkan form edit pengguna berdasarkan ID yang diberikan.
-        $guru = DB::table('users')
-                ->where('id', $id)->get();
-        return view('admin.guru.guruedit', compact('guru'));
+    $guru = DB::table('users')->where('id', $id)->first();
+    if (!$guru) {
+        return redirect('guru')->withErrors(['Data guru tidak ditemukan']);
+    }
+    return view('admin.guru.guruedit', compact('guru'));
     }
 
     /**
@@ -94,30 +91,38 @@ class GuruController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if(!empty($request->foto)){
-            $request->validate([
-                'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
-            ]);
-            $fileName = $request->nama.'.'.$request->foto->extension();
-            $request->foto->move(public_path('images'), $fileName);
-        }else{
-            $fileName = '';
-        }
+        // Validasi input lain
+    $request->validate([
+        'username' => 'required',
+        'name' => 'required',
+        'password' => 'required',
+        'jenis_kelamin' => 'required',
+        'phone' => 'required',
+        'alamat' => 'required',
+    ]);
 
-        // Update data siswa
-        DB::table('users')->where('id', $id)->update(
-            [
-                'username'=>$request->username,
-                'name'=>$request->name,
-                'password'=>$request->password,
-                'jenis_kelamin'=>$request->jenis_kelamin,
-                'phone'=>$request->phone,
-                'alamat'=>$request->alamat,
-                'foto'=>$fileName,
-            ]
-        );
+    $data = [
+        'username' => $request->username,
+        'name' => $request->name,
+        'password' => $request->password, // Pertimbangkan untuk mengenkripsi password
+        'jenis_kelamin' => $request->jenis_kelamin,
+        'phone' => $request->phone,
+        'alamat' => $request->alamat,
+    ];
 
-        return redirect('guru'.'/'.$id);
+    if(!empty($request->foto)){
+        $request->validate([
+            'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+        $fileName = $request->name . '.' . $request->foto->extension();
+        $request->foto->move(public_path('images'), $fileName);
+        $data['foto'] = $fileName;
+    }
+
+    // Update data guru
+    DB::table('users')->where('id', $id)->update($data);
+
+    return redirect('guru' . '/' . $id);
     }
 
     /**

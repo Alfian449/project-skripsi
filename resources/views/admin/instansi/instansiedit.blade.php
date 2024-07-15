@@ -10,7 +10,7 @@
     </nav>
 
     <h3 class="ml-3">Update Instansi</h3>
-    @foreach ($pilihpenanggungjawab as $rs)
+    @foreach ($instansi as $rs)
         <form method="POST" action="{{ route('instansi.update', $rs->id) }}">
             @csrf
             @method('put')
@@ -32,16 +32,6 @@
             <div class="form-group ml-3">
                 <label>Email</label>
                 <input type="text" name="email" value="{{ $rs->email }}" class="form-control">
-            </div>
-
-            <div class="form-group ml-3">
-                <label>Penanggung Jawab</label>
-                <select class="form-control" name="guru_id">
-                    <option value="" selected>Pilih Penanggung Jawab</option>
-                    @foreach ($pilihpenanggungjawab as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                    @endforeach
-                </select>
             </div>
 
             <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>

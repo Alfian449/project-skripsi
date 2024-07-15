@@ -49,6 +49,7 @@
                             @csrf
                             @method('delete')
                             <a class="btn btn-success" href="{{ route('instansi.edit', $row->id) }}">Edit</a>
+                            <a class="btn btn-info" href="{{ route('instansi.show', $row->id) }}">Detail</a>
                             <button class="btn btn-danger"
                                 onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
                         </form>
