@@ -49,6 +49,7 @@
                 <option value="XI RPL 2">XI RPL 2</option>
                 <option value="XI MM 1">XI MM 1</option>
                 <option value="XI MM 2">XI MM 2</option>
+                <option value="XI DKV 2">XI DKV 2</option>
             </select>
         </div>
 

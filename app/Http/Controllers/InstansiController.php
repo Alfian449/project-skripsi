@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\instansiImport;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\Instansi;
 use App\Models\User;
+use Maatwebsite\Excel\Facades\Excel;
 
 class InstansiController extends Controller
 {
@@ -18,6 +20,12 @@ class InstansiController extends Controller
         // Mengambil semua data pengguna dari database dan menampilkannya di tampilan.
         $instansis = Instansi::all();
         return view('admin.instansi.instansiindex', compact('instansis'));
+    }
+
+    public function import()
+    {
+        Excel::import(new instansiImport,request()->file('file'));
+        return back();
     }
 
     /**

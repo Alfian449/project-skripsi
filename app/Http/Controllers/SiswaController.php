@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\SiswaExport;
+use App\Imports\SiswaImport;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SiswaController extends Controller
 {
@@ -18,6 +21,21 @@ class SiswaController extends Controller
         // Mengambil semua data pengguna dari database dan menampilkannya di tampilan.
         $siswa = User::whereRole('siswa')->get();
         return view('admin.siswa.siswaindex', compact('siswa'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new SiswaExport, 'Data Siswa.xlsx');
+    }
+
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function import()
+    {
+        Excel::import(new SiswaImport,request()->file('file'));
+
+        return back();
     }
 
     /**
@@ -50,7 +68,7 @@ class SiswaController extends Controller
     // Proses upload foto
     if (!empty($request->foto)) {
         $fileName = $request->name . '.' . $request->foto->extension();
-        $request->foto->move(public_path('images'), $fileName);
+        $request->foto->move(public_path('uploads/fotos/'), $fileName);
         $validasi['foto'] = $fileName;
     } else {
         $validasi['foto'] = null; // Menetapkan nilai null jika tidak ada foto yang diunggah
@@ -121,7 +139,7 @@ class SiswaController extends Controller
             'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
         ]);
         $fileName = $request->name . '.' . $request->foto->extension();
-        $request->foto->move(public_path('images'), $fileName);
+        $request->foto->move(public_path('uploads/fotos/'), $fileName);
         $data['foto'] = $fileName;
     }
 

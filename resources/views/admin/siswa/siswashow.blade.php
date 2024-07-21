@@ -12,10 +12,10 @@
 
     @foreach ($siswa as $rs)
         <div class="card ml-3" style="width: 18rem;">
-            @if (!empty($rs->foto) && file_exists(public_path('images/' . $rs->foto)))
-                <img src="{{ asset('images/' . $rs->foto) }}" alt="{{ $rs->name }}" width="90" class="card-img-top">
+            @if (!empty($rs->foto) && file_exists(public_path('uploads/fotos/' . $rs->foto)))
+                <img src="{{ asset('uploads/fotos/' . $rs->foto) }}" alt="{{ $rs->name }}" width="90" class="card-img-top">
             @else
-                <img src="{{ asset('images/nophoto.png') }}" alt="{{ $rs->name }}" width="90" class="card-img-top">
+                <img src="{{ asset('uploads/fotos/nophoto.png') }}" alt="{{ $rs->name }}" width="90" class="card-img-top">
             @endif
             <div class="card-body">
                 <p class="card-text">

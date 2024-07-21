@@ -41,6 +41,7 @@
                 <option value="XI RPL 2" {{ $siswa->kelas == 'XI RPL 2' ? 'selected' : '' }}>XI RPL 2</option>
                 <option value="XI MM 1" {{ $siswa->kelas == 'XI MM 1' ? 'selected' : '' }}>XI MM 1</option>
                 <option value="XI MM 2" {{ $siswa->kelas == 'XI MM 2' ? 'selected' : '' }}>XI MM 2</option>
+                <option value="XI DKV 2" {{ $siswa->kelas == 'XI DKV 2' ? 'selected' : '' }}>XI DKV 2</option>
             </select>
         </div>
 

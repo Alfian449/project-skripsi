@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\GuruExport;
+use App\Imports\GuruImport;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class GuruController extends Controller
 {
@@ -18,6 +21,21 @@ class GuruController extends Controller
         // Mengambil semua data pengguna dari database dan menampilkannya di tampilan.
         $guru = User::whereRole('guru')->get();
         return view('admin.guru.guruindex', compact('guru'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new GuruExport, 'Data Guru.xlsx');
+    }
+
+    /**
+    * @return \Illuminate\Support\Collection
+    */
+    public function import()
+    {
+        Excel::import(new GuruImport,request()->file('file'));
+
+        return back();
     }
 
     /**
@@ -48,7 +66,7 @@ class GuruController extends Controller
     // Proses upload foto
     if (!empty($request->foto)) {
         $fileName = $request->name . '.' . $request->foto->extension();
-        $request->foto->move(public_path('images'), $fileName);
+        $request->foto->move(public_path('uploads/gurus/'), $fileName);
         $validasi['foto'] = $fileName;
     } else {
         $validasi['foto'] = null; // Menetapkan nilai null jika tidak ada foto yang diunggah
@@ -115,7 +133,7 @@ class GuruController extends Controller
             'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
         ]);
         $fileName = $request->name . '.' . $request->foto->extension();
-        $request->foto->move(public_path('images'), $fileName);
+        $request->foto->move(public_path('uploads/gurus/'), $fileName);
         $data['foto'] = $fileName;
     }
 

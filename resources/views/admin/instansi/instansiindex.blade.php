@@ -20,7 +20,15 @@
         <div>
             <div class="d-flex">
                 <a class="btn btn-primary ml-3" href="{{ route('instansi.create') }}">Tambah</a>
+
             </div>
+
+            <form action="{{ route('instansi.import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="file" class="form-control">
+                <br>
+                <button class="btn btn-success">Import Instansi Data</button>
+            </form>
         </div>
 
         <form action="{{ route('searchinstansi') }}" method="GET" class="form-inline">

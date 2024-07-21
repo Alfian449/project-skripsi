@@ -10,7 +10,7 @@
     </nav>
 
     @php
-        $ar_siswa = ['No', 'NIS', 'Nama', 'Kelas', 'Jenis Kelamin', 'Phone', 'Alamat', 'Foto', 'Action'];
+        $ar_siswa = ['No', 'NIS',  'Nama', 'Kelas', 'Jenis Kelamin', 'Phone', 'Alamat', 'Foto', 'Action'];
         $no = 1;
     @endphp
 
@@ -20,8 +20,18 @@
         <div>
             <div class="d-flex">
                 <a class="btn btn-primary ml-3" href="{{ route('siswa.create') }}">Tambah</a>
+                <a class="btn btn-primary ml-3" href="{{ url('siswasi-export') }}">Export To Excel</a>
             </div>
-        </div>
+
+        <form action="{{ route('siswasi.import') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file" class="form-control ml-3 mt-2 m">
+
+            <button class="btn btn-success ml-3 mt-2">Import User Data</button>
+        </form>
+
+    </div>
+
         <form action="{{ route('searchsiswa') }}" method="GET" class="form-inline">
             <input class="form-control mr-2" type="text" name="query" placeholder="Search for a name">
             <button class="btn btn-success" type="submit">Search</button>
@@ -47,10 +57,10 @@
                     <td>{{ $row->phone }}</td>
                     <td>{{ $row->alamat }}</td>
                     <td>
-                        @if (!empty($row->foto) && file_exists(public_path('images/' . $row->foto)))
-                            <img src="{{ asset('images/' . $row->foto) }}" alt="{{ $row->name }}" width="90">
+                        @if (!empty($row->foto) && file_exists(public_path('uploads/fotos/' . $row->foto)))
+                            <img src="{{ asset('uploads/fotos/' . $row->foto) }}" alt="{{ $row->name }}" width="90">
                         @else
-                            <img src="{{ asset('images/nophoto.png') }}" alt="{{ $row->name }}" width="90">
+                            <img src="{{ asset('uploads/fotos/nophoto.png') }}" alt="{{ $row->name }}" width="90">
                         @endif
                     </td>
 

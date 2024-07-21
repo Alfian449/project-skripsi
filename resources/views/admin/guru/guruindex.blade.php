@@ -20,7 +20,14 @@
         <div>
             <div class="d-flex">
                 <a class="btn btn-primary ml-3" href="{{ route('guru.create') }}">Tambah</a>
+                <a class="btn btn-primary ml-3" href="{{ url('gurus-export') }}">Export To Excel</a>
             </div>
+            <form action="{{ route('gurus.import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="file" class="form-control ml-3 mt-2 m">
+    
+                <button class="btn btn-success ml-3 mt-2">Import User Data</button>
+            </form>
         </div>
         <form action="{{ route('searchguru') }}" method="GET" class="form-inline">
             <input class="form-control mr-2" type="text" name="query" placeholder="Search for a name">
@@ -45,10 +52,10 @@
                     <td>{{ $row->phone }}</td>
                     <td>{{ $row->alamat }}</td>
                     <td>
-                        @if (!empty($row->foto) && file_exists(public_path('images/' . $row->foto)))
-                            <img src="{{ asset('images/' . $row->foto) }}" alt="{{ $row->name }}" width="90">
+                        @if (!empty($row->foto) && file_exists(public_path('uploads/gurus/' . $row->foto)))
+                            <img src="{{ asset('uploads/gurus/' . $row->foto) }}" alt="{{ $row->name }}" width="90">
                         @else
-                            <img src="{{ asset('images/nophoto.png') }}" alt="{{ $row->name }}" width="90">
+                            <img src="{{ asset('uploads/gurus/nophoto.png') }}" alt="{{ $row->name }}" width="90">
                         @endif
                     </td>
                     <td>
