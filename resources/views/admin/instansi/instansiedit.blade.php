@@ -10,32 +10,42 @@
     </nav>
 
     <h3 class="ml-3">Update Instansi</h3>
-    @foreach ($instansi as $rs)
-        <form method="POST" action="{{ route('instansi.update', $rs->id) }}">
-            @csrf
-            @method('put')
-            <div class="form-group ml-3">
-                <label>Nama</label>
-                <input type="text" name="name" value="{{ $rs->name }}" class="form-control">
-            </div>
+    <form method="POST" action="{{ route('instansi.update', $instansi->id) }}">
+        @csrf
+        @method('PUT')
+        <div class="form-group ml-3">
+            <label>Nama</label>
+            <input type="text" name="name" value="{{ $instansi->name }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Alamat</label>
-                <input type="text" name="alamat" value="{{ $rs->alamat }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Alamat</label>
+            <input type="text" name="alamat" value="{{ $instansi->alamat }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Phone</label>
-                <input type="text" name="phone" value="{{ $rs->phone }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Phone</label>
+            <input type="text" name="phone" value="{{ $instansi->phone }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Email</label>
-                <input type="text" name="email" value="{{ $rs->email }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Email</label>
+            <input type="email" name="email" value="{{ $instansi->email }}" class="form-control">
+        </div>
 
-            <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
-            <a class="btn btn-warning" href="{{ route('instansi.index') }}">Batal</a>
-        </form>
-    @endforeach
+        <div class="form-group ml-3">
+            <label>Penanggung Jawab</label>
+            <select name="guru_id" class="form-control">
+                @foreach($pilihpenanggungjawab as $guru)
+                    <option value="{{ $guru->id }}" {{ $instansi->guru_id == $guru->id ? 'selected' : '' }}>
+                        {{ $guru->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
+        <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
+        <a class="btn btn-warning" href="{{ route('instansi.index') }}">Batal</a>
+    </form>
+
 @endsection

@@ -38,7 +38,7 @@
 
         <div class="form-group ml-3">
             <label>Email</label>
-            <input type="text" name="email" value="" class="form-control" placeholder="Masukkan Email Instansi">
+            <input type="email" name="email" value="" class="form-control" placeholder="Masukkan Email Instansi">
         </div>
 
         <div class="form-group ml-3">

@@ -19,7 +19,7 @@
     <div class="d-flex justify-content-between align-items-start mb-3">
             <div class="d-flex">
                 <a class="btn btn-primary ml-3" href="{{ route('rekapnilai.create') }}">Tambah</a>
-                <a class="btn btn-info ml-3" href="{{ url('pdf') }}">Export To PDF</a>
+                <a class="btn btn-success ml-3" href="{{ url('rekapnilai-export') }}">Export To Excel</a>
             </div>
     </div>
 
@@ -37,6 +37,7 @@
                 <tr>
                     <td>{{ $no++ }}</td>
                     <td>{{ $row->name }}</td>
+                    {{-- <td>{{ $row->kelas }}</td> --}}
                     <td>{{ $row->kedisiplinan }}</td>
                     <td>{{ $row->tanggung_jawab }}</td>
                     <td>{{ $row->komunikasi }}</td>

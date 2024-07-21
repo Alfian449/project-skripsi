@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RekapnilaiExport;
 use App\Models\Rekapnilai;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RekapnilaiController extends Controller
 {
@@ -17,6 +19,11 @@ class RekapnilaiController extends Controller
         // Mengambil semua data pengguna dari database dan menampilkannya di tampilan.
         $rekapnilai = Rekapnilai::all();
         return view('guru.rekapnilai.rekapnilaiindex', compact('rekapnilai'));
+    }
+
+    public function export()
+    {
+        return Excel::download(new RekapnilaiExport, 'rekapnilai.xlsx');
     }
 
     /**

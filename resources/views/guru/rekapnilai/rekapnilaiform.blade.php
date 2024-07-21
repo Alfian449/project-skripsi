@@ -26,6 +26,11 @@
             <input type="text" name="name" value="" class="form-control" >
         </div>
 
+        {{-- <div class="form-group ml-3">
+            <label>Kelas</label>
+            <input type="text" name="kelas" value="" class="form-control" >
+        </div> --}}
+
         <div class="form-group ml-3">
             <label>Kedisiplinan</label>
             <input type="text" name="kedisiplinan" value="" class="form-control">

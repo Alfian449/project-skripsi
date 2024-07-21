@@ -75,9 +75,9 @@ class InstansiController extends Controller
      */
     public function edit(string $id)
     {
-        $instansi = DB::table('instansis')
-                ->where('id', $id)->get();
-        return view('admin.instansi.instansiedit', compact('instansi'));
+        $instansi = Instansi::findOrFail($id);
+    $pilihpenanggungjawab = User::where('role', 'guru')->get();
+    return view('admin.instansi.instansiedit', compact('instansi', 'pilihpenanggungjawab'));
     }
 
     /**
@@ -85,15 +85,25 @@ class InstansiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Update data instansi
-        DB::table('instansis')->where('id', $id)->update(
-            [
-                'name'=>$request->name,
-                'alamat'=>$request->alamat,
-                'phone'=>$request->phone,
-                'email'=>$request->email,
-            ]
-        );
+       // Validasi input
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'alamat' => 'required|string|max:255',
+        'phone' => 'required|string|max:15',
+        'email' => 'required|email|max:255',
+        'guru_id' => 'required|exists:users,id',
+    ]);
+
+    // Update data instansi
+    $instansi = Instansi::findOrFail($id);
+    $instansi->update([
+        'name' => $request->name,
+        'alamat' => $request->alamat,
+        'phone' => $request->phone,
+        'email' => $request->email,
+        'guru_id' => $request->guru_id,
+    ]);
+
 
         return redirect('instansi'.'/'.$id);
     }

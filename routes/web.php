@@ -87,6 +87,7 @@ Route::post('/gurus-import', [GuruController::class, 'import'])->name('gurus.imp
 Route::get('/gurus-export', [GuruController::class, 'export'])->name('gurus.export');
 Route::post('/instansi-import', [InstansiController::class, 'import'])->name('instansi.import');
 Route::get('/instansi-export', [InstansiController::class, 'export'])->name('instansi.export');
+Route::get('/rekapnilai-export', [RekapnilaiController::class, 'export'])->name('rekapnilai.export');
 
 
 // Routing login
@@ -107,3 +108,7 @@ Route::post('/logout', function() {
 
 // Routing export PDF Rekap Nilai
 Route::get('pdf', [RekapnilaiController::class, 'generatePDF']);
+
+
+Route::get('instansi/{id}/edit', [InstansiController::class, 'edit'])->name('instansi.edit');
+Route::put('instansi/{id}', [InstansiController::class, 'update'])->name('instansi.update');

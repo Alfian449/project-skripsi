@@ -42,8 +42,14 @@
         </div>
 
         <div class="form-group ml-3">
-            <label>Kelas</label>
-            <input type="text" name="kelas" value="" class="form-control" placeholder="Masukkan Kelas SIswa">
+            <label for="kelas">Kelas</label>
+            <select class="form-control" name="kelas">
+                <option value="">Pilih Kelas</option>
+                <option value="XI RPL 1">XI RPL 1</option>
+                <option value="XI RPL 2">XI RPL 2</option>
+                <option value="XI MM 1">XI MM 1</option>
+                <option value="XI MM 2">XI MM 2</option>
+            </select>
         </div>
 
         <div class="form-group ml-3">

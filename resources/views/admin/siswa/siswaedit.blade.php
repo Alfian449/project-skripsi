@@ -34,8 +34,14 @@
         </div>
 
         <div class="form-group ml-3">
-            <label>Kelas</label>
-            <input type="text" name="kelas" value="{{ $siswa->kelas }}" class="form-control">
+            <label for="kelas">Kelas</label>
+            <select class="form-control" name="kelas">
+                <option value="">Pilih Kelas</option>
+                <option value="XI RPL 1" {{ $siswa->kelas == 'XI RPL 1' ? 'selected' : '' }}>XI RPL 1</option>
+                <option value="XI RPL 2" {{ $siswa->kelas == 'XI RPL 2' ? 'selected' : '' }}>XI RPL 2</option>
+                <option value="XI MM 1" {{ $siswa->kelas == 'XI MM 1' ? 'selected' : '' }}>XI MM 1</option>
+                <option value="XI MM 2" {{ $siswa->kelas == 'XI MM 2' ? 'selected' : '' }}>XI MM 2</option>
+            </select>
         </div>
 
         <div class="form-group ml-3">
