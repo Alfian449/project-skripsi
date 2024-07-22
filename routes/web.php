@@ -12,6 +12,7 @@ use App\Http\Controllers\SearchsiswaController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DasguruController;
 use App\Http\Controllers\DassiswaController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MonitoringController;
@@ -72,6 +73,7 @@ Route::resource('/rekapnilai', RekapnilaiController::class);
 // Routing untuk dashboard
 Route::resource('/dasadmin', DasadminController::class);
 Route::resource('/dassiswa', DassiswaController::class);
+Route::resource('/dasguru', DasguruController::class);
 
 
 // Routing untuk pencarian
@@ -112,3 +114,10 @@ Route::get('pdf', [RekapnilaiController::class, 'generatePDF']);
 
 Route::get('instansi/{id}/edit', [InstansiController::class, 'edit'])->name('instansi.edit');
 Route::put('instansi/{id}', [InstansiController::class, 'update'])->name('instansi.update');
+
+Route::get('/dasguru', [DasguruController::class, 'dashboardGuru'])->name('halamanguru');
+Route::get('/dassiswa', [DassiswaController::class, 'dashboardSiswa'])->name('halamansiswa');
+
+Route::get('/halamanguru', [GuruController::class, 'dashboardGuru'])->name('halamanguru');
+Route::get('/halamansiswa', [SiswaController::class, 'dashboardSiswa'])->name('halamansiswa');
+

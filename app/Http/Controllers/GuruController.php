@@ -153,4 +153,14 @@ class GuruController extends Controller
 
          return redirect('/guru');
     }
+
+    public function dashboardGuru()
+    {
+    // Mendapatkan data guru yang sedang login
+    $guru = auth()->user();
+
+    // Mengirim data ke view
+    return view('dashboard.indexguru', compact('guru'));
+    }
+
 }

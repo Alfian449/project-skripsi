@@ -6,8 +6,8 @@
         <div class="sidebar-brand-text mx-2">SMK Negeri 1 Kraksaan</div>
     </a>
     <hr class="sidebar-divider my-0">
-    <li class="nav-item @if (url()->current() == route('dashboard')) active @endif ">
-        <a class="nav-link" href="{{ route('dashboard') }}">
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/dasguru') }}">
             <i class="fa fa-chart-line"></i>
             <span>Dashboard</span></a>
     </li>
@@ -15,7 +15,7 @@
     <hr class="sidebar-divider">
 
     <div class="sidebar-heading">
-        Memu Siswa
+        Memu Guru
     </div>
 
     <li class="nav-item">

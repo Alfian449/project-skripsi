@@ -160,4 +160,13 @@ class SiswaController extends Controller
          return redirect('/siswa');
     }
 
+    public function dashboardSiswa()
+    {
+    // Mendapatkan data guru yang sedang login
+    $siswa = auth()->user();
+
+    // Mengirim data ke view
+    return view('dashboard.indexsiswa', compact('siswa'));
+    }
+
 }
