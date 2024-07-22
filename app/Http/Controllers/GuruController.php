@@ -54,6 +54,7 @@ class GuruController extends Controller
     {
         // Proses validasi data
     $validasi = $request->validate([
+        'nip' => 'required|unique:users|max:45',
         'username' => 'required|unique:users|max:45',
         'name' => 'required|unique:users|max:45',
         'password' => 'required',
@@ -111,6 +112,7 @@ class GuruController extends Controller
     {
         // Validasi input lain
     $request->validate([
+        'nip' => 'required',
         'username' => 'required',
         'name' => 'required',
         'password' => 'required',
@@ -120,6 +122,7 @@ class GuruController extends Controller
     ]);
 
     $data = [
+        'nip' => $request->nip,
         'username' => $request->username,
         'name' => $request->name,
         'password' => $request->password, // Pertimbangkan untuk mengenkripsi password

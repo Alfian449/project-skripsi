@@ -14,6 +14,11 @@
         @csrf
         @method('put')
         <div class="form-group ml-3">
+            <label>NIP</label>
+            <input type="text" name="nip" value="{{ $guru->nip }}" class="form-control">
+        </div>
+
+        <div class="form-group ml-3">
             <label>Username</label>
             <input type="text" name="username" value="{{ $guru->username }}" class="form-control">
         </div>

@@ -29,6 +29,7 @@ class GuruImport implements ToModel, WithHeadingRow
             $foto = null; // Atau berikan nilai default jika foto tidak ada
         }
         return new User([
+            'nip' => $row['nip'],
             'username'     => $row['username'],
             'name'     => $row['name'],
             'password' => bcrypt($row['password']),

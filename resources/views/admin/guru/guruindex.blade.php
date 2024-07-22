@@ -10,7 +10,7 @@
     </nav>
 
     @php
-        $ar_guru = ['No', 'Nama', 'Jenis Kelamin', 'Phone', 'Alamat', 'Foto', 'Action'];
+        $ar_guru = ['No', 'NIP', 'Nama', 'Jenis Kelamin', 'Phone', 'Alamat', 'Foto', 'Action'];
         $no = 1;
     @endphp
 
@@ -20,13 +20,13 @@
         <div>
             <div class="d-flex">
                 <a class="btn btn-primary ml-3" href="{{ route('guru.create') }}">Tambah</a>
-                <a class="btn btn-primary ml-3" href="{{ url('gurus-export') }}">Export To Excel</a>
+                <a class="btn btn-primary ml-2" href="{{ url('gurus-export') }}">Export To Excel</a>
             </div>
             <form action="{{ route('gurus.import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="file" name="file" class="form-control ml-3 mt-2 m">
-    
-                <button class="btn btn-success ml-3 mt-2">Import User Data</button>
+
+                <button class="btn btn-success ml-3 mt-2">Import Data Guru</button>
             </form>
         </div>
         <form action="{{ route('searchguru') }}" method="GET" class="form-inline">
@@ -47,6 +47,7 @@
             @foreach ($guru as $row)
                 <tr>
                     <td>{{ $no++ }}</td>
+                    <td>{{ $row->nip }}</td>
                     <td>{{ $row->name }}</td>
                     <td>{{ $row->jenis_kelamin }}</td>
                     <td>{{ $row->phone }}</td>
@@ -64,7 +65,7 @@
                             @method('delete')
                             <a class="btn btn-success" href="{{ route('guru.edit', $row->id) }}">Edit</a>
                             <a class="btn btn-info" href="{{ route('guru.show', $row->id) }}">Detail</a>
-                            <button class="btn btn-danger"
+                            <button class="btn btn-danger mt-2"
                                 onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
                         </form>
                     </td>

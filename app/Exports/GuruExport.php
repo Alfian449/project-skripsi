@@ -14,7 +14,7 @@ class GuruExport implements FromCollection, WithHeadings
     public function collection()
     {
         // Memfilter data berdasarkan role 'siswa'
-        return User::select('username', "name", "jenis_kelamin", "phone", "alamat", "foto")
+        return User::select('nip', 'username', "name", "jenis_kelamin", "phone", "alamat", "foto")
                     ->where('role', 'guru')
                     ->get();
     }
@@ -26,6 +26,6 @@ class GuruExport implements FromCollection, WithHeadings
      */
     public function headings(): array
     {
-        return ["Username", "Nama", "Jenis Kelamin", "Phone", "Alamat", "Foto"];
+        return ["NIP", "Username", "Nama", "Jenis Kelamin", "Phone", "Alamat", "Foto"];
     }
 }

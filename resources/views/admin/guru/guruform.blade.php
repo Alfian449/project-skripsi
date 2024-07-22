@@ -22,6 +22,11 @@
     <form method="POST" action="{{ route('guru.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group ml-3">
+            <label>NIP</label>
+            <input type="number" name="nip" value="" class="form-control" placeholder="Masukkan NIP Guru">
+        </div>
+
+        <div class="form-group ml-3">
             <label>Username</label>
             <input type="text" name="username" value="" class="form-control" placeholder="Masukkan Username Guru">
         </div>

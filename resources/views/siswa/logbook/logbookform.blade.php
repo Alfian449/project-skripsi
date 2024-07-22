@@ -28,6 +28,5 @@
             <textarea name="keterangan" class="form-control" placeholder="apa kegiatanmu hari ini"></textarea>
         </div>
         <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
-        <a class="btn btn-warning" href="{{ route('logbook.index') }}">Batal</a>
     </form>
 @endsection

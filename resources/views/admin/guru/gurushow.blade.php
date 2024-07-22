@@ -19,6 +19,7 @@
             @endif
             <div class="card-body">
                 <p class="card-text">
+                    NIP : {{ $guru->nip }}<br>
                     Username : {{ $guru->username }}<br>
                     Nama : {{ $guru->name }}<br>
                     Password : {{ $guru->password }}<br>

@@ -46,7 +46,7 @@ class InstansiController extends Controller
         $validasi = $request->validate(
             [
                 'name' => 'required|unique:instansis|max:45',
-                'alamat' => 'required|max:45',
+                'alamat' => 'required|max:255',
                 'phone' => 'required|max:45',
                 'email' => 'required|email|max:45',
                 'guru_id' => 'exists:users,id'

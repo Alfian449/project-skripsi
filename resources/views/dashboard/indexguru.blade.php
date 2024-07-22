@@ -28,14 +28,17 @@
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control" id="nama" value="{{ $guru->name }}" readonly>
                         </div>
+
                         <div class="form-group">
                             <label for="jenis_kelamin">Jenis Kelamin</label>
                             <input type="text" class="form-control" id="jenis_kelamin" value="{{ $guru->jenis_kelamin }}" readonly>
                         </div>
+
                         <div class="form-group">
                             <label for="phone">Nomor Telepon</label>
                             <input type="text" class="form-control" id="phone" value="{{ $guru->phone }}" readonly>
                         </div>
+                        
                         <div class="form-group">
                             <label for="alamat">Alamat</label>
                             <input type="text" class="form-control" id="alamat" value="{{ $guru->alamat }}" readonly>

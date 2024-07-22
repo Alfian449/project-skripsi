@@ -25,9 +25,9 @@
 
             <form action="{{ route('instansi.import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <input type="file" name="file" class="form-control">
-                <br>
-                <button class="btn btn-success">Import Instansi Data</button>
+                <input type="file" name="file" class="form-control ml-3 mt-2">
+
+                <button class="btn btn-success ml-3 mt-2">Import Data Instansi</button>
             </form>
         </div>
 

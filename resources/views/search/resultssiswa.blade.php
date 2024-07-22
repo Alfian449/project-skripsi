@@ -70,11 +70,11 @@
                             <td>{{ $result->phone }}</td>
                             <td>{{ $result->alamat }}</td>
                             <td>
-                                @if (!empty($result->foto) && file_exists(public_path('images/' . $result->foto)))
-                                    <img src="{{ asset('images/' . $result->foto) }}" alt="{{ $result->name }}"
+                                @if (!empty($result->foto) && file_exists(public_path('uploads/fotos/' . $result->foto)))
+                                    <img src="{{ asset('uploads/fotos/' . $result->foto) }}" alt="{{ $result->name }}"
                                         width="90">
                                 @else
-                                    <img src="{{ asset('images/nophoto.png') }}" alt="{{ $result->name }}" width="90">
+                                    <img src="{{ asset('uploads/fotos/nophoto.png') }}" alt="{{ $result->name }}" width="90">
                                 @endif
                             </td>
                             <td>
@@ -83,6 +83,7 @@
                                     @method('delete')
                                     <a class="btn btn-success action-btn"
                                         href="{{ route('siswa.edit', $result->id) }}">Edit</a>
+                                    <a class="btn btn-info" href="{{ route('siswa.show', $result->id) }}">Detail</a>
                                     <button class="btn btn-danger action-btn mt-2"
                                         onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
                                 </form>

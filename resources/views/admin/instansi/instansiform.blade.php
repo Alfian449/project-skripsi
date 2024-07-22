@@ -52,6 +52,6 @@
         </div>
 
         <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
-        <a class="btn btn-warning" href="{{ route('instansi.index') }}">Batal</a>
+        <a class="btn btn-success" href="{{ route('instansi.index') }}">Batal</a>
     </form>
 @endsection

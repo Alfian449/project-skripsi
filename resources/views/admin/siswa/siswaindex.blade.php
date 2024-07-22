@@ -20,14 +20,14 @@
         <div>
             <div class="d-flex">
                 <a class="btn btn-primary ml-3" href="{{ route('siswa.create') }}">Tambah</a>
-                <a class="btn btn-primary ml-3" href="{{ url('siswasi-export') }}">Export To Excel</a>
+                <a class="btn btn-primary ml-2" href="{{ url('siswasi-export') }}">Export To Excel</a>
             </div>
 
         <form action="{{ route('siswasi.import') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="file" name="file" class="form-control ml-3 mt-2 m">
 
-            <button class="btn btn-success ml-3 mt-2">Import User Data</button>
+            <button class="btn btn-success ml-3 mt-2">Import Data Siswa</button>
         </form>
 
     </div>
@@ -70,7 +70,7 @@
                             @method('delete')
                             <a class="btn btn-success" href="{{ route('siswa.edit', $row->id) }}">Edit</a>
                             <a class="btn btn-info" href="{{ route('siswa.show', $row->id) }}">Detail</a>
-                            <button class="btn btn-danger mt-2"
+                            <button class="btn btn-danger"
                                 onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
                         </form>
                     </td>

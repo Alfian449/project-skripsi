@@ -66,11 +66,11 @@
                             <td>{{ $result->phone }}</td>
                             <td>{{ $result->alamat }}</td>
                             <td>
-                                @if (!empty($result->foto) && file_exists(public_path('images/guru/' . $result->foto)))
-                                    <img src="{{ asset('images/guru/' . $result->foto) }}" alt="{{ $result->name }}"
+                                @if (!empty($result->foto) && file_exists(public_path('uploads/gurus/' . $result->foto)))
+                                    <img src="{{ asset('uploads/gurus/' . $result->foto) }}" alt="{{ $result->name }}"
                                         width="90">
                                 @else
-                                    <img src="{{ asset('images/nophoto.png') }}" alt="{{ $result->name }}" width="90">
+                                    <img src="{{ asset('uploads/gurus/nophoto.png') }}" alt="{{ $result->name }}" width="90">
                                 @endif
                             </td>
                             <td>
