@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Logbook;
 use App\Models\Training;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TrainingController extends Controller
 {
@@ -36,12 +37,14 @@ class TrainingController extends Controller
                 'jurusan' => 'required',
             ],
         );
-        // Membuat pengguna baru dan menyimpannya di database.
 
-        // dd($validasi);
+        $user = Auth::user();
 
-        $validasi['user_id'] = auth()->id();
+        // Menghapus instansi sebelumnya jika ada
+        Training::where('user_id', $user->id)->delete();
 
+        // Menyimpan instansi baru
+        $validasi['user_id'] = $user->id;
         Training::create($validasi);
 
         return back();

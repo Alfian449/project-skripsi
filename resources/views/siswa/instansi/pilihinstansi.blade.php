@@ -43,15 +43,14 @@
             <select class="form-control" name="jurusan">
                 <option value="">Pilih Jurusan</option>
                 <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-                <option value="Multimedia">Multimedia</option>
-                <option value="Akuntansi">Akuntansi</option>
-                <option value="Pemasaran">Pemasaran</option>
+                <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
+                <option value="Akuntansi Keuangan Lembaga">Akuntansi Keuangan Lembaga</option>
+                <option value="Bisnis Daring Pemasaran">Bisnis Daring Pemasaran</option>
                 <option value="Teknik Komputer Jaringan">Teknik Komputer Jaringan</option>
-                <option value="Perkantoran">Perkantoran</option>
+                <option value="Manajemen Perkantoran">Manajemen Perkantoran</option>
             </select>
         </div>
 
         <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
-        <a class="btn btn-warning" href="{{ route('logbook.index') }}">Batal</a>
     </form>
 @endsection

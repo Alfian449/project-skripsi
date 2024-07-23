@@ -47,9 +47,16 @@
                 <option value="">Pilih Kelas</option>
                 <option value="XI RPL 1">XI RPL 1</option>
                 <option value="XI RPL 2">XI RPL 2</option>
-                <option value="XI MM 1">XI MM 1</option>
-                <option value="XI MM 2">XI MM 2</option>
+                <option value="XI TKJ 1">XI TKJ 1</option>
+                <option value="XI TKJ 2">XI TKJ 2</option>
+                <option value="XI DKV 2">XI DKV 1</option>
                 <option value="XI DKV 2">XI DKV 2</option>
+                <option value="XI OTKP 2">XI OTKP 1</option>
+                <option value="XI OTKP 2">XI OTKP 2</option>
+                <option value="XI AKL 2">XI AKL 1</option>
+                <option value="XI AKL 2">XI AKL 2</option>
+                <option value="XI BDP 2">XI BDP 1</option>
+                <option value="XI BDP 2">XI BDP 2</option>
             </select>
         </div>
 

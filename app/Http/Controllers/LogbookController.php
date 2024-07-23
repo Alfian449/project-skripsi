@@ -16,7 +16,7 @@ class LogbookController extends Controller
     public function index()
     {
 
-        // 
+        //
     }
 
     /**
@@ -39,7 +39,7 @@ class LogbookController extends Controller
                 'keterangan' => 'required',
             ],
         );
-        // Membuat pengguna baru dan menyimpannya di database.
+
         $validasi['user_id'] = auth()->id();
         Logbook::create($validasi);
 
