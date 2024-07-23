@@ -3,7 +3,6 @@
 namespace App\Exports;
 
 use App\Models\Rekapnilai;
-use App\Models\User;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
@@ -14,7 +13,9 @@ class RekapnilaiExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Rekapnilai::select("name", "kedisiplinan", "tanggung_jawab", "komunikasi", "kerja_sama", "inisiatif", "ketekunan", "kreativitas")->get();
+        return Rekapnilai::join('users', 'rekaps.user_id', '=', 'users.id')
+                          ->select('users.name', 'users.kelas', 'rekaps.kedisiplinan', 'rekaps.tanggung_jawab', 'rekaps.komunikasi', 'rekaps.kerja_sama', 'rekaps.inisiatif', 'rekaps.ketekunan', 'rekaps.kreativitas')
+                          ->get();
     }
 
     /**
@@ -24,6 +25,6 @@ class RekapnilaiExport implements FromCollection, WithHeadings
      */
     public function headings(): array
     {
-        return ["Nama", "Kedisiplinan", "Tanggung Jawab", "Komunikasi", "Kerja Sama", "Inisiatif", "Ketekunan", "Kreativitas"];
+        return ["Nama", 'Kelas', "Kedisiplinan", "Tanggung Jawab", "Komunikasi", "Kerja Sama", "Inisiatif", "Ketekunan", "Kreativitas"];
     }
 }
