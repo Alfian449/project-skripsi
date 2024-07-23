@@ -25,6 +25,11 @@
                     </div>
                     <div class="col-md-8">
                         <div class="form-group">
+                            <label for="nip">NIP</label>
+                            <input type="text" class="form-control" id="nip" value="{{ $guru->nip }}" readonly>
+                        </div>
+
+                        <div class="form-group">
                             <label for="nama">Nama</label>
                             <input type="text" class="form-control" id="nama" value="{{ $guru->name }}" readonly>
                         </div>
