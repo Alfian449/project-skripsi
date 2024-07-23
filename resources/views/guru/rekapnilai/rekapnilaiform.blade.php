@@ -23,7 +23,12 @@
         @csrf
         <div class="form-group ml-3">
             <label>Nama</label>
-            <input type="text" name="name" value="" class="form-control" >
+            <select name="user_id" class="form-control">
+                <option value="">-- Pilih Siswa --</option>
+                @foreach ($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->name }} - {{ $user->kelas }}</option>
+                @endforeach
+            </select>
         </div>
 
         {{-- <div class="form-group ml-3">

@@ -12,4 +12,14 @@ class Rekapnilai extends Model
     protected $guarded = [];
 
     protected $table = 'rekaps';
+
+    public function response()
+    {
+        return $this->belongsTo(User::class, 'response_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

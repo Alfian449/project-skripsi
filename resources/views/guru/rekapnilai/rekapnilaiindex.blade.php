@@ -10,17 +10,29 @@
     </nav>
 
     @php
-        $ar_rekapnilai = ['No', 'Nama Siswa', 'Kedisiplinan', 'Tanggung Jawab', 'Komunikasi', 'Kerja Sama', 'Inisiatif', 'Ketekunan', 'Kreativitas', 'Action'];
+        $ar_rekapnilai = [
+            'No',
+            'Nama Siswa',
+            'Kelas',
+            'Kedisiplinan',
+            'Tanggung Jawab',
+            'Komunikasi',
+            'Kerja Sama',
+            'Inisiatif',
+            'Ketekunan',
+            'Kreativitas',
+            'Action',
+        ];
         $no = 1;
     @endphp
 
     <h3 class="ml-3">Data Rekap Nilai</h3>
     <br>
     <div class="d-flex justify-content-between align-items-start mb-3">
-            <div class="d-flex">
-                <a class="btn btn-primary ml-3" href="{{ route('rekapnilai.create') }}">Tambah</a>
-                <a class="btn btn-success ml-3" href="{{ url('rekapnilai-export') }}">Export To Excel</a>
-            </div>
+        <div class="d-flex">
+            <a class="btn btn-primary ml-3" href="{{ route('rekapnilai.create') }}">Tambah</a>
+            <a class="btn btn-success ml-3" href="{{ url('rekapnilai-export') }}">Export To Excel</a>
+        </div>
     </div>
 
 
@@ -36,8 +48,8 @@
             @foreach ($rekapnilai as $row)
                 <tr>
                     <td>{{ $no++ }}</td>
-                    <td>{{ $row->name }}</td>
-                    {{-- <td>{{ $row->kelas }}</td> --}}
+                    <td>{{ $row->user->name }}</td>
+                    <td>{{ $row->user->kelas }}</td>
                     <td>{{ $row->kedisiplinan }}</td>
                     <td>{{ $row->tanggung_jawab }}</td>
                     <td>{{ $row->komunikasi }}</td>

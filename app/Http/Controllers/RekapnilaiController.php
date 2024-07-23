@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\RekapnilaiExport;
 use App\Models\Rekapnilai;
+use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,7 +18,7 @@ class RekapnilaiController extends Controller
     public function index()
     {
         // Mengambil semua data pengguna dari database dan menampilkannya di tampilan.
-        $rekapnilai = Rekapnilai::all();
+        $rekapnilai = Rekapnilai::with(['response', 'user'])->get();
         return view('guru.rekapnilai.rekapnilaiindex', compact('rekapnilai'));
     }
 
@@ -31,7 +32,12 @@ class RekapnilaiController extends Controller
      */
     public function create()
     {
-        return view('guru.rekapnilai.rekapnilaiform');
+        $guruId = auth()->id();
+        $users = User::with(['trainings', 'trainings.instansi', 'trainings.instansi.guru'])->whereRole('siswa')
+        ->whereHas('trainings.instansi', function ($query) use ($guruId) {
+            $query->where('guru_id', $guruId);
+        })->get();
+        return view('guru.rekapnilai.rekapnilaiform', compact('users'));
     }
 
     /**
@@ -42,7 +48,8 @@ class RekapnilaiController extends Controller
         // Membuat validasi untuk inputan data pengguna.
         $validasi = $request->validate(
             [
-                'name' => 'required|unique:rekaps',
+                'user_id' => 'exists:users,id',
+                'response_id' => 'exists:users,id',
                 'kedisiplinan' => 'required',
                 'tanggung_jawab' => 'required',
                 'komunikasi' => 'required',
@@ -52,7 +59,8 @@ class RekapnilaiController extends Controller
                 'kreativitas' => 'required',
             ],
         );
-
+        $validasi['user_id'] = $request->user_id;
+        $validasi['response_id'] = auth()->id();
         Rekapnilai::create($validasi);
 
         return redirect('/rekapnilai');
