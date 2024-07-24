@@ -20,17 +20,13 @@
         <div>
             <div class="d-flex">
                 <a class="btn btn-primary ml-3" href="{{ route('instansi.create') }}">Tambah</a>
-
             </div>
-
-            <form action="{{ route('instansi.import') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('instansi.import') }}" method="POST" enctype="multipart/form-data" class="ml-3 mt-2">
                 @csrf
-                <input type="file" name="file" class="form-control ml-3 mt-2">
-
-                <button class="btn btn-success ml-3 mt-2">Import Data Instansi</button>
+                <input type="file" name="file" class="form-control mb-2">
+                <button class="btn btn-success">Import Data Instansi</button>
             </form>
         </div>
-
         <form action="{{ route('searchinstansi') }}" method="GET" class="form-inline">
             <input class="form-control mr-2" type="text" name="query" placeholder="Search for a name">
             <button class="btn btn-success" type="submit">Search</button>
@@ -53,14 +49,15 @@
                     <td>{{ $row->guru->name }}</td>
                     <td>{{ $row->email }}</td>
                     <td>
-                        <form method="POST" action="{{ route('instansi.destroy', $row->id) }}">
-                            @csrf
-                            @method('delete')
-                            <a class="btn btn-success" href="{{ route('instansi.edit', $row->id) }}">Edit</a>
-                            <a class="btn btn-info" href="{{ route('instansi.show', $row->id) }}">Detail</a>
-                            <button class="btn btn-danger"
-                                onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
-                        </form>
+                        <div class="d-flex">
+                            <a class="btn btn-success mr-1" href="{{ route('instansi.edit', $row->id) }}">Edit</a>
+                            <a class="btn btn-info mr-1" href="{{ route('instansi.show', $row->id) }}">Detail</a>
+                            <form method="POST" action="{{ route('instansi.destroy', $row->id) }}" onsubmit="return confirm('Apakah Anda Yakin Data Dihapus?')">
+                                @csrf
+                                @method('delete')
+                                <button class="btn btn-danger">Hapus</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
             @endforeach

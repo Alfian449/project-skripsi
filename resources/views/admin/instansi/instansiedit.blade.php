@@ -36,7 +36,7 @@
         <div class="form-group ml-3">
             <label>Penanggung Jawab</label>
             <select name="guru_id" class="form-control">
-                @foreach($pilihpenanggungjawab as $guru)
+                @foreach ($pilihpenanggungjawab as $guru)
                     <option value="{{ $guru->id }}" {{ $instansi->guru_id == $guru->id ? 'selected' : '' }}>
                         {{ $guru->name }}
                     </option>
@@ -47,5 +47,4 @@
         <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
         <a class="btn btn-success" href="{{ route('instansi.index') }}">Batal</a>
     </form>
-
 @endsection

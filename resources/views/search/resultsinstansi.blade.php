@@ -20,14 +20,11 @@
                 border-collapse: collapse;
             }
 
-            table,
-            th,
-            td {
+            table, th, td {
                 border: 0px solid black;
             }
 
-            th,
-            td {
+            th, td {
                 padding: 15px;
                 text-align: left;
             }
@@ -52,8 +49,7 @@
                     <tr>
                         <th scope="col">No</th>
                         <th>Nama</th>
-                        <th>Alamat</th>
-                        <th>Phone</th>
+                        <th>Penanggung Jawab</th>
                         <th>Email</th>
                         <th>Action</th>
                     </tr>
@@ -63,18 +59,18 @@
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $result->name }}</td>
-                            <td>{{ $result->alamat }}</td>
-                            <td>{{ $result->phone }}</td>
+                            <td>{{ $result->guru->name }}</td>
                             <td>{{ $result->email }}</td>
                             <td>
-                                <form method="POST" action="{{ route('instansi.destroy', $result->id) }}">
-                                    @csrf
-                                    @method('delete')
-                                    <a class="btn btn-success action-btn"
-                                        href="{{ route('instansi.edit', $result->id) }}">Edit</a>
-                                    <button class="btn btn-danger action-btn"
-                                        onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
-                                </form>
+                                <div class="d-flex">
+                                    <a class="btn btn-success mr-1" href="{{ route('instansi.edit', $result->id) }}">Edit</a>
+                                    <a class="btn btn-info mr-1" href="{{ route('instansi.show', $result->id) }}">Detail</a>
+                                    <form method="POST" action="{{ route('instansi.destroy', $result->id) }}" onsubmit="return confirm('Apakah Anda Yakin Data Dihapus?')">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger">Hapus</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @endforeach
