@@ -169,4 +169,13 @@ class SiswaController extends Controller
     return view('dashboard.indexsiswa', compact('siswa'));
     }
 
+    public function massDelete(Request $request) {
+        $ids = $request->input('ids');
+        if ($ids) {
+            User::whereIn('id', $ids)->delete();
+            return response()->json(['success' => 'Siswa berhasil dihapus']);
+        } else {
+            return response()->json(['error' => 'Tidak ada siswa yang dipilih'], 400);
+        }
+    }
 }

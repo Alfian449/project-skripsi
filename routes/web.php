@@ -121,3 +121,4 @@ Route::get('/dassiswa', [DassiswaController::class, 'dashboardSiswa'])->name('ha
 Route::get('/halamanguru', [GuruController::class, 'dashboardGuru'])->name('halamanguru');
 Route::get('/halamansiswa', [SiswaController::class, 'dashboardSiswa'])->name('halamansiswa');
 
+Route::post('/siswas/massDelete', [SiswaController::class, 'massDelete'])->name('siswas.massDelete');

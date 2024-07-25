@@ -35,9 +35,17 @@
     </form>
 </div>
 
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <div>
+        {{-- <button id="select-all" class="btn btn-warning ml-3">Select All</button> --}}
+        <button id="delete-selected" class="btn btn-danger ml-3">Hapus Data Yang Dipilih</button>
+    </div>
+</div>
+
 <table class="table table-striped table-hover mt-3 ml-3">
     <thead class="thead-light">
         <tr>
+            <th scope="col"><input type="checkbox" id="select-all-checkbox"></th>
             @foreach ($ar_siswa as $asiswa)
                 <th scope="col">{{ $asiswa }}</th>
             @endforeach
@@ -46,6 +54,7 @@
     <tbody>
         @foreach ($siswa as $row)
             <tr>
+                <td><input type="checkbox" class="select-item" value="{{ $row->id }}"></td>
                 <td>{{ $no++ }}</td>
                 <td>{{ $row->nis }}</td>
                 <td>{{ $row->name }}</td>
@@ -75,4 +84,39 @@
         @endforeach
     </tbody>
 </table>
+
+<script>
+document.getElementById('select-all-checkbox').addEventListener('click', function(event) {
+    const checkboxes = document.querySelectorAll('.select-item');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = event.target.checked;
+    });
+});
+
+document.getElementById('delete-selected').addEventListener('click', function() {
+    const selected = Array.from(document.querySelectorAll('.select-item:checked')).map(cb => cb.value);
+    if (selected.length > 0) {
+        if (confirm('Apakah Anda yakin ingin menghapus data siswa yang dipilih?')) {
+            fetch('{{ route('siswas.massDelete') }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ ids: selected })
+            }).then(response => response.json())
+              .then(data => {
+                  if (data.success) {
+                      location.reload();
+                  } else {
+                      alert('Terjadi kesalahan saat menghapus data.');
+                  }
+              })
+              .catch(error => console.error('Error:', error));
+        }
+    } else {
+        alert('Pilih setidaknya satu siswa untuk dihapus.');
+    }
+});
+</script>
 @endsection
