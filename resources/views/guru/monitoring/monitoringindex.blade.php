@@ -10,13 +10,15 @@
     </nav>
 
     @php
-        $ar_monitoring = ['No', 'Instansi', 'Nama Siswa', 'Tanggal', 'Keterangan'];
+        $ar_monitoring = ['No', 'Instansi', 'Nama Siswa', 'Tanggal', 'Keterangan','Action'];
         $no = 1;
     @endphp
 
     <h3 class="ml-3">Data Monitoring Siswa</h3>
     <br>
 
+    <!-- Tambahkan div pembungkus untuk scrollbar horizontal -->
+    <div class="table-responsive">
     <table class="table table-striped mt-3 ml-3">
         <thead>
             <tr>
@@ -31,10 +33,22 @@
                     <td>{{ $no++ }}</td>
                     <td>{{ $row->training->instansi->name }}</td>
                     <td>{{ $row->user->name }}</td>
-                    <td>{{ $row->created_at->format('d/m/Y') }}</td>
+                    <td>{{ $row->tanggal }}</td>
                     <td>{{ $row->keterangan }}</td>
+                    <td>
+                        @if($row->status == 'pending')
+                            <form method="POST" action="{{ route('logbook.approve', $row->id) }}">
+                                @csrf
+                                <button class="btn btn-success">Approve</button>
+                            </form>
+                        @else
+                            <span class="badge badge-success">Approved</span>
+                        @endif
+                    </td>
+
                 </tr>
             @endforeach
         </tbody>
     </table>
+    </div>
 @endsection

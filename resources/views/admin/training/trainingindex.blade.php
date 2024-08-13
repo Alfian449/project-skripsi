@@ -10,32 +10,44 @@
     </nav>
 
     @php
-        $ar_training = ['No', 'Nama Siswa', 'Nama Instansi', 'Jurusan', 'Status',];
+        $ar_training = ['No', 'Nama Siswa', 'Nama Instansi', 'Jurusan', 'Status', 'Aksi'];
         $no = 1;
     @endphp
 
     <h3 class="ml-3">Data List Training</h3>
     <br>
 
-
-    <table class="table table-striped mt-3 ml-3">
-        <thead>
-            <tr>
-                @foreach ($ar_training as $atraining)
-                    <th scope="col">{{ $atraining }}</th>
-                @endforeach
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($training as $row)
+    <!-- Tambahkan div pembungkus untuk scrollbar horizontal -->
+    <div class="table-responsive">
+        <table class="table table-striped mt-3 ml-3">
+            <thead>
                 <tr>
-                    <td>{{ $no++ }}</td>
-                    <td>{{ $row->user->name }}</td>
-                    <td>{{ $row->instansi->name }}</td>
-                    <td>{{ $row->jurusan }}</td>
-                    <td>{{ $row->status }}</td>
+                    @foreach ($ar_training as $atraining)
+                        <th scope="col">{{ $atraining }}</th>
+                    @endforeach
                 </tr>
-            @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach ($training as $row)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $row->user->name }}</td>
+                        <td>{{ $row->instansi->name }}</td>
+                        <td>{{ $row->jurusan }}</td>
+                        <td>{{ $row->status }}</td>
+                        <td>
+                            @if($row->status == 'pending')
+                                <form action="{{ route('training.approve', $row->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success">Approve</button>
+                                </form>
+                            @else
+                                Approved
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 @endsection

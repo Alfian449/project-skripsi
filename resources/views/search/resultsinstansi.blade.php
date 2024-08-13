@@ -1,4 +1,5 @@
 @extends('layout.app')
+
 @section('content')
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -9,41 +10,40 @@
         </form>
     </nav>
 
-    <!DOCTYPE html>
-    <html>
+    <style>
+        .table-container {
+            overflow-x: auto;
+            max-width: 100%;
+        }
 
-    <head>
-        <title>Data Instansi</title>
-        <style>
-            table {
-                width: 100%;
-                border-collapse: collapse;
-            }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-            table, th, td {
-                border: 0px solid black;
-            }
+        table, th, td {
+            border: 0px solid black;
+        }
 
-            th, td {
-                padding: 15px;
-                text-align: left;
-            }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
 
-            .action-btn {
-                margin-bottom: 5px;
-            }
-        </style>
-    </head>
+        .action-btn {
+            margin-bottom: 5px;
+        }
+    </style>
 
-    <body>
-        <div>
-            <h2 class="ml-3">Data Instansi</h2>
-            <nav aria-label="breadcrumb" class="ml-3">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{ url('/instansi') }}">Back</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Hasil Pencarian</li>
-                </ol>
-            </nav>
+    <div>
+        <h2 class="ml-3">Data Instansi</h2>
+        <nav aria-label="breadcrumb" class="ml-3">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url('/instansi') }}">Back</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Hasil Pencarian</li>
+            </ol>
+        </nav>
+        <div class="table-container">
             <table class="table table-striped mt-3 ml-3">
                 <thead>
                     <tr>
@@ -77,7 +77,5 @@
                 </tbody>
             </table>
         </div>
-    </body>
-
-    </html>
+    </div>
 @endsection

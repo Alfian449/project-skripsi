@@ -37,7 +37,8 @@ class LogbookController extends Controller
                 'user_id' => 'exists:users,id',
                 'training_id' => 'exists:trainings,id',
                 'keterangan' => 'required',
-            ],
+                'tanggal' => 'required|date',
+            ]
         );
 
         $validasi['user_id'] = auth()->id();
@@ -60,27 +61,31 @@ class LogbookController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        $logbook = DB::table('logbooks')
-        ->where('id', $id)->get();
-        return view('siswa.logbook.logbookedit', compact('logbook'));
-    }
+{
+    $logbook = DB::table('logbooks')->where('id', $id)->first();
+    return view('siswa.logbook.logbookedit', compact('logbook'));
+}
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        DB::table('logbooks')->where('id', $id)->update(
-            [
-                'nama_kegiatan'=>$request->nama_kegiatan,
-                'keterangan'=>$request->keterangan,
-                'tanggal'=>$request->tanggal,
-            ]
-        );
+{
+    // Validasi input
+    $validasi = $request->validate([
+        'keterangan' => 'required',
+        'tanggal' => 'required|date',
+    ]);
 
-        return redirect('/logbook'.'/'.$id);
-    }
+    // Menggunakan Eloquent untuk update logbook
+    $logbook = Logbook::find($id);
+    $logbook->update($validasi);
+
+    return redirect()->route('history.index');
+}
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -97,4 +102,14 @@ class LogbookController extends Controller
     // return $training->load('instansi');
         return view('siswa.logbook.logbookform', compact('training'));
     }
+
+    public function approve($id)
+{
+    $logbook = Logbook::findOrFail($id);
+    $logbook->status = 'success';
+    $logbook->save();
+
+    return redirect()->route('monitoring.index')->with('status', 'Logbook berhasil di-approve.');
+}
+
 }

@@ -27,6 +27,12 @@
             <label>Keterangan</label>
             <textarea name="keterangan" class="form-control" placeholder="apa kegiatanmu hari ini"></textarea>
         </div>
+
+        <div class="form-group ml-3">
+            <label>Tanggal</label>
+            <input type="date" name="tanggal" class="form-control"></input>
+        </div>
+
         <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
     </form>
 @endsection

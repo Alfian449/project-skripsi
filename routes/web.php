@@ -15,6 +15,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DasguruController;
 use App\Http\Controllers\DassiswaController;
 use App\Http\Controllers\HistoryController;
+use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\PilihinstansiController;
 use App\Http\Controllers\RekapnilaiController;
@@ -49,11 +50,14 @@ Route::middleware('auth')->group(function () {
 
 
 // Routing halaman admin
+Route::middleware('auth')->group(function () {
 Route::resource('/admin', AdminController::class);
 Route::resource('/guru', GuruController::class);
 Route::resource('/siswa', SiswaController::class);
 Route::resource('/instansi', InstansiController::class);
+Route::resource('/jurusan', JurusanController::class);
 Route::resource('/list-training', AdmintrainingController::class);
+});
 
 
 // Routing halaman siswa
@@ -66,8 +70,10 @@ Route::get('/logbook/{training}/create', [LogbookController::class, 'createFormL
 
 
 // Routing halaman guru
+Route::middleware('auth')->group(function () {
 Route::resource('/monitoring', MonitoringController::class);
 Route::resource('/rekapnilai', RekapnilaiController::class);
+});
 
 
 // Routing untuk dashboard
@@ -77,9 +83,11 @@ Route::resource('/dasguru', DasguruController::class);
 
 
 // Routing untuk pencarian
+Route::middleware('auth')->group(function () {
 Route::get('/searchsiswa', [SearchsiswaController::class, 'searchsiswa'])->name('searchsiswa');
 Route::get('/searchguru', [SearchguruController::class, 'searchguru'])->name('searchguru');
 Route::get('/searchinstansi', [SearchinstansiController::class, 'searchinstansi'])->name('searchinstansi');
+});
 
 
 // Routing export-import excel
@@ -122,3 +130,7 @@ Route::get('/halamanguru', [GuruController::class, 'dashboardGuru'])->name('hala
 Route::get('/halamansiswa', [SiswaController::class, 'dashboardSiswa'])->name('halamansiswa');
 
 Route::post('/siswas/massDelete', [SiswaController::class, 'massDelete'])->name('siswas.massDelete');
+
+Route::post('/logbook/approve/{id}', [LogbookController::class, 'approve'])->name('logbook.approve');
+
+Route::post('/training/approve/{id}', [TrainingController::class, 'approve'])->name('training.approve');

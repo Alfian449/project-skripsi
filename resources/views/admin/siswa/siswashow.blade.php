@@ -10,6 +10,8 @@
     </nav>
 
 
+    <!-- Tambahkan div pembungkus untuk scrollbar horizontal -->
+    <div class="table-responsive">
     @foreach ($siswa as $rs)
         <div class="card ml-3" style="width: 18rem;">
             @if (!empty($rs->foto) && file_exists(public_path('uploads/fotos/' . $rs->foto)))
@@ -32,4 +34,5 @@
             </div>
         </div>
     @endforeach
+    </div>
 @endsection

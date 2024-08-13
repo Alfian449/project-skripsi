@@ -83,4 +83,15 @@ class TrainingController extends Controller
     {
         //
     }
+
+    public function approve($id)
+{
+    $training = Training::findOrFail($id);
+    $training->status = 'approved';
+    $training->save();
+
+    return redirect()->back()->with('success', 'Data siswa berhasil di-approve.');
+}
+
+
 }

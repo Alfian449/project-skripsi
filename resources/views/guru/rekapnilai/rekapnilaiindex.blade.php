@@ -36,6 +36,8 @@
     </div>
 
 
+    <!-- Tambahkan div pembungkus untuk scrollbar horizontal -->
+    <div class="table-responsive">
     <table class="table table-striped mt-3 ml-3">
         <thead>
             <tr>
@@ -69,4 +71,5 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 @endsection

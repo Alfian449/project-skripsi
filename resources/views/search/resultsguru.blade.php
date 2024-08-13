@@ -10,6 +10,13 @@
         </form>
     </nav>
 
+    <style>
+        .table-container {
+            overflow-x: auto;
+            max-width: 100%;
+        }
+    </style>
+
     <div>
         <h2 class="ml-3">Data Guru</h2>
         <nav aria-label="breadcrumb" class="ml-3">
@@ -18,51 +25,53 @@
                 <li class="breadcrumb-item active" aria-current="page">Hasil Pencarian</li>
             </ol>
         </nav>
-        <table class="table table-striped mt-3 ml-3">
-            <thead>
-                <tr>
-                    <th scope="col">No</th>
-                    <th>NIP</th>
-                    <th>Username</th>
-                    <th>Nama</th>
-                    <th>Jenis Kelamin</th>
-                    <th>Phone</th>
-                    <th>Alamat</th>
-                    <th>Foto</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($resultsguru as $result)
+        <div class="table-container">
+            <table class="table table-striped mt-3 ml-3">
+                <thead>
                     <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
-                        <td>{{ $result->nip }}</td>
-                        <td>{{ $result->username }}</td>
-                        <td>{{ $result->name }}</td>
-                        <td>{{ $result->jenis_kelamin }}</td>
-                        <td>{{ $result->phone }}</td>
-                        <td>{{ $result->alamat }}</td>
-                        <td>
-                            @if (!empty($result->foto) && file_exists(public_path('uploads/gurus/' . $result->foto)))
-                                <img src="{{ asset('uploads/gurus/' . $result->foto) }}" alt="{{ $result->name }}" width="90">
-                            @else
-                                <img src="{{ asset('uploads/gurus/nophoto.png') }}" alt="{{ $result->name }}" width="90">
-                            @endif
-                        </td>
-                        <td>
-                            <div class="d-flex">
-                                <a class="btn btn-success mr-1" href="{{ route('guru.edit', $result->id) }}">Edit</a>
-                                <a class="btn btn-info mr-1" href="{{ route('guru.show', $result->id) }}">Detail</a>
-                                <form method="POST" action="{{ route('guru.destroy', $result->id) }}" onsubmit="return confirm('Apakah Anda Yakin Data Dihapus?')">
-                                    @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger">Hapus</button>
-                                </form>
-                            </div>
-                        </td>
+                        <th scope="col">No</th>
+                        <th>NIP</th>
+                        <th>Username</th>
+                        <th>Nama</th>
+                        <th>Jenis Kelamin</th>
+                        <th>Phone</th>
+                        <th>Alamat</th>
+                        <th>Foto</th>
+                        <th>Action</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($resultsguru as $result)
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $result->nip }}</td>
+                            <td>{{ $result->username }}</td>
+                            <td>{{ $result->name }}</td>
+                            <td>{{ $result->jenis_kelamin }}</td>
+                            <td>{{ $result->phone }}</td>
+                            <td>{{ $result->alamat }}</td>
+                            <td>
+                                @if (!empty($result->foto) && file_exists(public_path('uploads/gurus/' . $result->foto)))
+                                    <img src="{{ asset('uploads/gurus/' . $result->foto) }}" alt="{{ $result->name }}" width="90">
+                                @else
+                                    <img src="{{ asset('uploads/gurus/nophoto.png') }}" alt="{{ $result->name }}" width="90">
+                                @endif
+                            </td>
+                            <td>
+                                <div class="d-flex">
+                                    <a class="btn btn-success mr-1" href="{{ route('guru.edit', $result->id) }}">Edit</a>
+                                    <a class="btn btn-info mr-1" href="{{ route('guru.show', $result->id) }}">Detail</a>
+                                    <form method="POST" action="{{ route('guru.destroy', $result->id) }}" onsubmit="return confirm('Apakah Anda Yakin Data Dihapus?')">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn btn-danger">Hapus</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection

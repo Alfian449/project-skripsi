@@ -43,20 +43,27 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link" href="{{ url('/jurusan') }}">
+            <i class="fa fa-graduation-cap"></i>
+            <span>Jurusan</span></a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link" href="{{ url('/list-training') }}">
-            <i class="fa fa-building"></i>
+            <i class="fa fa-list"></i>
             <span>List Siswa</span></a>
     </li>
 
     <form method="POST" action="/logout">
         @csrf
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('/logout') }}" onclick="event.preventDefault();
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('/logout') }}"
+                onclick="event.preventDefault();
         this.closest('form').submit();">
-            <i class="fa fa-arrow-right"></i>
-            <span>Logout</span>
-        </a>
-    </li>
+                <i class="fa fa-arrow-right"></i>
+                <span>Logout</span>
+            </a>
+        </li>
     </form>
 
     <hr class="sidebar-divider d-none d-md-block">

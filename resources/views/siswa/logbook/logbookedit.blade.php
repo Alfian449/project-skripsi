@@ -10,27 +10,26 @@
     </nav>
 
     <h3 class="ml-3">Update LogBook</h3>
-    @foreach ($logbook as $rs)
-        <form method="POST" action="{{ route('logbook.update', $rs->id) }}">
-            @csrf
-            @method('put')
-            <div class="form-group ml-3">
-                <label>Nama Kegiatan</label>
-                <input type="text" name="nama_kegiatan" value="{{ $rs->nama_kegiatan }}" class="form-control">
-            </div>
+    <form method="POST" action="{{ route('logbook.update', $logbook->id) }}">
+        @csrf
+        @method('put')
+        {{-- <div class="form-group ml-3">
+            <label>Nama Kegiatan</label>
+            <input type="text" name="nama_kegiatan" value="{{ $logbook->nama_kegiatan }}" class="form-control">
+        </div> --}}
 
-            <div class="form-group ml-3">
-                <label>Keterangan</label>
-                <input type="text" name="keterangan" value="{{ $rs->keterangan }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Keterangan</label>
+            <input type="text" name="keterangan" value="{{ $logbook->keterangan }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Tanggal</label>
-                <input type="text" name="tanggal" value="{{ $rs->tanggal }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Tanggal</label>
+            <input type="date" name="tanggal" value="{{ $logbook->tanggal }}" class="form-control">
+        </div>
 
-            <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
-            <a class="btn btn-warning" href="{{ route('logbook.index') }}">Batal</a>
-        </form>
-    @endforeach
+
+        <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
+        {{-- <a class="btn btn-warning" href="{{ route('logbook.index') }}">Batal</a> --}}
+    </form>
 @endsection
