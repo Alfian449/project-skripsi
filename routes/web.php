@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminRekapNilaiController;
 use App\Http\Controllers\AdmintrainingController;
 use App\Http\Controllers\DasadminController;
 use App\Http\Controllers\GuruController;
@@ -58,6 +59,7 @@ Route::resource('/siswa', SiswaController::class);
 Route::resource('/instansi', InstansiController::class);
 Route::resource('/jurusan', JurusanController::class);
 Route::resource('/list-training', AdmintrainingController::class);
+Route::get('/rekap-nilai', [AdminRekapNilaiController::class, 'index']);
 });
 
 
@@ -141,4 +143,3 @@ Route::get('/training/edit/{id}', [TrainingController::class, 'edit'])->name('tr
 Route::post('/training/update/{id}', [TrainingController::class, 'update'])->name('training.update');
 
 Route::get('/siswa/history', [SiswaController::class, 'history'])->name('siswa.history');
-

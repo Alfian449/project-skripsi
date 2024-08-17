@@ -27,19 +27,21 @@
 
     <li class="nav-item">
         <a class="nav-link" href="{{ url('/history') }}">
+            {{-- <a class="nav-link" href="{{ route('trainings.show', $history->id) }}"> --}}
             <i class="fa fa-book-open"></i>
             <span>History</span></a>
     </li>
 
     <form method="POST" action="/logout">
         @csrf
-    <li class="nav-item">
-        <a class="nav-link" href="{{ url('/logout') }}" onclick="event.preventDefault();
+        <li class="nav-item">
+            <a class="nav-link" href="{{ url('/logout') }}"
+                onclick="event.preventDefault();
         this.closest('form').submit();">
-            <i class="fa fa-arrow-right"></i>
-            <span>Logout</span>
-        </a>
-    </li>
+                <i class="fa fa-arrow-right"></i>
+                <span>Logout</span>
+            </a>
+        </li>
     </form>
 
     <hr class="sidebar-divider d-none d-md-block">

@@ -54,6 +54,12 @@
             <span>Ploting Prakerin</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="{{ url('/rekap-nilai') }}">
+            <i class="fa fa-list"></i>
+            <span>Rekap Nilai</span></a>
+    </li>
+
     <form method="POST" action="/logout">
         @csrf
         <li class="nav-item">
