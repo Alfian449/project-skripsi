@@ -21,7 +21,6 @@
             'Inisiatif',
             'Ketekunan',
             'Kreativitas',
-            'Action',
         ];
         $no = 1;
     @endphp
@@ -59,14 +58,6 @@
                         <td>{{ $row->inisiatif }}</td>
                         <td>{{ $row->ketekunan }}</td>
                         <td>{{ $row->kreativitas }}</td>
-                        <td>
-                            <form method="POST" action="{{ route('rekapnilai.destroy', $row->id) }}">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-danger"
-                                    onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
-                            </form>
-                        </td>
                     </tr>
                 @endforeach
             </tbody>

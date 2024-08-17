@@ -50,16 +50,6 @@
             </select>
         </div>
 
-        <div class="form-group ml-3">
-            <label for="instansi">Pilihan Instansi 2</label>
-            <select class="form-control" name="instansi_id">
-                <option value="" selected>Pilih Instansi</option>
-                @foreach ($pilihinstansi as $item)
-                    <option value="{{ $item->id }}">{{ $item->name }}</option>
-                @endforeach
-            </select>
-        </div>
-
         <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
     </form>
 @endsection
