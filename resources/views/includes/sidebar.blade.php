@@ -51,7 +51,7 @@
     <li class="nav-item">
         <a class="nav-link" href="{{ url('/list-training') }}">
             <i class="fa fa-list"></i>
-            <span>List Siswa</span></a>
+            <span>Ploting Prakerin</span></a>
     </li>
 
     <form method="POST" action="/logout">

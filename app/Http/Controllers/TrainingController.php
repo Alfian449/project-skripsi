@@ -34,7 +34,7 @@ class TrainingController extends Controller
             [
                 'user_id' => 'exists:users,id',
                 'instansi_id' => 'exists:instansis,id',
-                'jurusan' => 'required',
+                // 'jurusan' => 'required',
             ],
         );
 
@@ -61,27 +61,17 @@ class TrainingController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Training $training)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Training $training)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Training $training)
     {
         //
+    }
+
+    public function showPendingRequests()
+    {
+        $pendingRequests = Training::where('status', 'pending')->get();
+        return view('admin.training.trainingindex', compact('pendingRequests'));
     }
 
     public function approve($id)
@@ -93,5 +83,38 @@ class TrainingController extends Controller
     return redirect()->back()->with('success', 'Data siswa berhasil di-approve.');
 }
 
+public function reject($id)
+{
+    $training = Training::findOrFail($id);
+    $training->status = 'rejected';
+    $training->save();
+
+    return redirect()->back()->with('success', 'Data siswa berhasil di-reject.');
+}
+
+public function edit($id)
+{
+    $training = Training::findOrFail($id);
+    return view('admin.training.edit', compact('training'));
+}
+
+public function update(Request $request, $id)
+{
+    $training = Training::findOrFail($id);
+    $training->instansi_id = $request->input('instansi_id');
+    $training->jurusan = $request->input('jurusan');
+    $training->save();
+
+    return redirect()->route('training.index')->with('success', 'Data siswa berhasil di-update.');
+}
+
+public function history()
+{
+    $history = Training::where('user_id', auth()->id())
+                        ->where('status', 'approved')
+                        ->get();
+
+    return view('siswa.history', compact('history'));
+}
 
 }

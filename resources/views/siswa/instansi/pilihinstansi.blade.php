@@ -23,7 +23,25 @@
     <form method="POST" action="{{ route('trainings.store') }}">
         @csrf
         <div class="form-group ml-3">
-            <label for="instansi">Pilih Instansi</label>
+            <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+            <label>Nama Siswa</label>
+            <input type="text" name="name" value="{{ auth()->user()->name }}" class="form-control" readonly>
+        </div>
+
+        <div class="form-group ml-3">
+            <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+            <label>NIS</label>
+            <input type="text" name="nis" value="{{ auth()->user()->nis }}" class="form-control" readonly>
+        </div>
+
+        <div class="form-group ml-3">
+            <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+            <label>Kelas</label>
+            <input type="text" name="kelas" value="{{ auth()->user()->kelas }}" class="form-control" readonly>
+        </div>
+
+        <div class="form-group ml-3">
+            <label for="instansi">Pilihan Instansi 1</label>
             <select class="form-control" name="instansi_id">
                 <option value="" selected>Pilih Instansi</option>
                 @foreach ($pilihinstansi as $item)
@@ -33,21 +51,12 @@
         </div>
 
         <div class="form-group ml-3">
-            <input type="hidden" name="user_id" value="{{ auth()->id() }}">
-            <label>Nama Siswa</label>
-            <input type="text" name="name" value="{{ auth()->user()->name }}" class="form-control">
-        </div>
-
-        <div class="form-group ml-3">
-            <label for="jurusan">Jurursan</label>
-            <select class="form-control" name="jurusan">
-                <option value="">Pilih Jurusan</option>
-                <option value="Rekayasa Perangkat Lunak">Rekayasa Perangkat Lunak</option>
-                <option value="Desain Komunikasi Visual">Desain Komunikasi Visual</option>
-                <option value="Akuntansi Keuangan Lembaga">Akuntansi Keuangan Lembaga</option>
-                <option value="Bisnis Daring Pemasaran">Bisnis Daring Pemasaran</option>
-                <option value="Teknik Komputer Jaringan">Teknik Komputer Jaringan</option>
-                <option value="Manajemen Perkantoran">Manajemen Perkantoran</option>
+            <label for="instansi">Pilihan Instansi 2</label>
+            <select class="form-control" name="instansi_id">
+                <option value="" selected>Pilih Instansi</option>
+                @foreach ($pilihinstansi as $item)
+                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                @endforeach
             </select>
         </div>
 

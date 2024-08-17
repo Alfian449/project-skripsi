@@ -19,6 +19,7 @@ use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\PilihinstansiController;
 use App\Http\Controllers\RekapnilaiController;
+use App\Http\Controllers\SearchplotingController;
 use App\Http\Controllers\TrainingController;
 
 /*
@@ -87,6 +88,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/searchsiswa', [SearchsiswaController::class, 'searchsiswa'])->name('searchsiswa');
 Route::get('/searchguru', [SearchguruController::class, 'searchguru'])->name('searchguru');
 Route::get('/searchinstansi', [SearchinstansiController::class, 'searchinstansi'])->name('searchinstansi');
+Route::get('/searchploting', [SearchplotingController::class, 'searchploting'])->name('searchploting');
 });
 
 
@@ -134,3 +136,9 @@ Route::post('/siswas/massDelete', [SiswaController::class, 'massDelete'])->name(
 Route::post('/logbook/approve/{id}', [LogbookController::class, 'approve'])->name('logbook.approve');
 
 Route::post('/training/approve/{id}', [TrainingController::class, 'approve'])->name('training.approve');
+Route::post('/training/reject/{id}', [TrainingController::class, 'reject'])->name('training.reject');
+Route::get('/training/edit/{id}', [TrainingController::class, 'edit'])->name('training.edit');
+Route::post('/training/update/{id}', [TrainingController::class, 'update'])->name('training.update');
+
+Route::get('/siswa/history', [SiswaController::class, 'history'])->name('siswa.history');
+

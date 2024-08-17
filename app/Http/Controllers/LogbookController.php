@@ -112,4 +112,5 @@ class LogbookController extends Controller
     return redirect()->route('monitoring.index')->with('status', 'Logbook berhasil di-approve.');
 }
 
+
 }
