@@ -42,6 +42,17 @@
         </div>
 
         <div class="form-group ml-3">
+            <label for="bidang">Bidang</label>
+            <input type="text" class="form-control" id="bidang" name="bidang" value="" placeholder="Masukkan Bidang Instansi">
+        </div>
+
+        <div class="form-group ml-3">
+            <label>Kuota</label>
+            <input type="number" name="kuota" value="" class="form-control" placeholder="Masukkan Kuota Instansi">
+        </div>
+
+
+        <div class="form-group ml-3">
             <label>Penanggung Jawab</label>
             <select class="form-control" name="guru_id">
                 <option value="" selected>Pilih Penanggung Jawab</option>

@@ -20,6 +20,8 @@ class instansiImport implements ToModel, WithHeadingRow
             'alamat'     => $row['alamat'],
             'phone'    => $row['phone'],
             'email'    => $row['email'],
+            'bidang'    => $row['bidang'],
+            'kuota'    => $row['kuota'],
             'guru_id' => $row['guru_id'] ?? null, // Tetapkan nilai default untuk guru_id jika tidak ada di file excel
         ]);
     }

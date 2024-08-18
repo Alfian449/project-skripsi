@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Instansi;
 use App\Models\Logbook;
 use App\Models\Training;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -115,6 +117,14 @@ public function history()
                         ->get();
 
     return view('siswa.history', compact('history'));
+}
+
+public function approvePilihanInstansi($siswaId) {
+    $siswa = User::find($siswaId);
+    $instansi = Instansi::find($siswa->instansi_id);
+    $instansi->kurangiKuota();
+
+    // Lakukan proses approval lainnya
 }
 
 }

@@ -41,32 +41,24 @@ class InstansiController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // Membuat validasi untuk inputan data pengguna.
-        $validasi = $request->validate(
-            [
-                'name' => 'required|unique:instansis|max:45',
-                'alamat' => 'required|max:255',
-                'phone' => 'required|max:45',
-                'email' => 'required|email|max:45',
-                'guru_id' => 'exists:users,id'
-            ],
+{
+    $validasi = $request->validate([
+        'name' => 'required|unique:instansis|max:45',
+        'alamat' => 'required|max:255',
+        'phone' => 'required|max:45',
+        'email' => 'required|email|max:45',
+        'bidang' => 'required|max:45',
+        'kuota' => 'required|integer|min:0', // Validasi kuota
+        'guru_id' => 'exists:users,id'
+    ]);
 
-            [
-                'name.required' => 'Nama wajib diisi',
-                'name.unique' => 'Nama tidak boleh sama',
-                'alamat.required' => 'Alamat wajib diisi',
-                'phone.required' => 'Nomor HP Wajib diisi.',
-                'email.required' => 'Email Wajib diisi.',
-            ],
-        );
-        // Membuat pengguna baru dan menyimpannya di database.
-        $validasi['guru_id'] = $request->guru_id;
-        // dd($validasi);
-        Instansi::create($validasi);
+    // dd($validasi);  // Debugging untuk memeriksa data yang akan disimpan
 
-        return redirect('/instansi');
-    }
+    $validasi['guru_id'] = $request->guru_id;
+    Instansi::create($validasi);
+
+    return redirect('/instansi');
+}
 
     /**
      * Display the specified resource.
@@ -92,14 +84,15 @@ class InstansiController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-       // Validasi input
+{
+    // Validasi input
     $request->validate([
         'name' => 'required|string|max:255',
         'alamat' => 'required|string|max:255',
         'phone' => 'required|string|max:15',
         'email' => 'required|email|max:255',
         'guru_id' => 'required|exists:users,id',
+        'bidang' => 'required|string|max:45',  // Tambahkan validasi untuk bidang
     ]);
 
     // Update data instansi
@@ -110,11 +103,12 @@ class InstansiController extends Controller
         'phone' => $request->phone,
         'email' => $request->email,
         'guru_id' => $request->guru_id,
+        'bidang' => $request->bidang,  // Pastikan bidang juga diupdate
     ]);
 
+    return redirect('/instansi');
+}
 
-        return redirect('instansi'.'/'.$id);
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -126,4 +120,10 @@ class InstansiController extends Controller
 
         return redirect('/instansi');
     }
+
+    public function infoInstansi() {
+        $instansi = Instansi::all();  // Mengambil semua data instansi
+        return view('siswa.info_instansi', compact('instansi'));
+    }
+
 }

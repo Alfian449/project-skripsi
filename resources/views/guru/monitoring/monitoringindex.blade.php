@@ -33,7 +33,7 @@
                     <td>{{ $no++ }}</td>
                     <td>{{ $row->training->instansi->name }}</td>
                     <td>{{ $row->user->name }}</td>
-                    <td>{{ $row->tanggal }}</td>
+                    <td>{{ \Carbon\Carbon::parse($row->tanggal)->format('d-m-Y') }}</td>
                     <td>{{ $row->keterangan }}</td>
                     <td>
                         @if($row->status == 'pending')

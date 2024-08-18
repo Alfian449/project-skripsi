@@ -11,7 +11,7 @@
     </nav>
 
     @php
-        $ar_instansi = ['No', 'Nama', 'Penanggung Jawab', 'Email', 'Action'];
+        $ar_instansi = ['No', 'Nama', 'Penanggung Jawab', 'Email', 'Bidang', 'Kuota', 'Action'];
         $no = 1;
     @endphp
 
@@ -58,6 +58,8 @@
                         <td>{{ $row->name }}</td>
                         <td>{{ $row->guru->name }}</td>
                         <td>{{ $row->email }}</td>
+                        <td>{{ $row->bidang }}</td>
+                        <td>{{ $row->kuota }}</td>
                         <td>
                             <div class="d-flex flex-column flex-md-row">
                                 <a class="btn btn-success mb-1 mr-md-1" href="{{ route('instansi.edit', $row->id) }}">Edit</a>

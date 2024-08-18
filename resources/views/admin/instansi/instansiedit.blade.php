@@ -34,6 +34,11 @@
         </div>
 
         <div class="form-group ml-3">
+            <label>Bidang</label>
+            <input type="text" name="bidang" value="{{ $instansi->bidang }}" class="form-control">
+        </div>
+
+        <div class="form-group ml-3">
             <label>Penanggung Jawab</label>
             <select name="guru_id" class="form-control">
                 @foreach ($pilihpenanggungjawab as $guru)

@@ -29,7 +29,7 @@
     <br>
     <div class="d-flex justify-content-between align-items-start mb-3">
         <div class="d-flex">
-            <a class="btn btn-primary ml-3" href="{{ route('rekapnilai.create') }}">Tambah</a>
+            {{-- <a class="btn btn-primary ml-3" href="{{ route('rekapnilai.create') }}">Tambah</a> --}}
             <a class="btn btn-success ml-3" href="{{ url('rekapnilai-export') }}">Export To Excel</a>
         </div>
     </div>

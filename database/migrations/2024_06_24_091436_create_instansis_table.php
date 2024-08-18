@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('alamat');
             $table->string('phone');
             $table->string('email');
+            $table->string('bidang');
+            $table->integer('kuota')->default(0);
             $table->timestamps();
         });
     }

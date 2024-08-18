@@ -36,9 +36,8 @@ use App\Http\Controllers\TrainingController;
 
 // Routing halaman dashboard
 Route::middleware('auth')->group(function () {
-    Route::get('/halamanadmin', function () {
-        return view('dashboard.index');
-    })->name('dashboard');
+    Route::get('/halamanadmin', [DasadminController::class, 'index'])->name('dashboard');
+
 
     Route::get('/halamansiswa', function () {
         return view('dashboard.indexsiswa');
@@ -143,3 +142,5 @@ Route::get('/training/edit/{id}', [TrainingController::class, 'edit'])->name('tr
 Route::post('/training/update/{id}', [TrainingController::class, 'update'])->name('training.update');
 
 Route::get('/siswa/history', [SiswaController::class, 'history'])->name('siswa.history');
+
+Route::get('/info-instansi', [InstansiController::class, 'infoInstansi'])->name('info.instansi');

@@ -39,7 +39,7 @@
                             <td>{{ $no++ }}</td>
                             <td>{{ $row->training->instansi->name }}</td>
                             <td>{{ $row->keterangan }}</td>
-                            <td>{{ $row->tanggal }}</td>
+                            <td>{{ \Carbon\Carbon::parse($row->tanggal)->format('d-m-Y') }}</td>
                             <td>{{ $row->status }}</td>
                             <td>
                                 <form method="POST" action="{{ route('logbook.destroy', $row->id) }}">

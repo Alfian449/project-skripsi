@@ -20,6 +20,13 @@
     </div>
 
     <li class="nav-item">
+        <a class="nav-link" href="{{ url('/info-instansi') }}">
+            <i class="fa fa-info-circle"></i>
+            <span>Info Instansi</span>
+        </a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link" href="{{ url('/pilihinstansi') }}">
             <i class="fa fa-pen"></i>
             <span>Magang</span></a>

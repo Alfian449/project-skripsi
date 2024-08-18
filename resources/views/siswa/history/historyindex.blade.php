@@ -16,17 +16,17 @@
                 </div>
                 @if ($history->status == 'approved')
                     <div class="card-footer text-success">
-                        <small class="text-success font-italic">Approved</small>
+                        <h7 class="text-success font-italic">Pilihan Instansi Anda Diapproved Oleh Admin</h7>
                     </div>
                 @elseif ($history->status == 'pending')
                     <div class="card-footer text-warning">
-                        <small class="text-warning
-                            font-italic">Pending</small>
+                        <h7 class="text-warning
+                            font-italic">Harap Menunggu Pilihan Instansi Anda DiApproved Oleh Admin</h7>
                     </div>
                 @else
                     <div class="card-footer text-danger">
-                        <small class="text-danger
-                            font-italic">Rejected</small>
+                        <h7 class="text-danger
+                            font-italic">Pilihan Instansi Anda Ditolak Oleh Admin. Silahkan Memilih Instansi Lain</h7>
                     </div>
                 @endif
             </div>
