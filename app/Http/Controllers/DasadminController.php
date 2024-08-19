@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Instansi;
+use App\Models\Jurusan;
+use App\Models\Rekapnilai;
+use App\Models\Training;
 use Illuminate\Http\Request;
 
 class DasadminController extends Controller
@@ -13,20 +16,13 @@ class DasadminController extends Controller
      */
     public function index()
     {
-        // Mengambil total siswa
         $totalSiswa = User::where('role', 'siswa')->count();
-
-        // Mengambil total guru
         $totalGuru = User::where('role', 'guru')->count();
-
-        // Mengambil total instansi
         $totalInstansi = Instansi::count();
+        $plotingPrakerin = Training::where('status', 'pending')->count();
+        $totalRekapnilai = Rekapnilai::count();
+        $totalJurusan = Jurusan::count();
 
-        $plotingPrakerin = User::where('role', 'siswa')
-                               ->where('status', 'pending') // Ganti 'status' sesuai dengan kolom yang ada
-                               ->count();
-
-        // Mengirim data ke view
-        return view('dashboard.index', compact('totalSiswa', 'totalGuru', 'totalInstansi', 'plotingPrakerin'));
+        return view('dashboard.index', compact('totalSiswa', 'totalGuru', 'totalInstansi', 'plotingPrakerin', 'totalRekapnilai', 'totalJurusan'));
     }
 }

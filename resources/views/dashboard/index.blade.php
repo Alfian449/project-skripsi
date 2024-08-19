@@ -23,7 +23,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                    Total Siswa
+                                    Data Siswa
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalSiswa }}</div>
                             </div>
@@ -42,7 +42,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                    Total Guru
+                                    Data Guru
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalGuru }}</div>
                             </div>
@@ -61,7 +61,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                    Total Instansi
+                                    Data Instansi
                                 </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalInstansi }}</div>
                             </div>
@@ -91,6 +91,45 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Rekap Nilai Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-danger shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                    Rekap Nilai
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalRekapnilai }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-signal fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jurusan Card -->
+            <div class="col-xl-3 col-md-6 mb-4">
+                <div class="card border-left-dark shadow h-100 py-2">
+                    <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                            <div class="col mr-2">
+                                <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">
+                                    Jurusan
+                                </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalJurusan }}</div>
+                            </div>
+                            <div class="col-auto">
+                                <i class="fas fa-signal fa-2x text-gray-300"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 @endsection
