@@ -26,10 +26,11 @@ class Instansi extends Model
         return $this->belongsTo(User::class, 'guru_id');
     }
 
-    public function kurangiKuota() {
-        if ($this->kuota > 0) {
-            $this->kuota -= 1;
-            $this->save();
-        }
+    public function kurangiKuota()
+{
+    if ($this->kuota > 0) {
+        $this->kuota -= 1;
+        $this->save();
+    }
 }
 }

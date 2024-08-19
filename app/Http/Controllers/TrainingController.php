@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PlotingprakerinExport;
 use App\Models\Instansi;
 use App\Models\Logbook;
 use App\Models\Training;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TrainingController extends Controller
 {
@@ -18,6 +20,11 @@ class TrainingController extends Controller
     {
         //
     }
+
+    public function exportPlotingPrakerin()
+{
+    return Excel::download(new PlotingprakerinExport, 'ploting_prakerin.xlsx');
+}
 
     /**
      * Show the form for creating a new resource.
@@ -76,14 +83,36 @@ class TrainingController extends Controller
         return view('admin.training.trainingindex', compact('pendingRequests'));
     }
 
-    public function approve($id)
+//     public function approve($id)
+// {
+//     $training = Training::findOrFail($id);
+//     $training->status = 'approved';
+//     $training->save();
+
+//     return redirect()->back()->with('success', 'Data siswa berhasil di-approve.');
+// }
+
+public function approve($id)
 {
     $training = Training::findOrFail($id);
-    $training->status = 'approved';
-    $training->save();
 
-    return redirect()->back()->with('success', 'Data siswa berhasil di-approve.');
+    // Ambil instansi terkait
+    $instansi = Instansi::find($training->instansi_id);
+
+    if ($instansi && $instansi->kuota > 0) {
+        // Kurangi kuota instansi
+        $instansi->kurangiKuota();
+
+        // Set status training menjadi 'approved'
+        $training->status = 'approved';
+        $training->save();
+
+        return redirect()->back()->with('success', 'Data siswa berhasil di-approve dan kuota instansi berkurang.');
+    }
+
+    return redirect()->back()->with('error', 'Gagal meng-approve data siswa. Kuota instansi sudah habis.');
 }
+
 
 public function reject($id)
 {

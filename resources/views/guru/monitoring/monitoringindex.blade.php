@@ -10,7 +10,7 @@
     </nav>
 
     @php
-        $ar_monitoring = ['No', 'Instansi', 'Nama Siswa', 'Tanggal', 'Keterangan','Action'];
+        $ar_monitoring = ['No', 'Instansi', 'Nama Siswa', 'NIS', 'Kelas', 'Tanggal', 'Keterangan','Action'];
         $no = 1;
     @endphp
 
@@ -33,6 +33,8 @@
                     <td>{{ $no++ }}</td>
                     <td>{{ $row->training->instansi->name }}</td>
                     <td>{{ $row->user->name }}</td>
+                    <td>{{ $row->user->nis }}</td>
+                    <td>{{ $row->user->kelas }}</td>
                     <td>{{ \Carbon\Carbon::parse($row->tanggal)->format('d-m-Y') }}</td>
                     <td>{{ $row->keterangan }}</td>
                     <td>

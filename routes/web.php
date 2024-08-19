@@ -101,6 +101,8 @@ Route::get('/gurus-export', [GuruController::class, 'export'])->name('gurus.expo
 Route::post('/instansi-import', [InstansiController::class, 'import'])->name('instansi.import');
 Route::get('/instansi-export', [InstansiController::class, 'export'])->name('instansi.export');
 Route::get('/rekapnilai-export', [RekapnilaiController::class, 'export'])->name('rekapnilai.export');
+Route::get('/plotingprakerin-export', [TrainingController::class, 'exportPlotingPrakerin'])->name('export.plotingprakerin');
+
 
 
 // Routing login

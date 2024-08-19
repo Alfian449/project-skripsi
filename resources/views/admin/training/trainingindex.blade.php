@@ -5,7 +5,7 @@
             <i class="fa fa-bars"></i>
         </button>
         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <h5 class="h5 mb-0 text-gray-800">Halaman List Training</h5>
+            <h5 class="h5 mb-0 text-gray-800">Halaman Ploting Prakerin</h5>
         </form>
     </nav>
 
@@ -14,14 +14,14 @@
         $no = 1;
     @endphp
 
-    <h3 class="ml-3">Data List Training</h3>
+    <h3 class="ml-3">Data Ploting Prakerin</h3>
     <br>
 
     <div class="row">
         <!-- Bagian Kiri: Tambah, Export, dan Import -->
         <div class="col-lg-8 col-md-7 col-sm-12 mb-3">
             <div class="d-flex flex-wrap">
-                <a class="btn btn-primary ml-2 mb-2" href="{{ url('siswasi-export') }}">Export To Excel</a>
+                <a class="btn btn-primary ml-2 mb-2" href="{{ url('plotingprakerin-export') }}">Export To Excel</a>
                 <form action="" method="get" class="form-inline">
                     <select class="form-control mr-2 mb-2 ml-2" name="p">
                         <option value="" selected>Pilih Instansi</option>
