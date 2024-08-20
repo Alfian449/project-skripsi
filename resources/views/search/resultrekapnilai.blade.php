@@ -1,11 +1,12 @@
 @extends('layout.app')
+
 @section('content')
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
         </button>
         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <h5 class="h5 mb-0 text-gray-800">Halaman Rekap Nilai</h5>
+            <h5 class="h5 mb-0 text-gray-800">Halaman Rekap Nilai - Hasil Pencarian</h5>
         </form>
     </nav>
 
@@ -25,23 +26,15 @@
         $no = 1;
     @endphp
 
-    <h3 class="ml-3">Data Rekap Nilai</h3>
-    <br>
+    <h3 class="ml-3">Hasil Pencarian Rekap Nilai</h3>
+    <nav aria-label="breadcrumb" class="ml-3">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/rekap-nilai') }}">Back</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Hasil Pencarian</li>
+        </ol>
+    </nav>
 
-    <div class="row mb-3">
-        <!-- Bagian Kiri: Export Button -->
-        <div class="col-lg-6 col-md-6 col-sm-12 d-flex">
-            <a class="btn btn-success ml-3" href="{{ url('rekapnilai-export') }}">Export To Excel</a>
-        </div>
-
-        <!-- Bagian Kanan: Search Form -->
-        <div class="col-lg-6 col-md-6 col-sm-12">
-            <form action="{{ route('searchrekapnilai') }}" method="GET" class="form-inline justify-content-end" style="margin-right: 50px;">
-                <input class="form-control mr-2" type="text" name="query" placeholder="Search for a name">
-                <button class="btn btn-success" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
+    
 
     <!-- Tambahkan div pembungkus untuk scrollbar horizontal -->
     <div class="table-responsive">
@@ -54,7 +47,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($rekapnilai as $row)
+                @foreach ($resultRekapNilai as $row)
                     <tr>
                         <td>{{ $no++ }}</td>
                         <td>{{ $row->user->name }}</td>

@@ -21,6 +21,7 @@ use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\PilihinstansiController;
 use App\Http\Controllers\RekapnilaiController;
 use App\Http\Controllers\SearchplotingController;
+use App\Http\Controllers\SearchRekapNilaiController;
 use App\Http\Controllers\TrainingController;
 
 /*
@@ -90,6 +91,7 @@ Route::get('/searchsiswa', [SearchsiswaController::class, 'searchsiswa'])->name(
 Route::get('/searchguru', [SearchguruController::class, 'searchguru'])->name('searchguru');
 Route::get('/searchinstansi', [SearchinstansiController::class, 'searchinstansi'])->name('searchinstansi');
 Route::get('/searchploting', [SearchplotingController::class, 'searchploting'])->name('searchploting');
+Route::get('/searchrekapnilai', [SearchRekapNilaiController::class, 'searchrekapnilai'])->name('searchrekapnilai');
 });
 
 

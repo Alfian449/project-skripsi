@@ -10,7 +10,11 @@ class SearchplotingController extends Controller
     public function searchploting(Request $request)
     {
         $query = $request->input('query');
-        $resultploting = Training::where('user_id', 'LIKE', "%{$query}%")->get();
+
+        // Join tabel 'users' dan cari berdasarkan nama siswa
+        $resultploting = Training::whereHas('user', function ($q) use ($query) {
+            $q->where('name', 'LIKE', "%{$query}%");
+        })->get();
 
         return view('search.resultploting', compact('resultploting'));
     }

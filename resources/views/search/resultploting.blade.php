@@ -10,21 +10,16 @@
     </form>
 </nav>
 
-<style>
-    .table-container {
-        overflow-x: auto;
-        max-width: 100%;
-    }
-</style>
-
 <div>
     <h2 class="ml-3">Data Ploting Siswa</h2>
     <nav aria-label="breadcrumb" class="ml-3">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{ url('/siswa') }}">Back</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/list-training') }}">Back</a></li>
             <li class="breadcrumb-item active" aria-current="page">Hasil Pencarian</li>
         </ol>
     </nav>
+
+    <div class="table-responsive">
     <div class="table-container">
         <table class="table table-striped table-hover mt-3 ml-3">
             <thead class="thead-light">
@@ -45,22 +40,108 @@
                         <td>{{ $result->user->name }}</td>
                         <td>{{ $result->user->nis }}</td>
                         <td>{{ $result->instansi->name }}</td>
-                        <td>{{ $result->instansi->guru_id }}</td>
-                        <td>{{ $result->jurusan }}</td>
-                            {{-- <div class="d-flex">
-                                <a class="btn btn-success mr-1" href="{{ route('siswa.edit', $result->id) }}">Edit</a>
-                                <a class="btn btn-info mr-1" href="{{ route('siswa.show', $result->id) }}">Detail</a>
-                                <form method="POST" action="{{ route('siswa.destroy', $result->id) }}" onsubmit="return confirm('Apakah Anda Yakin Data Dihapus?')">
+                        <td>{{ $result->instansi->guru->name }}</td>
+                        <td>{{ $result->user->kelas }}</td>
+                        <td>
+                            @if ($result->status == 'approved')
+                                <span class="text-success">{{ ucfirst($result->status) }}</span>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
+                                    data-target="#editTraining{{ $result->id }}">
+                                    Edit
+                                </button>
+                                <div class="modal fade" id="editTraining{{ $result->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalCamp">
+                                                    Edit Status Training {{ $result->user->name }}
+                                                </h5>
+                                                <button class="close" type="button" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <form action="{{ route('list-training.update', $result->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="status"> Status</label>
+                                                        <select class="form-control" name="status">
+                                                            <option value="approved">Approved</option>
+                                                            <option value="pending">Pending</option>
+                                                            <option value="rejected">Rejected</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @elseif($result->status == 'pending')
+                                <span class="text-warning">{{ ucfirst($result->status) }}</span>
+                                <form action="{{ route('training.approve', $result->id) }}" method="POST"
+                                    style="display:inline;">
                                     @csrf
-                                    @method('delete')
-                                    <button class="btn btn-danger">Hapus</button>
+                                    <button type="submit" class="btn btn-sm btn-success">Approve</button>
                                 </form>
-                            </div> --}}
+                                <form action="{{ route('training.reject', $result->id) }}" method="POST"
+                                    style="display:inline;">
+                                    @csrf
+                                    <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                </form>
+                            @else
+                                <span class="text-danger">{{ ucfirst($result->status) }}</span>
+                                <button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
+                                    data-target="#editTraining{{ $result->id }}">
+                                    Edit
+                                </button>
+                                <div class="modal fade" id="editTraining{{ $result->id }}" tabindex="-1"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="modalCamp">
+                                                    Edit Status Training {{ $result->user->name }}
+                                                </h5>
+                                                <button class="close" type="button" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                            </div>
+                                            <form action="{{ route('list-training.update', $result->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="status"> Status</label>
+                                                        <select class="form-control" name="status">
+                                                            <option value="approved">Approved</option>
+                                                            <option value="pending">Pending</option>
+                                                            <option value="rejected">Rejected</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
                         </td>
                     </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
     </div>
 </div>
 @endsection
