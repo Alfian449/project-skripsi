@@ -10,52 +10,50 @@
     </nav>
 
     <h3 class="ml-3">Update Rekap Nilai</h3>
-    @foreach ($rekapnilai as $rn)
-        <form method="POST" action="{{ route('rekapnilai.update', $rn->id) }}">
-            @csrf
-            @method('put')
-            <div class="form-group ml-3">
-                <label>Nama</label>
-                <input type="text" name="name" value="{{ $rn->name }}" class="form-control">
-            </div>
+    <form method="POST" action="{{ route('rekapnilai.update', $rekapnilai->id) }}">
+        @csrf
+        @method('put')
+        <div class="form-group ml-3">
+            <label>Nama</label>
+            <input type="text" name="name" value="{{ $rekapnilai->user->name }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Kedisiplinan</label>
-                <input type="text" name="kedisiplinan" value="{{ $rn->kedisiplinan }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Kedisiplinan</label>
+            <input type="text" name="kedisiplinan" value="{{ $rekapnilai->kedisiplinan }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Tanggung Jawab</label>
-                <input type="text" name="tanggung_jawab" value="{{ $rn->tanggung_jawab }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Tanggung Jawab</label>
+            <input type="text" name="tanggung_jawab" value="{{ $rekapnilai->tanggung_jawab }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Komunikasi</label>
-                <input type="text" name="komunikasi" value="{{ $rn->komunikasi }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Komunikasi</label>
+            <input type="text" name="komunikasi" value="{{ $rekapnilai->komunikasi }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Kerja Sama</label>
-                <input type="text" name="kerja_sama" value="{{ $rn->kerja_sama }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Kerja Sama</label>
+            <input type="text" name="kerja_sama" value="{{ $rekapnilai->kerja_sama }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Inisiatif</label>
-                <input type="text" name="inisiatif" value="{{ $rn->inisiatif }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Inisiatif</label>
+            <input type="text" name="inisiatif" value="{{ $rekapnilai->inisiatif }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Ketekunan</label>
-                <input type="text" name="ketekunan" value="{{ $rn->ketekunan }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Ketekunan</label>
+            <input type="text" name="ketekunan" value="{{ $rekapnilai->ketekunan }}" class="form-control">
+        </div>
 
-            <div class="form-group ml-3">
-                <label>Kreativitas</label>
-                <input type="text" name="kreativitas" value="{{ $rn->kreativitas }}" class="form-control">
-            </div>
+        <div class="form-group ml-3">
+            <label>Kreativitas</label>
+            <input type="text" name="kreativitas" value="{{ $rekapnilai->kreativitas }}" class="form-control">
+        </div>
 
-            <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
-            <a class="btn btn-success" href="{{ route('siswa.index') }}">Batal</a>
-        </form>
-    @endforeach
+        <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
+        <a class="btn btn-success" href="{{ route('rekapnilai.index') }}">Batal</a>
+    </form>
 @endsection

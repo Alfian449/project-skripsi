@@ -50,13 +50,13 @@ class RekapnilaiController extends Controller
             [
                 'user_id' => 'exists:users,id',
                 'response_id' => 'exists:users,id',
-                'kedisiplinan' => 'required',
-                'tanggung_jawab' => 'required',
-                'komunikasi' => 'required',
-                'kerja_sama' => 'required',
-                'inisiatif' => 'required',
-                'ketekunan' => 'required',
-                'kreativitas' => 'required',
+                'kedisiplinan' => 'required|numeric',
+                'tanggung_jawab' => 'required|numeric',
+                'komunikasi' => 'required|numeric',
+                'kerja_sama' => 'required|numeric',
+                'inisiatif' => 'required|numeric',
+                'ketekunan' => 'required|numeric',
+                'kreativitas' => 'required|numeric',
             ],
         );
         $validasi['user_id'] = $request->user_id;
@@ -78,33 +78,32 @@ class RekapnilaiController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        $rekapnilai = DB::table('rekaps')
-        ->where('id', $id)->get();
-        return view('guru.rekapnilai.rekapnilaiedit', compact('rekapnilai'));
-    }
+{
+    // Menggunakan model Rekapnilai untuk mengambil data dengan relasi ke user
+    $rekapnilai = Rekapnilai::with('user')->findOrFail($id);
+    return view('guru.rekapnilai.rekapnilaiedit', compact('rekapnilai'));
+}
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        // Update data siswa
-        DB::table('rekaps')->where('id', $id)->update(
-            [
-                'name'=>$request->name,
-                'kedisiplinan'=>$request->kedisiplinan,
-                'tanggung_jawab'=>$request->tanggung_jawab,
-                'komunikasi'=>$request->komunikasi,
-                'kerja_sama'=>$request->kerja_sama,
-                'inisiatif'=>$request->inisiatif,
-                'ketekunan'=>$request->ketekunan,
-                'kreativitas'=>$request->kreativitas,
-            ]
-        );
+{
+    $rekapnilai = Rekapnilai::findOrFail($id);
+    $rekapnilai->update([
+        'kedisiplinan' => $request->kedisiplinan,
+        'tanggung_jawab' => $request->tanggung_jawab,
+        'komunikasi' => $request->komunikasi,
+        'kerja_sama' => $request->kerja_sama,
+        'inisiatif' => $request->inisiatif,
+        'ketekunan' => $request->ketekunan,
+        'kreativitas' => $request->kreativitas,
+    ]);
 
-        return redirect('rekapnilai'.'/'.$id);
-    }
+    return redirect()->route('rekapnilai.index')->with('success', 'Data berhasil diperbarui.');
+}
+
 
     /**
      * Remove the specified resource from storage.
