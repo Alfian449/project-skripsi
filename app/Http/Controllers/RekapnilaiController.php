@@ -77,12 +77,14 @@ class RekapnilaiController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id)
 {
-    // Menggunakan model Rekapnilai untuk mengambil data dengan relasi ke user
-    $rekapnilai = Rekapnilai::with('user')->findOrFail($id);
-    return view('guru.rekapnilai.rekapnilaiedit', compact('rekapnilai'));
+    $rekapnilai = RekapNilai::find($id);
+    $users = User::where('role', 'siswa')->get(); // ambil data siswa
+
+    return view('guru.rekapnilai.rekapnilaiedit', compact('rekapnilai', 'users'));
 }
+
 
 
     /**

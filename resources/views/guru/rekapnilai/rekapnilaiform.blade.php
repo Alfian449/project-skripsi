@@ -10,6 +10,14 @@
     </nav>
 
     <h3 class="ml-3">Tambah Rekap Nilai</h3>
+
+    <!-- Tombol untuk membuka modal -->
+    <div class="ml-3 mb-4">
+        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#infoModal">
+            Lihat Informasi Pengisian Nilai
+        </button>
+    </div>
+
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -19,6 +27,7 @@
             </ul>
         </div>
     @endif
+
     <form method="POST" action="{{ route('rekapnilai.store') }}">
         @csrf
         <div class="form-group ml-3">
@@ -31,47 +40,73 @@
             </select>
         </div>
 
-        {{-- <div class="form-group ml-3">
-            <label>Kelas</label>
-            <input type="text" name="kelas" value="" class="form-control" >
-        </div> --}}
-
         <div class="form-group ml-3">
             <label>Kedisiplinan</label>
-            <input type="text" name="kedisiplinan" value="" class="form-control">
+            <input type="number" name="kedisiplinan" value="" class="form-control">
         </div>
 
         <div class="form-group ml-3">
             <label>Tanggung Jawab</label>
-            <input type="text" name="tanggung_jawab" value="" class="form-control">
+            <input type="number" name="tanggung_jawab" value="" class="form-control">
         </div>
 
         <div class="form-group ml-3">
             <label>Komunikasi</label>
-            <input type="text" name="komunikasi" value="" class="form-control">
+            <input type="number" name="komunikasi" value="" class="form-control">
         </div>
 
         <div class="form-group ml-3">
             <label>Kerja Sama</label>
-            <input type="text" name="kerja_sama" value="" class="form-control">
+            <input type="number" name="kerja_sama" value="" class="form-control">
         </div>
 
         <div class="form-group ml-3">
             <label>Inisiatif</label>
-            <input type="text" name="inisiatif" value="" class="form-control">
+            <input type="number" name="inisiatif" value="" class="form-control">
         </div>
 
         <div class="form-group ml-3">
             <label>Ketekunan</label>
-            <input type="text" name="ketekunan" value="" class="form-control">
+            <input type="number" name="ketekunan" value="" class="form-control">
         </div>
 
         <div class="form-group ml-3">
             <label>Kreativitas</label>
-            <input type="text" name="kreativitas" value="" class="form-control">
+            <input type="number" name="kreativitas" value="" class="form-control">
         </div>
 
         <button type="submit" name="proses" class="btn btn-primary ml-3">Simpan</button>
         <a class="btn btn-success" href="{{ route('rekapnilai.index') }}">Batal</a>
     </form>
+
+    <!-- Modal Bootstrap -->
+    <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="infoModalLabel">Informasi Pengisian Nilai</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>Petunjuk Pengisian:</strong></p>
+                    <ul>
+                        <li>Nilai harus diisi dengan angka.</li>
+                        <li>Rentang nilai:</li>
+                        <ul>
+                            <li>10-20: Sangat Tidak Baik</li>
+                            <li>20-40: Tidak Baik</li>
+                            <li>40-60: Cukup</li>
+                            <li>60-80: Baik</li>
+                            <li>80-100: Sangat Baik</li>
+                        </ul>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
