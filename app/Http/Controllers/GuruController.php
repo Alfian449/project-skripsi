@@ -143,7 +143,8 @@ class GuruController extends Controller
     // Update data guru
     DB::table('users')->where('id', $id)->update($data);
 
-    return redirect('guru' . '/' . $id);
+    // Redirect kembali ke halaman siswaindex dengan pesan sukses
+    return redirect()->route('guru.index')->with('success', 'Data siswa berhasil diperbarui.');
     }
 
     /**

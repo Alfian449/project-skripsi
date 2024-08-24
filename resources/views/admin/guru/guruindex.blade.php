@@ -102,7 +102,6 @@
                     <p><strong>Jenis Kelamin:</strong> {{ $row->jenis_kelamin }}</p>
                     <p><strong>Phone:</strong> {{ $row->phone }}</p>
                     <p><strong>Alamat:</strong> {{ $row->alamat }}</p>
-                    <p><strong>Password:</strong> {{ $row->password }}</p>
                     @if (!empty($row->foto) && file_exists(public_path('uploads/gurus/' . $row->foto)))
                         <img src="{{ asset('uploads/gurus/' . $row->foto) }}" alt="{{ $row->name }}" width="90">
                     @else

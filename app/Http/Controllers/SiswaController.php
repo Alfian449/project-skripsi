@@ -114,8 +114,8 @@ class SiswaController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        // Validasi input lain
+{
+    // Validasi input lain
     $request->validate([
         'nis' => 'required',
         'username' => 'required',
@@ -128,32 +128,33 @@ class SiswaController extends Controller
         'alamat' => 'required',
     ]);
 
-    $data = [
-        'nis' => $request->nis,
-        'username' => $request->username,
-        'name' => $request->name,
-        'password' => $request->password, // Pertimbangkan untuk mengenkripsi password
-        'kelas' => $request->kelas,
-        'jenis_kelamin' => $request->jenis_kelamin,
-        'phone' => $request->phone,
-        'tahun_pelajaran' => $request->tahun_pelajaran,
-        'alamat' => $request->alamat,
-    ];
+    $siswa = User::findOrFail($id);
 
-    if(!empty($request->foto)){
+    $siswa->nis = $request->nis;
+    $siswa->username = $request->username;
+    $siswa->name = $request->name;
+    $siswa->password = Hash::make($request->password); // Mengenkripsi password
+    $siswa->kelas = $request->kelas;
+    $siswa->jenis_kelamin = $request->jenis_kelamin;
+    $siswa->phone = $request->phone;
+    $siswa->tahun_pelajaran = $request->tahun_pelajaran;
+    $siswa->alamat = $request->alamat;
+
+    if (!empty($request->foto)) {
         $request->validate([
             'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
         ]);
         $fileName = $request->name . '.' . $request->foto->extension();
         $request->foto->move(public_path('uploads/fotos/'), $fileName);
-        $data['foto'] = $fileName;
+        $siswa->foto = $fileName;
     }
 
-    // Update data guru
-    DB::table('users')->where('id', $id)->update($data);
+    $siswa->save();
 
-    return redirect('siswa' . '/' . $id);
-    }
+    // Redirect kembali ke halaman siswaindex dengan pesan sukses
+    return redirect()->route('siswa.index')->with('success', 'Data siswa berhasil diperbarui.');
+}
+
 
     /**
      * Remove the specified resource from storage.

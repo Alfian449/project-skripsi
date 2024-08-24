@@ -11,7 +11,7 @@
     </nav>
 
     @php
-        $ar_siswa = ['No', 'NIS', 'Username', 'Nama', 'Kelas', 'Jenis Kelamin', 'Phone', 'Tahun Pelajaran', 'Alamat', 'Foto', 'Action'];
+        $ar_siswa = ['No', 'NIS', 'Nama', 'Kelas', 'Jenis Kelamin', 'Tahun Pelajaran', 'Alamat', 'Foto', 'Action'];
         $no = 1;
     @endphp
 
@@ -65,11 +65,9 @@
                         <td><input type="checkbox" class="select-item" value="{{ $row->id }}"></td>
                         <td>{{ $no++ }}</td>
                         <td>{{ $row->nis }}</td>
-                        <td>{{ $row->username }}</td>
                         <td>{{ $row->name }}</td>
                         <td>{{ $row->kelas }}</td>
                         <td>{{ $row->jenis_kelamin }}</td>
-                        <td>{{ $row->phone }}</td>
                         <td>{{ $row->tahun_pelajaran }}</td>
                         <td>{{ $row->alamat }}</td>
                         <td>

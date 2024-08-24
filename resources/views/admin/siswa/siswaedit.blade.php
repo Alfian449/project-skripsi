@@ -60,6 +60,15 @@
         </div>
 
         <div class="form-group ml-3">
+            <label>Tahun Pelajaran</label>
+            <select class="form-control" name="tahun_pelajaran">
+                <option value="">Pilih Tahun Pelajaran</option>
+                <option value="2023/2024">2023/2024</option>
+                <option value="2024/2025">2024/2025</option>
+            </select>
+        </div>
+
+        <div class="form-group ml-3">
             <label>Alamat</label>
             <input type="text" name="alamat" value="{{ $siswa->alamat }}" class="form-control">
         </div>

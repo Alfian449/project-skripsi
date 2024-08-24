@@ -37,6 +37,7 @@ class SiswaImport implements ToModel, WithHeadingRow
             'kelas'    => $row['kelas'],
             'jenis_kelamin'    => $row['jenis_kelamin'],
             'phone'    => $row['phone'],
+            'tahun_pelajaran'    => $row['tahun_pelajaran'],
             'alamat'    => $row['alamat'],
             'foto'    => $row['foto'],
             'role' => 'siswa', // Pastikan ini selalu diisi 'siswa'
