@@ -18,24 +18,35 @@
     <br>
 
     <div class="row">
-        <!-- Bagian Kiri: Tambah, Export, dan Import -->
         <div class="col-lg-8 col-md-7 col-sm-12 mb-3">
             <div class="d-flex flex-wrap">
                 <a class="btn btn-primary ml-2 mb-2" href="{{ url('plotingprakerin-export') }}">Export To Excel</a>
                 <form action="" method="get" class="form-inline">
+                    <!-- Filter Instansi -->
                     <select class="form-control mr-2 mb-2 ml-2" name="p">
                         <option value="" selected>Pilih Instansi</option>
                         @foreach ($pilihinstansi as $item)
                             <option value="{{ $item->id }}" {{ request()->get('p') == $item->id ? 'selected' : '' }}>
-                                {{ $item->name }}</option>
+                                {{ $item->name }}
+                            </option>
                         @endforeach
                     </select>
+
+                    <!-- Filter Tahun Pelajaran -->
+                    <select class="form-control mr-2 mb-2 ml-2" name="t">
+                        <option value="" selected>Pilih Tahun Pelajaran</option>
+                        @foreach ($tahunPelajaran as $tahun)
+                            <option value="{{ $tahun->tahun_pelajaran }}" {{ request()->get('t') == $tahun->tahun_pelajaran ? 'selected' : '' }}>
+                                {{ $tahun->tahun_pelajaran }}
+                            </option>
+                        @endforeach
+                    </select>
+
                     <button class="btn btn-success mb-2 ml-2" type="submit">Filter</button>
                 </form>
             </div>
         </div>
 
-        <!-- Bagian Kanan: Pencarian -->
         <div class="col-lg-4 col-md-5 col-sm-12">
             <form action="{{ route('searchploting') }}" method="GET" class="form-inline">
                 <input class="form-control mr-2 mb-2 ml-2" type="text" name="query" placeholder="Search for a name">
@@ -44,7 +55,6 @@
         </div>
     </div>
 
-    <!-- Tambahkan div pembungkus untuk scrollbar horizontal -->
     <div class="table-responsive">
         <table class="table table-striped mt-3 ml-3">
             <thead>
@@ -64,8 +74,8 @@
                         <td>{{ $row->instansi->name }}</td>
                         <td>{{ $row->instansi->guru->name }}</td>
                         <td>{{ $row->user->kelas }}</td>
-                        {{-- <td>{{ $row->status }}</td> --}}
                         <td>
+                            <!-- Status dan aksi -->
                             @if ($row->status == 'approved')
                                 <span class="text-success">{{ ucfirst($row->status) }}</span>
                                 <!-- Button trigger modal -->
@@ -158,9 +168,7 @@
                                     </div>
                                 </div>
                             @endif
-
                         </td>
-
                     </tr>
                 @endforeach
             </tbody>

@@ -38,7 +38,7 @@
 
     <li class="nav-item">
         <a class="nav-link" href="{{ url('/instansi') }}">
-            <i class="fa fa-building"></i>
+            <i class="fa fa-calendar"></i>
             <span>Data Instansi</span></a>
     </li>
 
@@ -50,13 +50,13 @@
 
     <li class="nav-item">
         <a class="nav-link" href="{{ url('/list-training') }}">
-            <i class="fa fa-list"></i>
+            <i class="fa fa-map-marker-alt"></i>
             <span>Ploting Prakerin</span></a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ url('/rekap-nilai') }}">
-            <i class="fa fa-list"></i>
+            <i class="fa fa-signal"></i>
             <span>Rekap Nilai</span></a>
     </li>
 

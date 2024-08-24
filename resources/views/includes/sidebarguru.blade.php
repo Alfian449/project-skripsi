@@ -20,13 +20,13 @@
 
     <li class="nav-item">
         <a class="nav-link" href="{{ url('/monitoring') }}">
-            <i class="fa fa-pen"></i>
+            <i class="fa fa-check-circle"></i>
             <span>Monitoring</span></a>
     </li>
 
     <li class="nav-item">
         <a class="nav-link" href="{{ url('/rekapnilai') }}">
-            <i class="fa fa-book-open"></i>
+            <i class="fa fa-chart-line"></i>
             <span>Rekap Nilai</span></a>
     </li>
 

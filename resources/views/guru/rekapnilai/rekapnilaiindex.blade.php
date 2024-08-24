@@ -3,7 +3,8 @@
 @section('content')
     <style>
         /* CSS untuk merapikan tampilan kolom "Tanggung Jawab" dan "Kerja Sama" */
-        .table th, .table td {
+        .table th,
+        .table td {
             vertical-align: middle;
             text-align: center;
         }
@@ -38,7 +39,12 @@
     </style>
 
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-        <!-- Navbar content -->
+        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+        </button>
+        <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <h5 class="h5 mb-0 text-gray-800">Halaman Rekap Nilai</h5>
+        </form>
     </nav>
 
     @php
@@ -90,13 +96,14 @@
                         <td>{{ $row->kreativitas }}</td>
                         <td>
                             <div class="d-flex flex-column flex-md-row">
-                            <a class="btn btn-success mb-1 mr-md-1" href="{{ route('rekapnilai.edit', $row->id) }}">Edit</a>
-                            <form method="POST" action="{{ route('rekapnilai.destroy', $row->id) }}" class="d-inline">
-                                @csrf
-                                @method('delete')
-                                <button class="btn btn-danger"
-                                    onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
-                            </form>
+                                <a class="btn btn-success mb-1 mr-md-1"
+                                    href="{{ route('rekapnilai.edit', $row->id) }}">Edit</a>
+                                <form method="POST" action="{{ route('rekapnilai.destroy', $row->id) }}" class="d-inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button class="btn btn-danger"
+                                        onclick="return confirm('Apakah Anda Yakin Data Dihapus?')">Hapus</button>
+                                </form>
                             </div>
                         </td>
                     </tr>

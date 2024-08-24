@@ -1,4 +1,4 @@
-@extends('layout.halsiswa')
+{{-- @extends('layout.halsiswa')
 @section('content')
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
@@ -76,4 +76,4 @@
         <li>{{ $instansi->phone }}</li>
         <li>{{ $instansi->email }}</li>
     @endforeach
-</ul> --}}
+</ul> --}} --}}
