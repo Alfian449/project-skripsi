@@ -10,7 +10,7 @@
     </nav>
 
     @php
-        $ar_training = ['No', 'Nama Siswa', 'NIS', 'Nama Instansi', 'Penanggung Jawab', 'Jurusan', 'Aksi'];
+        $ar_training = ['No', 'Nama Siswa', 'NIS', 'Tahun Pelajaran', 'Nama Instansi', 'Penanggung Jawab', 'Jurusan', 'Aksi'];
         $no = 1;
     @endphp
 
@@ -60,6 +60,7 @@
                         <td>{{ $no++ }}</td>
                         <td>{{ $row->user->name }}</td>
                         <td>{{ $row->user->nis }}</td>
+                        <td>{{ $row->user->tahun_pelajaran }}</td>
                         <td>{{ $row->instansi->name }}</td>
                         <td>{{ $row->instansi->guru->name }}</td>
                         <td>{{ $row->user->kelas }}</td>

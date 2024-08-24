@@ -18,6 +18,7 @@ class Siswa extends Model
         'kelas',
         'jenis_kelamin',
         'phone',
+        'tahun_pelajaran',
         'alamat',
         'foto',
     ];

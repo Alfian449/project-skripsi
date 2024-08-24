@@ -61,6 +61,7 @@ class SiswaController extends Controller
         'kelas' => 'required',
         'jenis_kelamin' => 'required|in:Laki-laki,Perempuan',
         'phone' => 'required|numeric',
+        'tahun_pelajaran' => 'required|string',
         'alamat' => 'required|string|max:100',
         'foto' => 'image|mimes:jpg,jpeg,png|max:2048|nullable', // Menambahkan nullable untuk membolehkan kosong
     ]);
@@ -86,12 +87,15 @@ class SiswaController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-        // Menampilkan data pengguna berdasarkan ID.
-        $siswa = DB::table('users')
-                ->where('id', '=', $id)->get();
-        return view('admin.siswa.siswashow', compact('siswa'));
+{
+    // Mengambil data siswa berdasarkan ID dalam format JSON
+    $siswa = User::find($id);
+    if (!$siswa) {
+        return response()->json(['error' => 'Siswa tidak ditemukan'], 404);
     }
+    return response()->json($siswa);
+}
+
 
     /**
      * Show the form for editing the specified resource.
@@ -120,6 +124,7 @@ class SiswaController extends Controller
         'kelas' => 'required',
         'jenis_kelamin' => 'required',
         'phone' => 'required',
+        'tahun_pelajaran' => 'required',
         'alamat' => 'required',
     ]);
 
@@ -131,6 +136,7 @@ class SiswaController extends Controller
         'kelas' => $request->kelas,
         'jenis_kelamin' => $request->jenis_kelamin,
         'phone' => $request->phone,
+        'tahun_pelajaran' => $request->tahun_pelajaran,
         'alamat' => $request->alamat,
     ];
 

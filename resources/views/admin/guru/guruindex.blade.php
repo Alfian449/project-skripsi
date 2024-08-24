@@ -27,7 +27,6 @@
             </div>
             <form action="{{ route('gurus.import') }}" method="POST" enctype="multipart/form-data" class="d-flex flex-column">
                 @csrf
-                <!-- Kontrol lebar input file dan tombol import -->
                 <input type="file" name="file" class="form-control mt-2 col-lg-4 col-md-6 col-sm-12 ml-2">
                 <button class="btn btn-success mt-2 col-lg-4 col-md-6 col-sm-12 ml-2">Import Data Guru</button>
             </form>
@@ -71,7 +70,7 @@
                         <td>
                             <div class="d-flex flex-column flex-md-row">
                                 <a class="btn btn-success mb-1 mr-md-1" href="{{ route('guru.edit', $row->id) }}">Edit</a>
-                                <a class="btn btn-info mb-1 mr-md-1" href="{{ route('guru.show', $row->id) }}">Detail</a>
+                                <button class="btn btn-info mb-1 mr-md-1" data-toggle="modal" data-target="#detailModal{{ $row->id }}">Detail</button>
                                 <form method="POST" action="{{ route('guru.destroy', $row->id) }}" onsubmit="return confirm('Apakah Anda Yakin Data Dihapus?')">
                                     @csrf
                                     @method('delete')
@@ -84,4 +83,37 @@
             </tbody>
         </table>
     </div>
+
+    <!-- Modals untuk setiap guru -->
+    @foreach ($guru as $row)
+    <div class="modal fade" id="detailModal{{ $row->id }}" tabindex="-1" aria-labelledby="detailModalLabel{{ $row->id }}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabel{{ $row->id }}">Detail Guru: {{ $row->name }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p><strong>NIP:</strong> {{ $row->nip }}</p>
+                    <p><strong>Username:</strong> {{ $row->username }}</p>
+                    <p><strong>Nama:</strong> {{ $row->name }}</p>
+                    <p><strong>Jenis Kelamin:</strong> {{ $row->jenis_kelamin }}</p>
+                    <p><strong>Phone:</strong> {{ $row->phone }}</p>
+                    <p><strong>Alamat:</strong> {{ $row->alamat }}</p>
+                    <p><strong>Password:</strong> {{ $row->password }}</p>
+                    @if (!empty($row->foto) && file_exists(public_path('uploads/gurus/' . $row->foto)))
+                        <img src="{{ asset('uploads/gurus/' . $row->foto) }}" alt="{{ $row->name }}" width="90">
+                    @else
+                        <img src="{{ asset('uploads/gurus/nophoto.png') }}" alt="{{ $row->name }}" width="90">
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
 @endsection

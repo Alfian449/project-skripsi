@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('kelas')->nullable();
             $table->enum('jenis_kelamin', ['laki-laki', 'perempuan']);
             $table->string('phone')->nullable();
+            $table->string('tahun_pelajaran')->nullable();
             $table->text('alamat')->nullable();
             $table->string('foto')->nullable();
             $table->enum('role', ['admin', 'siswa', 'guru',]);
