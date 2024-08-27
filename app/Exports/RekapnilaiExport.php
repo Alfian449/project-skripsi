@@ -14,7 +14,21 @@ class RekapnilaiExport implements FromCollection, WithHeadings
     public function collection()
     {
         return Rekapnilai::join('users', 'rekaps.user_id', '=', 'users.id')
-                          ->select('users.name', 'users.kelas', 'rekaps.kedisiplinan', 'rekaps.tanggung_jawab', 'rekaps.komunikasi', 'rekaps.kerja_sama', 'rekaps.inisiatif', 'rekaps.ketekunan', 'rekaps.kreativitas')
+                          ->leftJoin('trainings', 'users.id', '=', 'trainings.user_id')
+                          ->leftJoin('instansis', 'trainings.instansi_id', '=', 'instansis.id')
+                          ->select(
+                              'users.name',
+                              'users.kelas',
+                              'instansis.name as nama_instansi', // Tambahkan kolom Nama Instansi
+                              'users.tahun_pelajaran',          // Tambahkan kolom Tahun Pelajaran
+                              'rekaps.kedisiplinan',
+                              'rekaps.tanggung_jawab',
+                              'rekaps.komunikasi',
+                              'rekaps.kerja_sama',
+                              'rekaps.inisiatif',
+                              'rekaps.ketekunan',
+                              'rekaps.kreativitas'
+                          )
                           ->get();
     }
 
@@ -25,6 +39,18 @@ class RekapnilaiExport implements FromCollection, WithHeadings
      */
     public function headings(): array
     {
-        return ["Nama", 'Kelas', "Kedisiplinan", "Tanggung Jawab", "Komunikasi", "Kerja Sama", "Inisiatif", "Ketekunan", "Kreativitas"];
+        return [
+            "Nama",
+            "Kelas",
+            "Nama Instansi",    // Tambahkan heading untuk Nama Instansi
+            "Tahun Pelajaran",  // Tambahkan heading untuk Tahun Pelajaran
+            "Kedisiplinan",
+            "Tanggung Jawab",
+            "Komunikasi",
+            "Kerja Sama",
+            "Inisiatif",
+            "Ketekunan",
+            "Kreativitas"
+        ];
     }
 }

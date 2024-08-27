@@ -10,20 +10,22 @@
     </nav>
 
     @php
-        $ar_rekapnilai = [
-            'No',
-            'Nama Siswa',
-            'Kelas',
-            'Kedisiplinan',
-            'Tanggung Jawab',
-            'Komunikasi',
-            'Kerja Sama',
-            'Inisiatif',
-            'Ketekunan',
-            'Kreativitas',
-        ];
-        $no = 1;
-    @endphp
+    $ar_rekapnilai = [
+        'No',
+        'Nama Siswa',
+        'Kelas',
+        'Nama Instansi',  // Kolom Nama Instansi
+        'Tahun Pelajaran',  // Kolom Tahun Pelajaran yang baru ditambahkan
+        'Kedisiplinan',
+        'Tanggung Jawab',
+        'Komunikasi',
+        'Kerja Sama',
+        'Inisiatif',
+        'Ketekunan',
+        'Kreativitas',
+    ];
+    $no = 1;
+@endphp
 
     <h3 class="ml-3">Data Rekap Nilai</h3>
     <br>
@@ -59,6 +61,14 @@
                         <td>{{ $no++ }}</td>
                         <td>{{ $row->user->name }}</td>
                         <td>{{ $row->user->kelas }}</td>
+                        <td>
+                            @if ($row->user->trainings->first() && $row->user->trainings->first()->instansi)
+                                {{ $row->user->trainings->first()->instansi->name }}
+                            @else
+                                Tidak ada instansi
+                            @endif
+                        </td>
+                        <td>{{ $row->user->tahun_pelajaran }}</td> <!-- Kolom Tahun Pelajaran -->
                         <td>{{ $row->kedisiplinan }}</td>
                         <td>{{ $row->tanggung_jawab }}</td>
                         <td>{{ $row->komunikasi }}</td>

@@ -21,6 +21,7 @@
         <div class="col-lg-8 col-md-7 col-sm-12 mb-3">
             <div class="d-flex flex-wrap">
                 <a class="btn btn-primary ml-2 mb-2" href="{{ url('plotingprakerin-export') }}">Export To Excel</a>
+
                 <form action="" method="get" class="form-inline">
                     <!-- Filter Instansi -->
                     <select class="form-control mr-2 mb-2 ml-2" name="p">
@@ -76,98 +77,69 @@
                         <td>{{ $row->user->kelas }}</td>
                         <td>
                             <!-- Status dan aksi -->
-                            @if ($row->status == 'approved')
-                                <span class="text-success">{{ ucfirst($row->status) }}</span>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
-                                    data-target="#editTraining{{ $row->id }}">
-                                    Edit
-                                </button>
-                                <div class="modal fade" id="editTraining{{ $row->id }}" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalCamp">
-                                                    Edit Status Training {{ $row->user->name }}
-                                                </h5>
-                                                <button class="close" type="button" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <form action="{{ route('list-training.update', $row->id) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="status"> Status</label>
-                                                        <select class="form-control" name="status">
-                                                            <option value="approved">Approved</option>
-                                                            <option value="pending">Pending</option>
-                                                            <option value="rejected">Rejected</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                                </div>
-                                            </form>
+                            <div class="d-flex align-items-center">
+                                <span class="mr-2">
+                                    @if ($row->status == 'approved')
+                                        <span class="text-success">{{ ucfirst($row->status) }}</span>
+                                    @elseif($row->status == 'pending')
+                                        <span class="text-warning">{{ ucfirst($row->status) }}</span>
+                                    @else
+                                        <span class="text-danger">{{ ucfirst($row->status) }}</span>
+                                    @endif
+                                </span>
+
+                                @if ($row->status == 'pending')
+                                    <form action="{{ route('training.approve', $row->id) }}" method="POST" class="mr-1">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-success">Approve</button>
+                                    </form>
+                                    <form action="{{ route('training.reject', $row->id) }}" method="POST" class="mr-1">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-danger">Reject</button>
+                                    </form>
+                                @else
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
+                                        data-target="#editTraining{{ $row->id }}">
+                                        Edit
+                                    </button>
+                                @endif
+                            </div>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="editTraining{{ $row->id }}" tabindex="-1"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="modalCamp">
+                                                Edit Status Training {{ $row->user->name }}
+                                            </h5>
+                                            <button class="close" type="button" data-dismiss="modal"
+                                                aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                            </button>
                                         </div>
+                                        <form action="{{ route('list-training.update', $row->id) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="modal-body">
+                                                <div class="form-group">
+                                                    <label for="status"> Status</label>
+                                                    <select class="form-control" name="status">
+                                                        <option value="approved" {{ $row->status == 'approved' ? 'selected' : '' }}>Approved</option>
+                                                        <option value="pending" {{ $row->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                                        <option value="rejected" {{ $row->status == 'rejected' ? 'selected' : '' }}>Rejected</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
-                            @elseif($row->status == 'pending')
-                                <span class="text-warning">{{ ucfirst($row->status) }}</span>
-                                <form action="{{ route('training.approve', $row->id) }}" method="POST"
-                                    style="display:inline;">
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-success">Approve</button>
-                                </form>
-                                <form action="{{ route('training.reject', $row->id) }}" method="POST"
-                                    style="display:inline;">
-                                    @csrf
-                                    <button type="submit" class="btn btn-sm btn-danger">Reject</button>
-                                </form>
-                            @else
-                                <span class="text-danger">{{ ucfirst($row->status) }}</span>
-                                <button type="button" class="btn btn-sm btn-warning" data-toggle="modal"
-                                    data-target="#editTraining{{ $row->id }}">
-                                    Edit
-                                </button>
-                                <div class="modal fade" id="editTraining{{ $row->id }}" tabindex="-1"
-                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modalCamp">
-                                                    Edit Status Training {{ $row->user->name }}
-                                                </h5>
-                                                <button class="close" type="button" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                            </div>
-                                            <form action="{{ route('list-training.update', $row->id) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <label for="status"> Status</label>
-                                                        <select class="form-control" name="status">
-                                                            <option value="approved">Approved</option>
-                                                            <option value="pending">Pending</option>
-                                                            <option value="rejected">Rejected</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="submit" class="btn btn-primary">Simpan</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
+                            </div>
                         </td>
                     </tr>
                 @endforeach

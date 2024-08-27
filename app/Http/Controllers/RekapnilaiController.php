@@ -16,11 +16,12 @@ class RekapnilaiController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        // Mengambil semua data pengguna dari database dan menampilkannya di tampilan.
-        $rekapnilai = Rekapnilai::with(['response', 'user'])->get();
-        return view('guru.rekapnilai.rekapnilaiindex', compact('rekapnilai'));
-    }
+{
+    // Memuat data rekap nilai dengan data relasi yang diperlukan
+    $rekapnilai = Rekapnilai::with(['user.trainings.instansi'])->get();
+    return view('guru.rekapnilai.rekapnilaiindex', compact('rekapnilai'));
+}
+
 
     public function export()
     {
@@ -31,14 +32,16 @@ class RekapnilaiController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        $guruId = auth()->id();
-        $users = User::with(['trainings', 'trainings.instansi', 'trainings.instansi.guru'])->whereRole('siswa')
+{
+    $guruId = auth()->id();
+    $users = User::with(['trainings', 'trainings.instansi', 'trainings.instansi.guru'])
+        ->whereRole('siswa')
         ->whereHas('trainings.instansi', function ($query) use ($guruId) {
             $query->where('guru_id', $guruId);
         })->get();
-        return view('guru.rekapnilai.rekapnilaiform', compact('users'));
-    }
+    return view('guru.rekapnilai.rekapnilaiform', compact('users'));
+}
+
 
     /**
      * Store a newly created resource in storage.

@@ -1,4 +1,5 @@
 @extends('layout.halguru')
+
 @section('content')
     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
         <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
@@ -31,11 +32,19 @@
     <form method="POST" action="{{ route('rekapnilai.store') }}">
         @csrf
         <div class="form-group ml-3">
-            <label>Nama</label>
+            <label>Nama Siswa, Kelas, Instansi, dan Tahun Pelajaran</label>
             <select name="user_id" class="form-control">
                 <option value="">-- Pilih Siswa --</option>
                 @foreach ($users as $user)
-                    <option value="{{ $user->id }}">{{ $user->name }} - {{ $user->kelas }}</option>
+                    @foreach ($user->trainings as $training)
+                        <option value="{{ $user->id }}">
+                            {{ $user->name }} - {{ $user->kelas }}
+                            @if($training->instansi)
+                                - {{ $training->instansi->name }}
+                            @endif
+                            - {{ $user->tahun_pelajaran }}
+                        </option>
+                    @endforeach
                 @endforeach
             </select>
         </div>
@@ -45,6 +54,7 @@
             <input type="number" name="kedisiplinan" value="" class="form-control">
         </div>
 
+        <!-- Kode input lainnya tetap sama -->
         <div class="form-group ml-3">
             <label>Tanggung Jawab</label>
             <input type="number" name="tanggung_jawab" value="" class="form-control">

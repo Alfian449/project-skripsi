@@ -14,7 +14,7 @@ class SiswaExport implements FromCollection, WithHeadings
     public function collection()
     {
         // Memfilter data berdasarkan role 'siswa'
-        return User::select("nis", 'username', "name", "kelas", "jenis_kelamin", "phone", "alamat", "foto")
+        return User::select("nis", 'username', "name", "kelas", "jenis_kelamin", "phone", 'tahun_pelajaran', "alamat", "foto")
                     ->where('role', 'siswa')
                     ->get();
     }
@@ -26,6 +26,6 @@ class SiswaExport implements FromCollection, WithHeadings
      */
     public function headings(): array
     {
-        return ["NIS", 'Username', "Name", "Kelas", "Jenis Kelamin", "Phone", "Alamat", "Foto"];
+        return ["NIS", 'Username', "Name", "Kelas", "Jenis Kelamin", "Phone", 'Tahun Pelajaran', "Alamat", "Foto"];
     }
 }

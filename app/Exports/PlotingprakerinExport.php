@@ -20,6 +20,7 @@ class PlotingprakerinExport implements FromCollection, WithHeadings
                 return [
                     'Nama Siswa' => $training->user->name,
                     'NIS' => $training->user->nis,
+                    'Tahun Pelajaran' => $training->user->tahun_pelajaran,
                     'Nama Instansi' => $training->instansi->name,
                     'Penanggung Jawab' => $training->instansi->guru->name,
                     'Kelas' => $training->user->kelas,
@@ -33,6 +34,6 @@ class PlotingprakerinExport implements FromCollection, WithHeadings
      */
     public function headings(): array
     {
-        return ["Nama Siswa", 'NIS', "Nama Instansi", "Penanggung Jawab", 'Kelas', "Status"];
+        return ["Nama Siswa", 'NIS', 'Tahun Pelajaran', "Nama Instansi", "Penanggung Jawab", 'Kelas', "Status"];
     }
 }
